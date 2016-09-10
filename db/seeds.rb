@@ -19,3 +19,8 @@ partners = Partner.create [{ title: "Forbes", link: "http://www.forbes.com", fot
 													 { title: "Bloomberg Businessweek", link: "http://www.bloomberg.com/businessweek", foto: File.open(generate_foto_path('bloomberg.jpg')) },
 													 { title: "NPR", link: "http://www.npr.org", foto: File.open(generate_foto_path('npr.png')) }
 													]
+
+menu_items = MenuItem.create [{ title: "Как это работает?" },
+															{ title: "Блог" },
+															{ title: "Вопросы" },
+															{ title: "Помощь" }]

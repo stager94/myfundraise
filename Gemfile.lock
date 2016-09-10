@@ -17,6 +17,13 @@ GIT
       sass-rails
       sprockets (< 4.1)
 
+GIT
+  remote: git://github.com/stager94/acts_as_positioned.git
+  revision: cf33b687d994b7879a7d5195c2a1c831520d3511
+  specs:
+    acts_as_positioned (1.0.4)
+      rails (> 3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -224,6 +231,7 @@ PLATFORMS
 DEPENDENCIES
   active_skin
   activeadmin!
+  acts_as_positioned!
   bootstrap-sass (~> 3.3.6)
   byebug
   coffee-rails (~> 4.1.0)

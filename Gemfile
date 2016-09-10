@@ -31,6 +31,7 @@ gem "font-awesome-rails"
 gem 'russian', '~> 0.6.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'haml'
+gem 'acts_as_positioned', git: 'git://github.com/stager94/acts_as_positioned.git'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
