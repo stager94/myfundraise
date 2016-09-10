@@ -1,0 +1,13 @@
+.category-banner-wrapper
+	.container
+		= image_tag @category.foto.url(:thumb), size: "100x100"
+		%h2= @category.full_title
+		%h5= @category.description
+
+.container
+	.row
+		.col-md-3
+			#categories-wrapper= render 'shared/categories'
+			= render 'shared/adsense_left'
+		.col-md-9.main-wrapper
+			Coming soon..

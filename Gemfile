@@ -32,6 +32,7 @@ gem 'russian', '~> 0.6.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'haml'
 gem 'acts_as_positioned', git: 'git://github.com/stager94/acts_as_positioned.git'
+gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,3 +1,49 @@
 body {
 	padding-top: 50px;
 }
+
+#categories-wrapper {
+	a {
+		padding: 5px;
+		display: block;
+		margin-bottom: 5px;
+		color: #666;
+		border-radius: 3px;
+		background: #fafafa;
+
+		&:hover {
+			text-decoration: none;
+			color: #000;
+		}
+		img {
+			margin-right: 10px;
+		}
+		&.active {
+			background: #fff;
+		}
+	}
+
+	h5 {
+		text-transform: uppercase;
+		margin-top: 30px;
+		margin-bottom: 15px;
+	}
+}
+
+
+.main-wrapper {
+	padding-top: 30px;
+}
+
+.ad-sense {
+	width: 160px;
+	border: 1px solid #333;
+	margin: 30px auto;
+	.ad-wrapper {
+		display: table-cell;
+		width: 160px;
+		vertical-align: middle;
+		text-align: center;
+		height: 600px;
+	}
+}
