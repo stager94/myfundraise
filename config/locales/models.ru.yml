@@ -1,0 +1,35 @@
+ru:
+  activerecord:
+    models:
+      user:
+        one: Пользователь
+        other: Пользователи
+      category:
+        one: Категория
+        other: Категории
+      partner:
+        one: Партнер
+        other: Партнеры
+      admin_user:
+        one: Администратор
+        other: Администраторы
+
+    attributes:
+      user:
+        first_name: Имя
+        last_name: Фамилия
+        nick: Никнейм
+        foto: Фото
+        address: Адрес
+        email: E-mail
+        password: Пароль
+        created_at: Дата регистрации
+      category:
+        title: Название
+        foto: Картинка
+        description: Описание
+        popular: Популярная?
+      partner:
+        title: Название
+        foto: Картинка
+        link: Ссылка

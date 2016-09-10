@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: gofundme
+  pool: 10
+  username: admin
+  password: admin
