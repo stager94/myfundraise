@@ -17,7 +17,7 @@ ActiveAdmin.register Partner do
 		selectable_column
 		column :id
 		column :foto do |p|
-			image_tag p.foto.url(:thumb), size: "50x50"
+			image_tag p.foto.url(:thumb), height: "20"
 		end
 		column :title
 		column :link

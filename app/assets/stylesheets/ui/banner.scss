@@ -1,0 +1,19 @@
+.banner-wrapper {
+	background: image-url('background.png') repeat-x top left;
+	background-size: 250px 250px;
+	padding: 80px 0;
+	text-align: center;
+	border-bottom: 2px solid #e7e7e7;
+
+	h2 {
+		margin-top: 0;
+	}
+	h5 {
+		font-size: 16px;
+		font-weight: normal;
+	}
+
+	a {
+		margin-top: 20px;
+	}
+}

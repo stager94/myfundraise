@@ -29,6 +29,8 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'active_skin'
 gem "font-awesome-rails"
 gem 'russian', '~> 0.6.0'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'haml'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

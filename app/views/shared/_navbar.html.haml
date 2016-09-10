@@ -1,0 +1,24 @@
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to '#', class: "navbar-brand" do
+        = image_tag 'logo.png', size: "156x50"
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li= link_to "Watch the Video", '#'
+        
+      
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to 'How it Works', '#'
+        %li= link_to 'Success Stories', '#'
+        %li= link_to 'Press', '#'
+        %li= link_to 'Questions', '#'
+        %li= link_to 'Help', '#'
+        %li= link_to 'Sign In', '#'
+        %li= link_to 'Sign Up', '#'
+

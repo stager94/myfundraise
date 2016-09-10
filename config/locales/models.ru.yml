@@ -2,17 +2,41 @@ ru:
   activerecord:
     models:
       user:
+        zero: Пользователей
         one: Пользователь
-        other: Пользователи
+        few: Пользователей
+        many: Пользователей
+        other: Пользователя
       category:
+        zero: Категорий
         one: Категория
+        few: Категорий
+        many: Категорий
         other: Категории
       partner:
+        zero: Партнеров
         one: Партнер
-        other: Партнеры
+        few: Партнеров
+        many: Партнеров
+        other: Партнера
       admin_user:
+        zero: Администраторов
         one: Администратор
-        other: Администраторы
+        few: Администраторов
+        many: Администраторов
+        other: Администратора
+      currency:
+        zero: Валют
+        one: Валюта
+        few: Валюты
+        many: Валют
+        other: Валюты
+      campaign:
+        zero: Компаний
+        one: Компания
+        few: Компаний
+        many: Компаний
+        other: Компании
 
     attributes:
       user:
@@ -33,3 +57,19 @@ ru:
         title: Название
         foto: Картинка
         link: Ссылка
+      currency:
+        name: Название
+        sign: Знак
+        code: Код
+        is_enabled: Активно?
+      campaign:
+        currency: Валюта
+        category: Категория
+        user: Автор
+        goal: Цель
+        title: Название
+        photo: Фото
+        description: Описание
+        address: Адрес
+        enable_comments: Разрешить комментирование
+        is_active: Активная?

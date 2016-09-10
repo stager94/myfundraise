@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  goal: 1
+  currency_id: 
+  title: MyString
+  photo: 
+  description: MyText
+  category_id: 
+  address: MyString
+  enable_comments: false
+  is_active: false
+
+two:
+  goal: 1
+  currency_id: 
+  title: MyString
+  photo: 
+  description: MyText
+  category_id: 
+  address: MyString
+  enable_comments: false
+  is_active: false
