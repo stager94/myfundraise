@@ -1,3 +1,3 @@
-= link_to category do
+= link_to category, class: "#{'active' if @category == category}" do
 	= image_tag category.foto.url(:small), size: "30x30"
 	= category.title
