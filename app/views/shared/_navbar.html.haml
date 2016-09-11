@@ -15,11 +15,28 @@
       
       %ul.nav.navbar-nav.navbar-right
         = render MenuItem.enabled
+        - if user_signed_in?
+          %li.dropdown
+            = link_to '#', class: "dropdown-toggle", data: { toggle: "dropdown" }, role: "button", aria: { haspopup: true, expanded: false } do
+              Другое
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to "Пожертвования", '#'
+              %li= link_to "Комментарии", '#'
+              %li= link_to "Уведомления", '#'
+
         %li= link_to "|", '#'
         - if user_signed_in?
-          %li= link_to current_user.name, '#'
-          %li= link_to "Выход", destroy_user_session_path, method: :delete
+          %li.dropdown
+            = link_to '#', class: "dropdown-toggle", data: { toggle: "dropdown" }, role: "button", aria: { haspopup: true, expanded: false } do
+              = image_tag current_user.foto.url(:thumb), size: "30x30", class: 'img-circle gutter-right-5 pull-left gutter-top--5'
+              = current_user.name
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to "Профиль", current_user
+              %li= link_to "Новая компания", current_user
+              %li.divider(role="separator")
+              %li= link_to "Выход", destroy_user_session_path, method: :delete
         - else
           %li= link_to 'Войти', '#', data: { toggle: "modal", target: "#sign_in" }
           %li= link_to 'Зарегистрироваться', '#', data: { toggle: "modal", target: "#sign_up" }
-

@@ -22,8 +22,10 @@
 	max-width: 400px;
 	margin: 0 auto;
 
-	a {
+	a, input[type=submit] {
 		display: block;
+		width: 100%;
+		border: 0;
 		line-height: 50px;
 		padding: 0 20px;
 		background: #AAA;
@@ -58,5 +60,12 @@
 #sign_in, #sign_up {
 	.modal-dialog {
 		max-width: 450px;
+	}
+	h6 {
+		text-align: center;
+		padding: 7px !important;
+		margin: 20px -22px;
+		background: rgb(230, 230, 230) none repeat scroll 0% 0%;
+		color: rgb(102, 102, 102);
 	}
 }

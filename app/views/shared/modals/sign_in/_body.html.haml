@@ -1,0 +1,19 @@
+%h2.text-center Авторизация
+
+.auth-links
+	= link_to user_vkontakte_omniauth_authorize_path, class: "vk" do
+		= fa_icon "vk"
+		Войти через ВКонтакте
+	= link_to user_odnoklassniki_omniauth_authorize_path, class: "ok" do
+		= fa_icon "odnoklassniki"
+		Войти через Одноклассники
+
+	.helper Мы никогда не будем отправлять сообщения без вашего разрешения.
+
+	%h6 или, использовать email
+
+	= form_for(User.new, as: :user, url: session_path(:user),  html: { class: "" }) do |f|
+		.form-group= f.text_field :email, class: "form-control", placeholder: "Ваш Email адрес"
+		.form-group= f.password_field :password, class: "form-control", placeholder: "Ваш пароль"
+		= f.submit "Войти в MyFundraise", class: ""
+	.helper С каждого пожертвования компания берет 5%. Продолжая, Вы соглашаетесь с условиями и политикой конфиденциальности
