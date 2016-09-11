@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
 	validates_attachment_content_type :foto, content_type: /\Aimage\/.*\z/   
 
 	def self.find_for_oauth(auth, signed_in_resource = nil)
-    binding.pry
     identity = Identity.find_for_oauth(auth)
 
     user = signed_in_resource ? signed_in_resource : identity.user
@@ -24,8 +23,6 @@ class User < ActiveRecord::Base
       user = User.where(email: email).first if email
 
       if user.nil?
-        # TODO: save image
-        # TODO: save urls
         user = User.new(
           first_name: auth.info.first_name,
           last_name: auth.info.last_name,
@@ -34,6 +31,18 @@ class User < ActiveRecord::Base
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20]
         )
+
+        if identity.ok?
+          foto_url = auth.extra.raw_info.pic_3 || auth.info.image
+        end
+        if identity.vk?
+          foto_url = auth.extra.raw_info.photo_400_orig || auth.info.image
+        end
+
+        if foto_url.present?
+          user.foto_from_url foto_url rescue nil
+        end
+
         user.save!
       end
     end
@@ -51,6 +60,10 @@ class User < ActiveRecord::Base
 
   def name
     [first_name, last_name].join(' ')
+  end
+
+  def foto_from_url(url)
+    self.foto = URI.parse(url).open
   end
 
 end
