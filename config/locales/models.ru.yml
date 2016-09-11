@@ -6,7 +6,7 @@ ru:
         one: Пользователь
         few: Пользователей
         many: Пользователей
-        other: Пользователя
+        other: Пользователи
       category:
         zero: Категорий
         one: Категория
@@ -18,13 +18,13 @@ ru:
         one: Партнер
         few: Партнеров
         many: Партнеров
-        other: Партнера
+        other: Партнеры
       admin_user:
         zero: Администраторов
         one: Администратор
         few: Администраторов
         many: Администраторов
-        other: Администратора
+        other: Администраторы
       currency:
         zero: Валют
         one: Валюта
@@ -32,11 +32,17 @@ ru:
         many: Валют
         other: Валюты
       campaign:
-        zero: Компаний
-        one: Компания
-        few: Компаний
-        many: Компаний
-        other: Компании
+        zero: Кампаний
+        one: Кампания
+        few: Кампаний
+        many: Кампаний
+        other: Кампании
+      menu_item:
+        zero: Меню
+        one: Меню
+        few: Меню
+        many: Меню
+        other: Меню
 
     attributes:
       user:
@@ -73,3 +79,8 @@ ru:
         address: Адрес
         enable_comments: Разрешить комментирование
         is_active: Активная?
+      menu_item:
+        title: Название
+        link: Ссылка
+        position: Позиция
+        is_enabled: Отображать?

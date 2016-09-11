@@ -1,0 +1,62 @@
+.modal-content {
+	box-shadow: none !important;
+	border-radius: 0 !important;
+	border: 0;
+
+	h2 {
+		margin-bottom: 30px;
+	}
+
+	.helper {
+		color: #777;
+		text-align: center;
+		font-size: 13px;
+	}
+}
+
+.modal-dialog {
+	border: 3px solid rgba(0, 0, 0, 0.2);
+}
+
+.auth-links {
+	max-width: 400px;
+	margin: 0 auto;
+
+	a {
+		display: block;
+		line-height: 50px;
+		padding: 0 20px;
+		background: #AAA;
+		border-radius: 3px;
+		margin-bottom: 15px;
+		color: white;
+		text-decoration: none !important;
+		i {
+			float: left;
+			font-size: 25px;
+			line-height: 50px;
+			vertical-align: middle;
+			margin-right: 15px;
+			width: 30px;
+			text-align: center;
+		}
+
+		&:hover, &:active, &:focus { background: lighten(#AAA, 10); }
+
+		&.vk {
+			background: #507299;
+			&:hover, &:active, &:focus { background: lighten(#507299, 10); }
+		}
+		&.ok {
+			background: #ee8208;
+			&:hover, &:active, &:focus { background: lighten(#ee8208, 10); }	
+		}
+	}
+}
+
+
+#sign_in, #sign_up {
+	.modal-dialog {
+		max-width: 450px;
+	}
+}

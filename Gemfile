@@ -33,6 +33,19 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'haml'
 gem 'acts_as_positioned', git: 'git://github.com/stager94/acts_as_positioned.git'
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+gem "font-awesome-rails"
+
+
+gem 'omniauth'
+gem 'omniauth-vkontakte'
+gem 'omniauth-odnoklassniki'
+# gem 'omniauth-facebook'
+# gem 'omniauth-twitter'
+# gem 'omniauth-instagram'
+# gem 'omniauth-google-oauth2'
+
+gem 'pry'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,0 +1,17 @@
+%h2.text-center Бесплатная регистрация
+
+.auth-links
+	= link_to user_vkontakte_omniauth_authorize_path, class: "vk" do
+		= fa_icon "vk"
+		Войти через ВКонтакте
+	= link_to user_odnoklassniki_omniauth_authorize_path, class: "ok" do
+		= fa_icon "odnoklassniki"
+		Войти через Одноклассники
+
+	.helper.gutter-bottom-30 Мы никогда не будем отправлять сообщения без вашего разрешения.
+
+	= link_to '#' do
+		= fa_icon "envelope"
+		Использовать мой Email
+
+	.helper С каждого пожертвования компания берет 5%. Продолжая, Вы соглашаетесь с условиями и политикой конфиденциальности

@@ -6,7 +6,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to '#', class: "navbar-brand" do
+      = link_to root_path, class: "navbar-brand" do
         = image_tag 'logo.png', size: "156x50"
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
@@ -16,6 +16,10 @@
       %ul.nav.navbar-nav.navbar-right
         = render MenuItem.enabled
         %li= link_to "|", '#'
-        %li= link_to 'Войти', '#'
-        %li= link_to 'Зарегистрироваться', '#'
+        - if user_signed_in?
+          %li= link_to current_user.name, '#'
+          %li= link_to "Выход", destroy_user_session_path, method: :delete
+        - else
+          %li= link_to 'Войти', '#', data: { toggle: "modal", target: "#sign_in" }
+          %li= link_to 'Зарегистрироваться', '#', data: { toggle: "modal", target: "#sign_up" }
 

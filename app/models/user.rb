@@ -1,11 +1,56 @@
 class User < ActiveRecord::Base
+	TEMP_EMAIL_PREFIX = 'change@me'
+  TEMP_EMAIL_REGEX = /\Achange@me/
+  
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
-	devise :database_authenticatable, :registerable,
+	devise :database_authenticatable, :registerable, :omniauthable,
 				 :recoverable, :rememberable, :trackable, :validatable
 
 	has_many :campaigns
+	has_many :identities, dependent: :destroy
 
 	has_attached_file :foto, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "/images/:style/missing.png"
 	validates_attachment_content_type :foto, content_type: /\Aimage\/.*\z/   
+
+	def self.find_for_oauth(auth, signed_in_resource = nil)
+    binding.pry
+    identity = Identity.find_for_oauth(auth)
+
+    user = signed_in_resource ? signed_in_resource : identity.user
+    
+    if user.nil?
+      email = auth.info.email
+      user = User.where(email: email).first if email
+
+      if user.nil?
+        # TODO: save image
+        # TODO: save urls
+        user = User.new(
+          first_name: auth.info.first_name,
+          last_name: auth.info.last_name,
+          address: auth.info.location,
+          nick: (auth.info.nickname && auth.info.nickname.present? ? auth.info.nickname : auth.uid),
+          email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+          password: Devise.friendly_token[0,20]
+        )
+        user.save!
+      end
+    end
+
+    if identity.user != user
+      identity.user = user
+      identity.save!
+    end
+    user
+  end
+
+  def email_verified?
+    self.email && self.email !~ TEMP_EMAIL_REGEX
+  end
+
+  def name
+    [first_name, last_name].join(' ')
+  end
+
 end

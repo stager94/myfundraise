@@ -265,4 +265,8 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+  config.omniauth :vkontakte, Rails.application.secrets.omniauth["vkontakte"]["key"], Rails.application.secrets.omniauth["vkontakte"]["secret"]
+  config.omniauth :odnoklassniki, Rails.application.secrets.omniauth["odnoklassniki"]["key"], Rails.application.secrets.omniauth["odnoklassniki"]["secret"], public_key: Rails.application.secrets.omniauth["odnoklassniki"]["public_key"], authorize_options: { callback_url: "http://stager.dev:3000/users/auth/odnoklassniki/callback" }
+  OmniAuth.config.logger = Rails.logger if Rails.env.development?
 end

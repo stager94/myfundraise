@@ -1,17 +1,39 @@
 ActiveAdmin.register MenuItem do
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+	filter :title
+	filter :link
+	filter :is_enabled
+	filter :position
 
+	form do |f|
+		inputs "Информация" do
+			input :title
+			input :link
+			input :position
+			input :is_enabled
+		end
+
+		actions
+	end
+
+	index do
+		selectable_column
+		column :id
+		column :title
+		column :link
+		column :position
+		column :is_enabled
+		actions
+	end
+
+	show do
+		attributes_table do
+			row :id
+			row :title
+			row :link
+			row :position
+			row :is_enabled
+		end
+	end
 
 end

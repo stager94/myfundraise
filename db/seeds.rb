@@ -2,7 +2,9 @@ def generate_foto_path(title)
 	Rails.root.join('public', 'temp', title).to_s
 end
 
-# AdminUser.create(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+
+
+AdminUser.create(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
 currencies = Currency.create [{ name: "Рубли",   code: "RUB", sign: "Р" },
 														  { name: "Доллары", code: "USD", sign: "$" },

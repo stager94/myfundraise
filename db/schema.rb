@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910223528) do
+ActiveRecord::Schema.define(version: 20160911114918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,17 @@ ActiveRecord::Schema.define(version: 20160910223528) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "urls"
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
   create_table "menu_items", force: :cascade do |t|
     t.string   "title"
     t.string   "link",       default: "#"
@@ -156,4 +167,5 @@ ActiveRecord::Schema.define(version: 20160910223528) do
   add_foreign_key "campaigns", "categories"
   add_foreign_key "campaigns", "currencies"
   add_foreign_key "campaigns", "users"
+  add_foreign_key "identities", "users"
 end

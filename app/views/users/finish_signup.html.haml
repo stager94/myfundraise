@@ -1,0 +1,15 @@
+#add-email
+  %h2 Завершение регистрации
+  = form_for(current_user, as: 'user', url: finish_signup_path(current_user), html: { role: 'form'}) do |f|
+    .form-group
+      = f.label :email
+      .controls
+        = f.text_field :email, autofocus: true, value: '', class: 'form-control input-lg', placeholder: 'Например: email@me.com'
+        %p.help-block Пожалуйста, укажите ваш адрес электронной почты
+    - if @show_errors && @user.errors.any?
+      #error_explanation.text-danger(style="margin-bottom:20px;")
+        - @user.errors.full_messages.each do |msg|
+          = msg
+          %br
+    .actions
+      = f.submit 'Продолжить', class: 'btn btn-primary'
