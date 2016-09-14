@@ -1,0 +1,19 @@
+/ = @campaign.errors.full_messages
+.new-campaign-block
+	= form_for [:dashboard, @campaign] do |f|
+		= f.hidden_field :currency_id
+
+		%h4= "Привет, #{current_user.first_name}, введите Ваши цели:"
+		.goal
+			%span $
+			= text_field_tag :"campaign[goal]", @campaign.goal
+		.form-group
+			= f.label :title
+			= f.text_field :title, class: "form-control input-lg", placeholder: "Example: Susie's Medical Fund or My Volunteer Trip"
+		.form-group
+			= f.label :address
+			= f.text_field :address, class: "form-control input-lg", placeholder: "Enter your ZIP or Postal Code..."
+		.form-group.text-center.gutter-top-30
+			= f.submit "Дальше", class: "btn btn-primary btn-lg"
+
+		.helper Don’t worry, you can easily make changes to your campaign at any time. 

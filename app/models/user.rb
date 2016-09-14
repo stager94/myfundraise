@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     identity = Identity.find_for_oauth(auth)
 
     user = signed_in_resource ? signed_in_resource : identity.user
-    
+
     if user.nil?
       email = auth.info.email
       user = User.where(email: email).first if email

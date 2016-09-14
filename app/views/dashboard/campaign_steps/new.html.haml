@@ -1,0 +1,7 @@
+= form_for @campaign do |f|
+  = f.error_messages
+  = render "#{@order.current_step}_step", f: f
+  %p= f.submit "Continue"
+  %p= f.submit "Back", :name => "previous_button" unless @order.first_step?
+
+/ %p= link_to "Back to List", orders_path

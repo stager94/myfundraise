@@ -25,9 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "paperclip", "~> 5.0.0"
 gem 'devise'
 gem 'pg'
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'active_skin'
-gem "font-awesome-rails"
 gem 'russian', '~> 0.6.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'haml'
@@ -44,7 +43,11 @@ gem 'omniauth-odnoklassniki'
 # gem 'omniauth-instagram'
 # gem 'omniauth-google-oauth2'
 
+gem 'vkontakte_api', '~> 1.4'
+
 gem 'pry'
+
+gem 'wicked'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

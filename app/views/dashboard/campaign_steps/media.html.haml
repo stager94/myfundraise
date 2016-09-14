@@ -1,0 +1,22 @@
+.new-campaign-block
+	= form_for [:dashboard, @campaign] do |f|
+		= f.hidden_field :currency_id
+
+		%h3 Add a photo or video
+		.grayed.row
+			.col-md-4
+				= link_to vk_photos_dashboard_user_path(current_user, count: 9), remote: true do
+					= fa_icon :vk
+					Выбрать из ВКонтакте
+			.col-md-4
+				= link_to '#' do
+					= fa_icon :paperclip
+					Загрузить фото
+			.col-md-4
+				= link_to '#' do
+					= fa_icon :youtube
+					YouTube или Vimeo
+
+		.actions.text-center
+			= link_to "&larr; Назад".html_safe, '#', class: "pull-left"
+			= link_to "Дальше".html_safe, '#'
