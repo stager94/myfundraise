@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 	skip_before_filter :check_user_verifying, only: :finish_signup
 
   def finish_signup
-  	@body_class = 'gray'
     # authorize! :update, @user 
     if request.patch? && params[:user] #&& params[:user][:email]
       if @user.update(user_params)

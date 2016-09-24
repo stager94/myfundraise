@@ -48,6 +48,7 @@ gem 'vkontakte_api', '~> 1.4'
 gem 'pry'
 
 gem 'wicked'
+gem 'tinymce-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -57,6 +58,16 @@ gem 'wicked'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+gem 'walletone'
+gem 'icheck-rails'
+gem 'aasm'
+gem 'faker'
+gem 'geocomplete_rails'
+gem 'kaminari'
+gem 'impressionist'
+gem 'cancancan', '~> 1.10'
+gem 'quiet_assets'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

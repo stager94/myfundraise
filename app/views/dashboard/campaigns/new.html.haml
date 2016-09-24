@@ -3,9 +3,9 @@
 	= form_for [:dashboard, @campaign] do |f|
 		= f.hidden_field :currency_id
 
-		%h4= "Привет, #{current_user.first_name}, введите Ваши цели:"
+		%h4= "Привет, #{current_user.try(:first_name)}, введите Ваши цели:"
 		.goal
-			%span $
+			%span= @campaign.currency.sign.html_safe
 			= text_field_tag :"campaign[goal]", @campaign.goal
 		.form-group
 			= f.label :title
@@ -13,6 +13,9 @@
 		.form-group
 			= f.label :address
 			= f.text_field :address, class: "form-control input-lg", placeholder: "Enter your ZIP or Postal Code..."
+		.form-group
+			= f.label :category
+			= f.select :category, Category.all.collect {|c| [c.title, c.id] }, { include_blank: false }, class: "form-control input-lg", placeholder: "Enter your ZIP or Postal Code..."
 		.form-group.text-center.gutter-top-30
 			= f.submit "Дальше", class: "btn btn-primary btn-lg"
 

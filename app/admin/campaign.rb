@@ -13,5 +13,44 @@ ActiveAdmin.register Campaign do
 #   permitted
 # end
 
+	filter :currency
+	filter :category
+	filter :user
+	filter :title
+	filter :address
+	filter :is_active
+	filter :enable_comments
+	filter :goal
+	filter :total_amount
+	filter :percentage
+
+	form do |f|
+		inputs "Информация" do
+			input :currency
+			input :category
+			input :user
+			input :goal
+			input :title
+			input :photo, as: :file
+			input :description
+			input :address
+			input :enable_comments
+			input :is_active
+		end
+		
+		actions
+	end
+
+	index do
+		selectable_column
+		column :id
+		column :category
+		column :user
+		column :title
+		column :currency
+		column :goal
+		column :is_active
+		actions
+	end
 
 end

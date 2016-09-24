@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  get 'campaigns/create'
-
-  get 'users/finish_signup'
-
-  get 'categories/show'
+  mount WalletoneMiddleware.new => '/w1_callback'
 
   root 'home#index'
 
@@ -13,9 +9,23 @@ Rails.application.routes.draw do
   
   resources :categories, only: [:show]
   resources :users
+  
+  resources :campaigns do
+    member do
+      resources :donations
+    end
+    resources :likes, only: [:create], on: :member
+    resources :comments, only: [:create, :index], on: :member
+  end
+  resources :comments do
+    resources :likes, on: :member
+  end
 
   namespace :dashboard do
+    post 'campaigns/:campaign_id/select_picture' => 'campaigns#select_picture', as: :select_campaign_picture
+
     resources :campaigns, param: :campaign_id do
+
       member do
         resources :campaign_steps, path: :steps
       end
@@ -34,6 +44,5 @@ Rails.application.routes.draw do
   end
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup
-
 
 end

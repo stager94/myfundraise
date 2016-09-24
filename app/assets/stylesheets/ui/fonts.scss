@@ -1,0 +1,50 @@
+@font-face {
+	font-family:'open_sans_currency';
+	src:font-url('open_sans_currency/tH80k1hxWHuf3TjgV6yw2w.eot');
+	src:font-url('open_sans_currency/tH80k1hxWHuf3TjgV6yw2w.eot#iefix') format('embedded-opentype'),
+			font-url('open_sans_currency/CylcoZTqx0HrB6Zo-zFtsg.woff2') format('woff2'),
+			font-url('open_sans_currency/wt__eK2Zn_jRyZqplFM0aQ.woff') format('woff'),
+			font-url('open_sans_currency/Q3ScQh4yHA8nNilTY43Bcw.ttf') format('truetype'),
+			font-url('open_sans_currency/E8bnOcX0dlVXacGa9rdZ2g.svg#open_sansregular') format('svg');
+	font-weight:400;
+	font-style:normal
+}
+@font-face {
+	font-family:'open_sans_currency';
+	src:font-url('open_sans_currency/X05ZyhHkufv2i25gkWpyAA.eot');
+	src:font-url('open_sans_currency/X05ZyhHkufv2i25gkWpyAA.eot#iefix') format('embedded-opentype'),
+			font-url('open_sans_currency/RHAY9fsOipVUsBkQo88aDA.woff2') format('woff2'),
+			font-url('open_sans_currency/VOCBK1en2OHZp34MuP1i4w.woff') format('woff'),
+			font-url('open_sans_currency/kj9o94VxShjqui3eXeAcxw.ttf') format('truetype'),
+			font-url('open_sans_currency/TQYoBFzHEeVQZ-H5qLRPqA.svg#open_sansbold') format('svg');
+	font-weight:700;
+	font-style:normal
+}
+@font-face {
+	font-family:'open_sans_currency';
+	src:font-url('open_sans_currency/8YOzn03IX0A-PDPsihhCkg.eot');
+	src:font-url('open_sans_currency/8YOzn03IX0A-PDPsihhCkg.eot#iefix') format('embedded-opentype'),
+			font-url('open_sans_currency/phec92eh094w5H4BBkfPMA.woff2') format('woff2'),
+			font-url('open_sans_currency/xz3U56g3i35V9QTrqhBtDQ.woff') format('woff'),
+			font-url('open_sans_currency/X8nUrjH-4VkBQ9VWFIHeNw.ttf') format('truetype'),
+			font-url('open_sans_currency/Y6nvtTXYKNXmLp9yoHOHiw.svg#open_sanslight') format('svg');
+	font-weight:300;
+	font-style:normal
+}
+@font-face {
+	font-family:'open_sans_currency';
+	src:font-url('open_sans_currency/8IEZnl5YDTn1qRPW4SAXrw.eot');
+	src:font-url('open_sans_currency/8IEZnl5YDTn1qRPW4SAXrw.eot#iefix') format('embedded-opentype'),
+			font-url('open_sans_currency/i29rHQNOPEjpRyKi76X7Pw.woff2') format('woff2'),
+			font-url('open_sans_currency/EAElQaKtdJRWV_4I2XVvVw.woff') format('woff'),
+			font-url('open_sans_currency/WlxDUH-K5rcg6zrJ844LYA.ttf') format('truetype'),
+			font-url('open_sans_currency/N5QNsZ0bCoO5C4pX-tEDkg.svg#open_sanssemibold') format('svg');
+	font-weight:600;
+	font-style:normal
+}
+
+.f-currency {
+	font-family:'open_sans_currency','Open Sans',sans-serif !important;
+	line-height:normal;
+	font-style: normal;
+}

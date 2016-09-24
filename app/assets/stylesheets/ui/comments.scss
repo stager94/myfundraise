@@ -1,0 +1,60 @@
+#comments-list {
+	margin: 30px 0 50px;
+	.comment {
+		padding-bottom: 15px;
+		margin-bottom: 15px;
+		border-bottom: 1px solid #ddd;
+
+		&:last-child {
+			border-bottom: 0;
+			margin-bottom: 0;
+		}
+
+		.comment-author {
+			font-family: "Open Sans";
+			font-weight: 300;
+			color: #666;
+
+			img {
+				border-radius: 50%;
+			}
+			span {
+				vertical-align: middle;
+				display: inline-block;
+				line-height: 1;
+				font-size: 11px;
+				margin-left: 5px;
+				color: #999;
+				a {
+					color: #666;
+					font-weight: 400;
+					text-decoration: none !important;
+					display: block;
+					margin-bottom: 5px;
+					white-space: nowrap;
+					font-size: 14px;
+				}
+			}
+		}
+		.comment-text {
+			font-family: Open Sans;
+			font-size: 13px;
+			font-weight: 300;
+			margin-top: 10px;
+			color: #666;
+		}
+
+		.share-info {
+			float: right;
+			line-height: 40px;
+			a {
+				font-weight: 300;
+				text-decoration: none;
+				color: #999;
+				&:hover, &:active, &:focus {
+					color: #666;
+				}
+			}
+		}
+	}
+}

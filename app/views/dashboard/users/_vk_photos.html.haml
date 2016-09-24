@@ -1,3 +1,16 @@
-.photo-wrapper
-	- @photos.each do |photo|	
-		.photo= image_tag photo['src_big']
+.campaign-container
+	%h3 
+		= fa_icon :vk, style: "vertical-align:top;"
+		Выбрать из ВКонтакте
+		= link_to "Назад", dashboard_campaign_steps_path(campaign_id: params[:campaign_id], id: "media"), class: "pull-right"
+	.grayed.row
+		.photo-wrapper
+			- @photos.each do |photo|
+				= link_to dashboard_select_campaign_picture_path(params[:campaign_id], type: :vk, url: photo['src_big']), class: 'photo', method: :post do
+					= image_tag photo['src_big']
+
+		.row
+			.col-md-6
+				= link_to 'Предыдущая страница', vk_photos_dashboard_user_path(current_user, count: 9, offset: params[:offset].to_i - 9,campaign_id: params[:campaign_id]), remote: true, class: "select-block"
+			.col-md-6
+				= link_to 'Следующая страница', vk_photos_dashboard_user_path(current_user, count: 9, offset: params[:offset].to_i + 9, campaign_id: params[:campaign_id]), remote: true, class: "select-block"

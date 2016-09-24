@@ -25,5 +25,8 @@ module GoFundMe
     config.active_record.raise_in_transactional_callbacks = true
 
     config.autoload_paths += Dir["#{config.root}/lib/"]
+
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
+    config.assets.precompile += %w( .svg .eot .woff .ttf )
   end
 end

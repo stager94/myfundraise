@@ -1,0 +1,44 @@
+.fake-page
+	.donation-campaign-info
+		= image_tag @campaign.photo.url(:cover), size: "300x200"
+
+		%span Название кампании
+		%h5= @campaign.title
+
+		%span Автор кампании
+		%h5= @campaign.user.name
+
+		%span Адрес
+		%h5= @campaign.address
+
+		%span Дата публикации
+		%h5= @campaign.created_at.strftime "%d.%m.%Y %H:%M"
+
+	.donation-form
+		= form_for @donation do |f|
+			%label Сумма пожертвования
+			.amount-form
+				%span= @campaign.currency.sign.html_safe
+				= f.text_field :amount, id: "amount"
+
+			- if @donation.errors[:amount].any?
+				.field-error.text-danger.gutter-top--15.gutter-bottom-20 необходимо ввести сумму пожертвования
+
+			.helper= raw "Перед отправкой пожертвования, пожалуйста, проверьте правильность своих персональных данных! Редактировать их можно в #{link_to 'личном кабинете', '#'}"
+
+			%label Ваше имя
+			%span= current_user.try(:name) || "Фамилия Имя Отчество"
+
+			%label Ваш Email
+			%span= current_user.try(:email) || "noname@myfundraise.com"
+
+			%label Сообщение
+			= f.text_area :message
+
+			%label.checkbox
+				= f.check_box :anonymous, data: { skin: "square", color: "green" }, class: "icheck-me"
+				Показывать текст и моё имя только получателю 
+
+			.gutter-top-30
+				= submit_tag "Перейти к оплате", class: "btn btn-lg myf-btn myf-btn-primary gutter-right-10"
+				= link_to "Отказаться", campaign_path(@campaign), class: "btn myf-btn btn-lg"

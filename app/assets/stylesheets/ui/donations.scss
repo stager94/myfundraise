@@ -1,0 +1,65 @@
+.donation {
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #ececec;
+
+	&:last-child {
+		border: none;
+	}
+
+	.donation-image, .donation-info {
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.donation-image {
+		width: 50px;
+		padding-right: 15px;
+	}
+	.donation-info {
+		.info {
+			font-weight: 300;
+			color: #999;
+			b {
+				font-weight: 300;
+				color: #333;
+				font-size: 18px;
+			}
+			a, u {
+				text-decoration: none;
+				border-bottom: 2px solid #eee;
+				color: #999;
+			}
+			a {
+				&:hover, &:focus, &:active {
+					color: #666;
+				}
+			}
+		}
+		.time {
+			font-size: 12px;
+			font-weight: 300;
+			color: #999;
+		}
+		.description {
+
+		}
+		
+	}
+
+	p {
+		margin: 5px 0 0;
+	}
+
+	a {
+		&.bordered {
+			text-decoration: none;
+			border-bottom: 2px solid #eee;
+			color: #999;
+			padding-bottom: 1px;
+			&:hover, &:focus, &:active {
+				color: #666;
+			}
+		}
+	}
+}

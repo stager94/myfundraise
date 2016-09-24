@@ -9,6 +9,7 @@ ActiveAdmin.register Category do
 			input :title
 			input :slug
 			input :foto
+			input :cover
 			input :description
 			input :popular
 		end

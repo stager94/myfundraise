@@ -1,6 +1,6 @@
 $start: 0;
 $end: 120;
-$gap: 5;
+$gap: 1;
 
 @while $start <= $end {
 	.gutter-top-#{$start} { margin-top: #{$start}px !important; }

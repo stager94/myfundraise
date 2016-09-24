@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
 	has_many :campaigns
 	has_many :identities, dependent: :destroy
+  has_many :likes
+  has_many :comments
 
 	has_attached_file :foto, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "/images/:style/missing.png"
 	validates_attachment_content_type :foto, content_type: /\Aimage\/.*\z/   
@@ -34,6 +36,7 @@ class User < ActiveRecord::Base
 
         if identity.ok?
           foto_url = auth.extra.raw_info.pic_3 || auth.info.image
+          user.address = [auth.extra.raw_info.location.countryName, auth.extra.raw_info.location.city].join(", ")
         end
         if identity.vk?
           foto_url = auth.extra.raw_info.photo_400_orig || auth.info.image
@@ -64,6 +67,10 @@ class User < ActiveRecord::Base
 
   def foto_from_url(url)
     self.foto = URI.parse(url).open
+  end
+
+  def like?(object)
+    object.likes.by_user(self).any?
   end
 
 end

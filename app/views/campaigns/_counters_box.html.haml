@@ -1,0 +1,14 @@
+%div{ title: "лайков", data: { toggle: "tooltip" } }
+	= link_to [object, Like.new, { partial_postfix: "box" }], data: { method: :post, remote: true } do
+		- if current_user && current_user.like?(object)
+			= fa_icon :"heart"
+		- else
+			= fa_icon :"heart-o"
+		%span= number_with_delimiter object.likes_count
+%div{ title: "комментариев", data: { toggle: "tooltip" } }
+	= fa_icon :"comment"
+	%span= number_with_delimiter object.comments_count
+%div{ title: "просмотров", data: { toggle: "tooltip" } }
+	= fa_icon :"eye"
+	/ %span= object.impressionist_count(filter: :ip_address)
+	%span= number_with_delimiter object.impressionist_count

@@ -1,0 +1,69 @@
+.campaign-page(data-campaign-id="#{@campaign.id}")
+	.container
+		.row
+			.col-md-8.main-part
+				.campaign-wr
+					.campaign-header
+						= image_tag @campaign.photo.url(:cover_lg), class: "img-responsive"
+					.campaign-wh-block
+						%h1= @campaign.title
+						.campaign-author
+							= link_to root_path do
+								= image_tag @campaign.user.foto.url(:thumb), class: "img-circle", size: "40x40"
+							.campaign-info
+								= link_to root_path do
+									%span= @campaign.user.name
+								%span= @campaign.created_at.strftime('%d.%m.%Y %H:%M')
+								.campaign-address
+									%span
+										= fa_icon :'map-marker'
+										= @campaign.address
+								
+						.campaign-description
+							= raw @campaign.description
+
+						.share-info(data-campaign-id="#{@campaign.id}")= render 'campaigns/counters', object: @campaign
+
+				- if @campaign.enable_comments?
+					%h4.heading Комментарии
+					- if user_signed_in?
+						= form_for [@campaign, Comment.new], data: { remote: true, method: :post }, html: { class: "modern-form" } do |f|
+							.form-group.with-avatar
+								= image_tag current_user.foto, size: "40x40"
+								= f.text_area :text, class: "form-control", placeholder: "Напишите здесь Ваш отзыв о кампании '#{@campaign.title}'"
+							.text-right= f.submit "Добавить комментарий", class: "btn"
+					- else
+
+					#comments-list
+						- if @comments.any?
+							= render @comments
+						- else
+							.empty-comments-results.empty-results
+								Еще никто не оставлял свой отзыв о кампании 
+								%u= "'#{@campaign.title}'"
+
+
+			.col-md-4.sidebar
+				.price
+					%b= raw "#{construct_amount(@campaign.total_amount.to_i, @campaign.currency)}"
+					= raw " из #{construct_amount(@campaign.goal, @campaign.currency)}"
+				.price-range
+					.current(style="width:#{@campaign.percentage}%;")
+
+				- if @campaign.donations.any?
+					- days_number = (Date.today - @campaign.created_at.to_date).to_i + 1
+					%p= "Собрано #{@campaign.donations_count} #{Russian::p(@campaign.donations_count, 'человеком', 'людьми', 'людьми')} за #{days_number} #{Russian::p(days_number, 'день', 'дня', 'дней')}"
+				- else
+					%p Автор еще не получал пожертвования для этой кампании
+					
+
+				= link_to "Внести пожертвование", new_donation_path(@campaign), class: "btn btn-lg btn-block gutter-top-30"
+
+				%h4 Пожертвования
+				- if @donations.any?
+					= render @donations
+				- else
+					.donation
+						%p.gutter-top--10
+							Еще никто не оставлял пожертвования, 
+							= link_to "будьте первым", new_donation_path(@campaign), class: "bordered"

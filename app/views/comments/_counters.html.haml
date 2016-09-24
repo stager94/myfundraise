@@ -1,0 +1,9 @@
+.comment-likes
+	= link_to [object, Like.new], data: { method: :post, remote: true }, class: "gutter-left--5" do
+		- if current_user && current_user.like?(object)
+			= fa_icon :"heart", class: "red"
+		- else
+			= fa_icon :"heart-o"
+		- if object.likes_count > 0 
+			= number_with_delimiter object.likes_count
+

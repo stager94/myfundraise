@@ -6,10 +6,10 @@ end
 
 AdminUser.create(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
-currencies = Currency.create [{ name: "Рубли",   code: "RUB", sign: "Р" },
-														  { name: "Доллары", code: "USD", sign: "$" },
-														  { name: "Евро",    code: "EUR", sign: "&#8364;" },
-														  { name: "Гривна",  code: "UAH", sign: "&#8372;" }]
+currencies = Currency.create [{ name: "Рубли",   code: "RUB", sign: "&nbsp;<i class='f-currency'>Р</i>", 			 wallet_one_id: 643, sign_after_amount: true },
+														  { name: "Доллары", code: "USD", sign: "$", 			 wallet_one_id: 840, sign_after_amount: false },
+														  { name: "Евро",    code: "EUR", sign: "&#8364;", wallet_one_id: 978, sign_after_amount: false },
+														  { name: "Гривна",  code: "UAH", sign: "&#8372;", wallet_one_id: 980, sign_after_amount: false }]
 
 
 partners = Partner.create [{ title: "Forbes", link: "http://www.forbes.com", foto: File.open(generate_foto_path('forbes.png')) },

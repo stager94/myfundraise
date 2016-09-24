@@ -1,0 +1,9 @@
+.text-center.campaign-block.alone
+	= image_tag "receipt.png", size: "128x128", class: "gutter-top-20 gutter-bottom-20"
+
+	%h5.gutter-bottom-30 В течение 5-и секунд вы будете переправлены на страницу оплаты.
+	= form_tag form.checkout_url, form.options.merge(data: { autosubmit: true }) do |f|
+		= raw form.hidden_fields_tags
+		= button_tag 'Перейти к оплате', class: 'btn btn-bordered gutter-bottom-15', data: { disable_with: 'Переправляю на сайт оплаты..' }
+
+%p.sub-campaign-block Продолжая, вы согласны с условиями пользования MyFundraise и политикой конфиденциальности.

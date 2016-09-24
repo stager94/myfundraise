@@ -1,1 +1,10 @@
-description
+.new-campaign-block
+	= form_for @campaign, url: dashboard_campaign_step_path(campaign_id: @campaign.id) do |f|
+		.campaign-container
+			%h3 Tell your story
+			
+			.form-group
+				= f.text_area :description, class: "form-control editor", placeholder: "It's very important to tell your story. One that's personal, honest, and from the heart.", rows: 10
+
+			.actions.text-center
+				= f.submit "Дальше".html_safe, class: "btn btn-lg"

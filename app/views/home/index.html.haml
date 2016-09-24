@@ -1,12 +1,17 @@
 .banner-wrapper
-	%h2 Fundraising для каждого!
-	%h5 Сайт №1 для личного сбора средств
-	= link_to "Создать компанию", '#', class: 'btn btn-lg btn-primary'
+	%h2 
+		%b Fundraising 
+		для каждого!
+	%h5 
+		%u Сайт №1 
+		для личного сбора средств
+	= link_to "Создать компанию", '#', class: 'btn btn-lg'
 = render 'shared/partners'
 
-.container
+.container#fundraise-container
 	.row
-		.col-md-3
+		.col-md-3.sidebar-wrapper
 			#categories-wrapper= render 'shared/categories'
 		.col-md-9.main-wrapper
-			Coming soon..
+			.campaigns-row= render @campaigns
+			= paginate @campaigns

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914210700) do
+ActiveRecord::Schema.define(version: 20160924124607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,13 @@ ActiveRecord::Schema.define(version: 20160914210700) do
     t.boolean  "is_active",          default: true
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.string   "step"
+    t.string   "slug"
+    t.float    "total_amount",       default: 0.0
+    t.float    "percentage",         default: 0.0
+    t.integer  "donations_count",    default: 0
+    t.integer  "likes_count",        default: 0
+    t.integer  "comments_count",     default: 0
   end
 
   add_index "campaigns", ["category_id"], name: "index_campaigns_on_category_id", using: :btree
@@ -79,20 +86,57 @@ ActiveRecord::Schema.define(version: 20160914210700) do
     t.datetime "foto_updated_at"
     t.boolean  "popular"
     t.text     "description"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "slug"
     t.string   "full_title"
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
   end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.text     "text"
+    t.integer  "likes_count",      default: 0
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "currencies", force: :cascade do |t|
     t.string   "name"
     t.string   "code"
     t.string   "sign"
-    t.boolean  "is_enabled", default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.boolean  "is_enabled",        default: true
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "wallet_one_id"
+    t.boolean  "sign_after_amount", default: false
   end
+
+  add_index "currencies", ["wallet_one_id"], name: "index_currencies_on_wallet_one_id", using: :btree
+
+  create_table "donations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "campaign_id"
+    t.float    "amount"
+    t.integer  "currency_id"
+    t.text     "message"
+    t.boolean  "anonymous",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "aasm_state"
+    t.string   "secret_key"
+  end
+
+  add_index "donations", ["campaign_id"], name: "index_donations_on_campaign_id", using: :btree
+  add_index "donations", ["currency_id"], name: "index_donations_on_currency_id", using: :btree
+  add_index "donations", ["user_id"], name: "index_donations_on_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -118,6 +162,44 @@ ActiveRecord::Schema.define(version: 20160914210700) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
+  create_table "impressions", force: :cascade do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "session_hash"
+    t.text     "message"
+    t.text     "referrer"
+    t.text     "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "impressions", ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index", using: :btree
+  add_index "impressions", ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index", using: :btree
+  add_index "impressions", ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "params"], name: "poly_params_request_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index", using: :btree
+  add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", using: :btree
+  add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
+
+  create_table "likes", force: :cascade do |t|
+    t.string   "likeable_type"
+    t.integer  "likeable_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "likes", ["likeable_id"], name: "index_likes_on_likeable_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "menu_items", force: :cascade do |t|
     t.string   "title"
@@ -168,5 +250,10 @@ ActiveRecord::Schema.define(version: 20160914210700) do
   add_foreign_key "campaigns", "categories"
   add_foreign_key "campaigns", "currencies"
   add_foreign_key "campaigns", "users"
+  add_foreign_key "comments", "users"
+  add_foreign_key "donations", "campaigns"
+  add_foreign_key "donations", "currencies"
+  add_foreign_key "donations", "users"
   add_foreign_key "identities", "users"
+  add_foreign_key "likes", "users"
 end

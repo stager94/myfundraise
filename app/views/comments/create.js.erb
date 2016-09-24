@@ -1,0 +1,11 @@
+<% if @comment.valid? %>
+	
+	$(".empty-comments-results").hide();
+	$("#comments-list").prepend("<%= j render @comment %>")
+	$("#comment_text").val("");
+
+<% else %>
+
+	alert("<%= @comment.errors.full_messages.first %>");
+
+<% end %>

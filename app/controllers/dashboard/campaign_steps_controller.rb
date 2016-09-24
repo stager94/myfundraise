@@ -1,17 +1,27 @@
 class Dashboard::CampaignStepsController < ApplicationController
 	include Wicked::Wizard
-	# steps :details, :media, :description, :share, :contacts_invite, :share_on_fb, :link
-	steps :media, :description, :share, :link
+
+	prepend_before_action :set_steps
 
 	def show
-		@body_class = "gray"
 		@campaign = Campaign.find params[:campaign_id]
 		render_wizard
 	end
 
 	def update
 		@campaign = Campaign.find params[:campaign_id]
-	  @campaign.attributes = params[:campaign]
+	  @campaign.attributes = permitted_params
 	  render_wizard @campaign
 	end
+
+private
+
+	def set_steps
+		self.steps = Campaign::STEPS
+	end
+
+	def permitted_params
+		params.require(:campaign).permit!
+	end
+
 end

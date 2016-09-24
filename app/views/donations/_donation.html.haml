@@ -1,0 +1,19 @@
+.donation
+	.donation-image
+		- if can?(:show, donation)
+			= image_tag donation.user.foto.url(:thumb), size: "50x50", class: "img-circle"
+		- else
+			.fake-avatar
+				A
+	.donation-info
+		.info
+			%b= "#{construct_amount(donation.amount, donation.currency)}".html_safe
+			от
+			- if can?(:show, donation)
+				= link_to "#{donation.user.name}", '#'
+			- else
+				%u Анонима
+			
+		.time= donation.created_at.strftime "%d.%m.%Y %H:%M"
+	- if can?(:show, donation)
+		%p= donation.message

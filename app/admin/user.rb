@@ -14,7 +14,7 @@ ActiveAdmin.register User do
 			input :foto
 			input :address
 			input :email
-			input :password
+			# input :password
 		end
 
 		actions

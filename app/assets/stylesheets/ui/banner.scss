@@ -1,31 +1,70 @@
 .banner-wrapper {
-	background: image-url('background.png') repeat-x top left;
-	background-size: 250px 250px;
-	padding: 80px 0;
+	background: image-url('background.png') no-repeat 50% 50% #fff;
+	background-size: cover;
+	padding: 150px 0;
 	text-align: center;
-	border-bottom: 2px solid #e7e7e7;
+	position: relative;
+	color: #fff;
+	font-family: 'Open Sans';
 
 	h2 {
 		margin-top: 0;
+		font-weight: 300;
+		font-size: 40px;
 	}
 	h5 {
 		font-size: 16px;
 		font-weight: normal;
+		font-weight: 300;
 	}
 
 	a {
 		margin-top: 20px;
+		font-weight: 300;
+		color: rgb(51, 51, 51);
+		background-color: rgb(241, 195, 80);
+		border: 0px none rgb(241, 195, 80);
+		box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+		border-radius: 2px;
+		padding: 10px 30px;
+		box-shadow: none !important;
+		&:hover, &:active, &:focus {
+			background-color: darken(rgb(241, 195, 80), 8%);
+			color: rgb(51, 51, 51);
+		}
+	}
+	u {
+		text-decoration: none;
+		border-bottom: 2px solid;
 	}
 }
 
 .category-banner-wrapper {
-	background: image-url('background.png') repeat-x top left;
-	background-size: 250px 250px;
+	// background: image-url('background.png') repeat-x top left;
+	background: #1e2a33;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
 	text-align: center;
 	border-bottom: 2px solid #e7e7e7;
-	padding: 40px 0;
+	padding: 100px 0;
+	font-family: Open Sans;
+	color: #fff;
+	display: table;
+	width: 100%;
+	font-family: Open Sans;
+
+	.container {
+		display: table-cell;
+		vertical-align: middle;
+	}
 
 	h5 {
-		font-weight: normal;
+		font-weight: 300;	
+		font-size: 16px;
+	}
+	h2 {
+		font-size: 35px;
+		font-weight: 300;
 	}
 }

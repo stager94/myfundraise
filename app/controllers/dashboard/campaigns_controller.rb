@@ -1,7 +1,8 @@
 class Dashboard::CampaignsController < ApplicationController
 
+	before_action :load_campaign, only: [:show, :select_picture]
+
 	def new
-		@body_class = "gray"
 		@campaign = Campaign.new
 	end
   
@@ -11,20 +12,33 @@ class Dashboard::CampaignsController < ApplicationController
 	    session[:campaign_id] = @campaign.id
 	    redirect_to [:dashboard, @campaign]
 	  else
-	  	@body_class = "gray"
 	    render :new
 	  end
   end
 
   def show
-  	@campaign = Campaign.find params[:campaign_id]
   	redirect_to dashboard_campaign_steps_path(@campaign)
   end
+
+	def select_picture
+		@campaign.photo_from_url params[:url]
+
+		if @campaign.photo
+			@campaign.next_step!
+			redirect_to dashboard_campaign_steps_path(campaign_id: @campaign.id, id: @campaign.current_step)
+		else
+			redirect_to dashboard_campaign_steps_path(campaign_id: @campaign.id, id: "media")
+		end
+	end
 
 private
 
 	def permitted_params
 		params.require(:campaign).permit!
+	end
+
+	def load_campaign
+		@campaign = Campaign.find params[:campaign_id]
 	end
 
 end

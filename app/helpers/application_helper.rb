@@ -7,4 +7,10 @@ module ApplicationHelper
 		render 'shared/modules/base_modal', id: id, title: title, body: body, footer: footer
 	end
 
+	def construct_amount(amount, currency)
+		a = [currency.sign, number_with_delimiter(amount.to_i)]
+		a.reverse! if currency.sign_after_amount?
+		a.join
+	end
+
 end
