@@ -33,14 +33,18 @@
 								= f.text_area :text, class: "form-control", placeholder: "Напишите здесь Ваш отзыв о кампании '#{@campaign.title}'"
 							.text-right= f.submit "Добавить комментарий", class: "btn"
 					- else
+						.empty-comments-results.empty-results.gutter-top-0
+							Авторизируйтесь, чтобы оставить свой отзыв о кампании
+							%u= "'#{@campaign.title}'"
 
 					#comments-list
 						- if @comments.any?
 							= render @comments
 						- else
-							.empty-comments-results.empty-results
-								Еще никто не оставлял свой отзыв о кампании 
-								%u= "'#{@campaign.title}'"
+							- if user_signed_in?
+								.empty-comments-results.empty-results
+									Еще никто не оставлял свой отзыв о кампании 
+									%u= "'#{@campaign.title}'"
 
 
 			.col-md-4.sidebar
