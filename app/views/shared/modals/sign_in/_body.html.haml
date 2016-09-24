@@ -12,7 +12,8 @@
 
 	%h6 или, использовать email
 
-	= form_for(User.new, as: :user, url: session_path(:user),  html: { class: "" }) do |f|
+	= form_for(User.new, as: :user, url: session_path(:user), html: { id: "sign_in_user", class: "", :'data-type' => 'json' , remote: true}) do |f|
+		.errors
 		.form-group= f.text_field :email, class: "form-control", placeholder: "Ваш Email адрес"
 		.form-group= f.password_field :password, class: "form-control", placeholder: "Ваш пароль"
 		= f.submit "Войти в MyFundraise", class: ""

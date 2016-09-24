@@ -8,9 +8,11 @@
 	}
 
 	.helper {
-		color: #777;
+		// color: #777;
 		text-align: center;
-		font-size: 13px;
+		// font-size: 13px;
+		color: #aaa;
+		font-size: 11px;
 	}
 }
 
@@ -28,8 +30,8 @@
 		border: 0;
 		line-height: 50px;
 		padding: 0 20px;
-		background: #AAA;
-		border-radius: 3px;
+		background: #1f7f5c;
+		border-radius: 3px !important;
 		margin-bottom: 15px;
 		color: white;
 		text-decoration: none !important;
@@ -43,21 +45,23 @@
 			text-align: center;
 		}
 
-		&:hover, &:active, &:focus { background: lighten(#AAA, 10); }
+		&:hover, &:active, &:focus { background: lighten(#1f7f5c, 5%); }
 
 		&.vk {
 			background: #507299;
-			&:hover, &:active, &:focus { background: lighten(#507299, 10); }
+			&:hover, &:active, &:focus { background: lighten(#507299, 10%); }
 		}
 		&.ok {
 			background: #ee8208;
-			&:hover, &:active, &:focus { background: lighten(#ee8208, 10); }	
+			&:hover, &:active, &:focus { background: lighten(#ee8208, 10%); }	
 		}
 	}
 }
 
 
 #sign_in, #sign_up {
+	font-family: Open Sans;
+	font-weight: 300;
 	.modal-dialog {
 		max-width: 450px;
 	}
@@ -67,5 +71,13 @@
 		margin: 20px -22px;
 		background: rgb(230, 230, 230) none repeat scroll 0% 0%;
 		color: rgb(102, 102, 102);
+	}
+	input {
+		border-radius: 0;
+		box-shadow: none;
+		outline: none;
+	}
+	.form-control {
+		height: 40px;
 	}
 }

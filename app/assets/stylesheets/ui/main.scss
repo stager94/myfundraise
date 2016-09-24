@@ -235,6 +235,7 @@ footer {
 
 .btn {
 	font-family: Open Sans;
+	font-weight: 300;
 	transition: background ease 300ms;
 	box-shadow: none !important;
 }
@@ -249,6 +250,12 @@ footer {
 	background: rgb(238, 238, 238) none repeat scroll 0% 0%;
 	border-radius: 25px;
 	color: rgb(153, 153, 153);
+	&.small {
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		font-size: 12px;
+	}
 }
 
 .regular-currency {
@@ -266,5 +273,21 @@ h4 {
 		font-size: 20px;
 		margin-top: 30px;
 		margin-bottom: 20px;
+	}
+}
+
+
+.errors {
+	.alert {
+		border-radius: 0;
+		border: 0;
+		width: 100%;
+		padding-bottom: 0;
+		margin-bottom: 0;
+
+		&:last-child {
+			padding-bottom: 15px;
+			margin-bottom: 20px;
+		}
 	}
 }

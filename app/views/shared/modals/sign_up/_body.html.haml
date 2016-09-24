@@ -8,10 +8,18 @@
 		= fa_icon "odnoklassniki"
 		Войти через Одноклассники
 
-	.helper.gutter-bottom-30 Мы никогда не будем отправлять сообщения без вашего разрешения.
+	.helper.gutter-bottom-10 Мы никогда не будем отправлять сообщения без вашего разрешения.
+	
+	%h6 или, использовать email
 
-	= link_to '#' do
-		= fa_icon "envelope"
-		Использовать мой Email
+	= form_for(User.new, as: :user, url: registration_path(:user),  html: { id: "sign_up_user", class: "", :'data-type' => 'json' , remote: true}) do |f|
+		.errors
+		.form-group= f.text_field :first_name, class: "form-control", placeholder: "Ваше имя"
+		.form-group= f.text_field :last_name, class: "form-control", placeholder: "Ваша фамилия"
+		.form-group= f.text_field :nick, class: "form-control", placeholder: "Ваш никнейм"
+		.form-group= f.text_field :email, class: "form-control", placeholder: "Ваш Email адрес"
+		.form-group= f.password_field :password, class: "form-control", placeholder: "Ваш пароль"
+		.form-group= f.password_field :password_confirmation, class: "form-control", placeholder: "Подтвердите Ваш пароль"
+		= f.submit "Стать участником MyFundraise", class: "btn gutter-top-30"
 
 	.helper С каждого пожертвования компания берет 5%. Продолжая, Вы соглашаетесь с условиями и политикой конфиденциальности

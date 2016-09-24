@@ -4,6 +4,7 @@
 //= require tinymce-jquery
 //= require icheck
 //= require geocomplete
+//= require home
 
 var icheck = function(){
   if($(".icheck-me").length > 0){

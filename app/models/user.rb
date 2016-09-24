@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 	has_attached_file :foto, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "/images/:style/missing.png"
 	validates_attachment_content_type :foto, content_type: /\Aimage\/.*\z/   
 
+  validates_presence_of :first_name, :last_name, :nick
+
 	def self.find_for_oauth(auth, signed_in_resource = nil)
     identity = Identity.find_for_oauth(auth)
 

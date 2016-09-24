@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
+
   mount WalletoneMiddleware.new => '/w1_callback'
 
   root 'home#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, controllers: { 
+    omniauth_callbacks: 'omniauth_callbacks',
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
   
   resources :categories, only: [:show]
   resources :users
