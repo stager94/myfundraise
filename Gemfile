@@ -79,3 +79,15 @@ group :development do
   gem 'spring'
 end
 
+
+group :development, :test do
+  gem 'capistrano', '2.14.2'
+  gem 'rvm-capistrano', '1.4.1', require: false
+  gem 'capistrano_colors', '0.5.4', require: false
+  gem 'capistrano-ext', '1.2.1', require: false
+  gem "letter_opener"
+end
+
+group :production do
+  gem 'unicorn', '4.8.2'
+end
