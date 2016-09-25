@@ -10,7 +10,10 @@
 		%h5 
 			%u Сайт №1 
 			для личного сбора средств
-		= link_to "Создать компанию", '#', class: 'btn btn-lg'
+		- if user_signed_in?
+			= link_to "Создать компанию", new_dashboard_campaign_path, class: 'btn btn-lg'
+		- else
+			= link_to "Создать компанию", '#', data: { toggle: "modal", target: "#sign_up" }
 = render 'shared/partners'
 
 .container#fundraise-container

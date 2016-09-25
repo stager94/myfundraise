@@ -23,8 +23,18 @@ class Campaign < ActiveRecord::Base
   after_initialize :set_default_currency
   after_create :update_slug!
 
-  has_attached_file :photo, styles: { medium: "600x600#", thumb: "300x300#", cover: "600x400#", cover_lg: "1500x800#" }, default_url: "/images/campaigns/:style/missing.jpg"
+  has_attached_file :photo, processors: [:watermark], styles: { 
+    medium: "600x600#",
+    thumb: "300x300#", 
+    cover: "600x400#", 
+    cover_lg: { geometry: "1500x800#", watermark_path: "#{Rails.root}/public/logo.png" }
+  }, default_url: "/images/campaigns/:style/missing.jpg"
 	validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/   
+
+  def address
+    return unless city
+    [city.name, city.country.try(:name)].join ", "
+  end
 
   def photo_from_url(url)
   	self.photo = URI.parse(url) rescue nil

@@ -9,6 +9,7 @@
 //= require campaigns
 //= require twitter/typeahead
 //= require select2-full
+//= require currency_selector
 
 var icheck = function(){
   if($(".icheck-me").length > 0){

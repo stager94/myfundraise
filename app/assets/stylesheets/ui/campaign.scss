@@ -34,12 +34,13 @@
 		// background: rgb(243, 249, 228) none repeat scroll 0% 0%;
 		margin: 20px -40px;
 		padding: 0px 30px;
-		font-size: 100px;
+		font-family: 0;
 		color: #71ab62;
 		line-height: 110px;
 		border-width: 1px 0;
 		border-color: #71ab62;
 		border-style: solid;
+		
 		input {
 			max-width: 100%;
 			background: transparent none repeat scroll 0% 0%;
@@ -48,7 +49,72 @@
 			letter-spacing: -5px;
 			height: 156px;
 			font-weight: 600 !important;
+			font-size: 100px;
 		}
+		.currency-selector {
+			-webkit-user-select: none;  /* Chrome all / Safari all */
+			-moz-user-select: none;     /* Firefox all */
+			-ms-user-select: none;      /* IE 10+ */
+			user-select: none;          /* Likely future */  
+			font-size: 100px;
+			display: inline-block;
+			width: 80px;
+			text-align: center;
+			position: relative;
+			cursor: pointer;
+			&:hover {
+				color: #666;
+				border: 1px solid;
+			}
+			&.opened {
+				border: 1px solid;
+				color: #666;
+				ul {
+					display: block;
+				}
+			}
+
+			ul {
+				display: none;
+				list-style-type: none;
+				position: absolute;
+				line-height: 20px;
+				padding: 0;
+				line-height: 1;
+				font-style: normal !important;
+				font-family: Open Sans;
+				margin-top: 1px;
+				margin-left: -1px;
+				li {
+					cursor: pointer;
+					width: 80px;
+					padding: 3px 7px;
+					border: 1px solid #666;
+					background: white;
+					line-height: 20px;
+					text-transform: uppercase;
+					margin-top: -1px;
+					font-size: 9px;
+					font-weight: bold;
+					color: #666;
+					text-align: left;
+					&:hover {
+						background: #666;
+						color: #fff;
+					}
+					.regular-currency, .f-currency {
+						float: left;
+						line-height: 20px;
+						width: 15px;
+						text-align: left;
+						font-size: 14px;
+						font-weight: 400;
+					}
+				}
+			}
+
+		}
+		
 	}
 	.helper {
 		text-align: center;
@@ -210,11 +276,11 @@
 		border-radius: 3px;
 
 		border: 0;
-		background: #1f7f5c;
+		background: #71ab62;
 		font-weight: 300;
 		color: white;
 		&:hover, &:active, &:focus {
-			background: lighten(#1f7f5c, 5%);
+			background: lighten(#71ab62, 5%);
 		}
 	}
 }
@@ -244,7 +310,7 @@
 		min-width: 3%;
 		height: 10px;
 		border-radius: 10px;
-		background: #1f7f5c;
+		background: #71ab62;
 	}
 }
 

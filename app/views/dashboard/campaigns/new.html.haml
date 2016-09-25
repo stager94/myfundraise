@@ -1,11 +1,15 @@
-= @campaign.errors.full_messages
 .new-campaign-block
 	= form_for [:dashboard, @campaign], html: { class: 'myfundraise-form' } do |f|
 		= f.hidden_field :currency_id
 
 		%h4= "Привет, #{current_user.try(:first_name)}, введите Ваши цели:"
 		.goal
-			%span= @campaign.currency.sign.html_safe
+			%span.currency-selector
+				%span(onclick="CurrencySelector.toggle()")= @campaign.currency.sign.html_safe
+				%ul.selector
+					- Currency.all.each do |c|
+						%li(onclick="CurrencySelector.select(#{c.to_json})")= "#{c.sign} #{c.name}".html_safe
+
 			= text_field_tag :"campaign[goal]", @campaign.goal, placeholder: "0"
 		- if @campaign.errors[:goal].any?
 			.gutter-top--15.gutter-bottom-20.field-error.text-danger= @campaign.errors[:goal].first
