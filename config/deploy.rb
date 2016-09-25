@@ -33,7 +33,6 @@ set :stack, :unicorn
 # set :sidekiq_processes,  1
 
 after 'deploy:finalize_update', 'deploy:run_after_finalize_update'
-after 'deploy:finalize_update', 'deploy:migrations'
 
 namespace :deploy do
   desc "Start the application"
