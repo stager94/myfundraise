@@ -13,7 +13,7 @@
 		- if user_signed_in?
 			= link_to "Создать компанию", new_dashboard_campaign_path, class: 'btn btn-lg'
 		- else
-			= link_to "Создать компанию", '#', data: { toggle: "modal", target: "#sign_up" }
+			= link_to "Создать компанию", '#', class: "btn btn-lg", data: { toggle: "modal", target: "#sign_up" }
 = render 'shared/partners'
 
 .container#fundraise-container
