@@ -28,11 +28,12 @@ set(:unicorn_conf) { "#{deploy_to}/current/config/unicorn/#{fetch(:stage)}.rb" }
 set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 set :stack, :unicorn
 
-set :sidekiq_timeout,    10
-set :sidekiq_role,       :app
-set :sidekiq_processes,  1
+# set :sidekiq_timeout,    10
+# set :sidekiq_role,       :app
+# set :sidekiq_processes,  1
 
 after 'deploy:finalize_update', 'deploy:run_after_finalize_update'
+after 'deploy:finalize_update', 'deploy:migrations'
 
 namespace :deploy do
   desc "Start the application"
