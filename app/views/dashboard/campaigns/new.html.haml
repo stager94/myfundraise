@@ -14,8 +14,8 @@
 			= f.label :address
 			= f.text_field :address, class: "form-control input-lg", placeholder: "Enter your ZIP or Postal Code..."
 		.form-group
-			= f.label :category
-			= f.select :category, Category.all.collect {|c| [c.title, c.id] }, { include_blank: false }, class: "form-control input-lg", placeholder: "Enter your ZIP or Postal Code..."
+			= f.label :category_id
+			= f.select :category_id, Category.all.collect {|c| [c.title, c.id] }, { include_blank: false }, class: "form-control input-lg", placeholder: "Enter your ZIP or Postal Code..."
 		.form-group.text-center.gutter-top-30
 			= f.submit "Дальше", class: "btn btn-primary btn-lg"
 
