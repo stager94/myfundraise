@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924124607) do
+ActiveRecord::Schema.define(version: 20160925174914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,17 @@ ActiveRecord::Schema.define(version: 20160924124607) do
     t.datetime "cover_updated_at"
   end
 
+  create_table "cities", force: :cascade do |t|
+    t.string   "name_ru"
+    t.string   "name_en"
+    t.string   "alias"
+    t.integer  "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cities", ["country_id"], name: "index_cities_on_country_id", using: :btree
+
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "commentable_id"
@@ -107,6 +118,15 @@ ActiveRecord::Schema.define(version: 20160924124607) do
   end
 
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name_ru"
+    t.string   "name_en"
+    t.string   "alias"
+    t.string   "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "currencies", force: :cascade do |t|
     t.string   "name"
@@ -250,6 +270,7 @@ ActiveRecord::Schema.define(version: 20160924124607) do
   add_foreign_key "campaigns", "categories"
   add_foreign_key "campaigns", "currencies"
   add_foreign_key "campaigns", "users"
+  add_foreign_key "cities", "countries"
   add_foreign_key "comments", "users"
   add_foreign_key "donations", "campaigns"
   add_foreign_key "donations", "currencies"

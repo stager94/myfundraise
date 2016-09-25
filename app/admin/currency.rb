@@ -21,7 +21,7 @@ ActiveAdmin.register Currency do
 
 	index do
 		selectable_column
-		column :id
+		id_column
 		column :code
 		column :name
 		column :wallet_one_id

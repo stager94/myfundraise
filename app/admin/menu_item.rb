@@ -18,7 +18,7 @@ ActiveAdmin.register MenuItem do
 
 	index do
 		selectable_column
-		column :id
+		id_column
 		column :title
 		column :link
 		column :position

@@ -43,6 +43,18 @@ ru:
         few: Меню
         many: Меню
         other: Меню
+      country:
+        zero: Стран
+        one: Страна
+        few: Стран
+        many: Стран
+        other: Страны
+      city:
+        zero: Городов
+        one: Город
+        few: Городов
+        many: Городов
+        other: Города
 
     attributes:
       user:
@@ -84,3 +96,16 @@ ru:
         link: Ссылка
         position: Позиция
         is_enabled: Отображать?
+      country:
+        name: Название
+        name_ru: Название (RU)
+        name_en: Название (EN)
+        alias: Алиас
+        picture: Картинка
+        cities_count: Кол-во городов
+      city:
+        name: Название
+        name_ru: Название (RU)
+        name_en: Название (EN)
+        alias: Алиас
+        country: Страна

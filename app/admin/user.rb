@@ -22,7 +22,7 @@ ActiveAdmin.register User do
 
 	index do
 		selectable_column
-		column :id
+		id_column
 		column :foto do |u|
 			image_tag u.foto.url(:thumb), size: "50x50"
 		end

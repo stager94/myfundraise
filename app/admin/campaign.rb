@@ -43,7 +43,7 @@ ActiveAdmin.register Campaign do
 
 	index do
 		selectable_column
-		column :id
+		id_column
 		column :category
 		column :user
 		column :title
