@@ -19,7 +19,7 @@ class Campaign < ActiveRecord::Base
   validates_presence_of :title, :address, :currency, :goal, :user
 
   after_initialize :set_default_currency
-  after_save :update_slug!
+  after_create :update_slug!
 
   has_attached_file :photo, styles: { medium: "600x600#", thumb: "300x300#", cover: "600x400#", cover_lg: "1500x800#" }, default_url: "/images/campaigns/:style/missing.jpg"
 	validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/   
