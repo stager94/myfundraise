@@ -1,11 +1,16 @@
 .banner-wrapper
-	%h2 
-		%b Fundraising 
-		для каждого!
-	%h5 
-		%u Сайт №1 
-		для личного сбора средств
-	= link_to "Создать компанию", '#', class: 'btn btn-lg'
+	%video#video(autoplay="autoplay" loop="loop")
+		%source.mp4(src="/videos/video.mp4")
+		%source.webm(src="/videos/video.webm")
+		%source.ogg(src="/videos/video.ogg")
+	.text
+		%h2 
+			%b Fundraising 
+			для каждого!
+		%h5 
+			%u Сайт №1 
+			для личного сбора средств
+		= link_to "Создать компанию", '#', class: 'btn btn-lg'
 = render 'shared/partners'
 
 .container#fundraise-container

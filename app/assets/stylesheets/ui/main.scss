@@ -35,12 +35,14 @@ body {
 		text-overflow: ellipsis;
 		font-family: Open Sans;
 
+		font-size: 12px;
+
 		&:hover {
 			text-decoration: none;
 			color: #000;
 		}
 		img {
-			margin-right: 10px;
+			margin-right: 5px;
 		}
 		&.active {
 			background: #fff;
@@ -52,6 +54,9 @@ body {
 		margin-top: 30px;
 		margin-bottom: 15px;
 		font-family: Open Sans;
+		// text-align: center;
+		font-size: 12px;
+		font-weight: bold;
 	}
 }
 
@@ -169,10 +174,12 @@ footer {
 	}
 	.sidebar-wrapper {
 		background: white;
+		width: 200px;
 	}
 	.main-wrapper {
 		padding: 30px 15px 0;
 		background: rgb(238, 238, 238) none repeat scroll 0% 0%;
+		width: 100%;
 	}
 	.row {
 		display: table;
@@ -180,8 +187,8 @@ footer {
 	}
 }
 .campaigns-row {
-	margin-right: -7.5px;
-	margin-left: -7.5px;
+	// margin-right: -7.5px;
+	// margin-left: -7.5px;
 	font-size: 0;
 }
 
@@ -290,4 +297,34 @@ h4 {
 			margin-bottom: 20px;
 		}
 	}
+}
+
+.field-error {
+	font-family: Open Sans;
+	margin-top: 5px;
+}
+
+.reg-link {
+	margin-top: 8px;
+	padding: 7px 15px !important;
+	background: #71ab62;
+	color: white !important;
+	border-radius: 3px;
+	font-family: Open Sans;
+	font-weight: 400;
+	margin-left: 20px;
+	&:hover, &:active, &:focus {
+		background: lighten(#71ab62, 5%) !important;
+		color: white !important;
+	}
+}
+
+.navbar-nav > li > a {
+	font-family: Open Sans;
+	padding: 15px 10px;
+}
+
+.navbar-default {
+	box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+	border: none;
 }

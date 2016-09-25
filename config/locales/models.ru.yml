@@ -91,6 +91,10 @@ ru:
         address: Адрес
         enable_comments: Разрешить комментирование
         is_active: Активная?
+        city: Город
+        category: Категория
+        city_id: Город
+        category_id: Категория
       menu_item:
         title: Название
         link: Ссылка

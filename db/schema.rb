@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160925174914) do
+ActiveRecord::Schema.define(version: 20160925190230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,9 +72,11 @@ ActiveRecord::Schema.define(version: 20160925174914) do
     t.integer  "donations_count",    default: 0
     t.integer  "likes_count",        default: 0
     t.integer  "comments_count",     default: 0
+    t.integer  "city_id"
   end
 
   add_index "campaigns", ["category_id"], name: "index_campaigns_on_category_id", using: :btree
+  add_index "campaigns", ["city_id"], name: "index_campaigns_on_city_id", using: :btree
   add_index "campaigns", ["currency_id"], name: "index_campaigns_on_currency_id", using: :btree
   add_index "campaigns", ["user_id"], name: "index_campaigns_on_user_id", using: :btree
 
@@ -268,6 +270,7 @@ ActiveRecord::Schema.define(version: 20160925174914) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "campaigns", "categories"
+  add_foreign_key "campaigns", "cities"
   add_foreign_key "campaigns", "currencies"
   add_foreign_key "campaigns", "users"
   add_foreign_key "cities", "countries"

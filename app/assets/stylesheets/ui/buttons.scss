@@ -18,3 +18,13 @@
 		}
 	}
 }
+
+.btn-myf {
+	background: #71ab62;
+	color: #fff;
+	border: 0;
+	&:hover, &:active, &:focus {
+		background: lighten(#71ab62, 5%);
+		color: #fff;
+	}
+}

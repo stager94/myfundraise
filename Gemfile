@@ -69,6 +69,9 @@ gem 'impressionist'
 gem 'cancancan', '~> 1.10'
 gem 'quiet_assets'
 gem 'traco'
+gem "selectize-rails"
+gem 'twitter-typeahead-rails'
+gem "select2-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

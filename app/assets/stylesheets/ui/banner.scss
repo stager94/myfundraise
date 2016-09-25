@@ -1,11 +1,30 @@
+#video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)';
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+	z-index: 0;
+	width: 100%;
+}
+
+
 .banner-wrapper {
-	background: image-url('background.png') no-repeat 50% 50% #fff;
+	// background: image-url('background.png') no-repeat 50% 50% #fff;
+	background: #19191a;
 	background-size: cover;
-	padding: 150px 0;
+	padding: 120px 0;
 	text-align: center;
 	position: relative;
 	color: #fff;
 	font-family: 'Open Sans';
+	overflow: hidden;
+
+	.text {
+		position: relative;
+		z-index: 1;
+	}
 
 	h2 {
 		margin-top: 0;

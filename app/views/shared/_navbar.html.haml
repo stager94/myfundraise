@@ -25,7 +25,6 @@
               %li= link_to "Комментарии", '#'
               %li= link_to "Уведомления", '#'
 
-        %li= link_to "|", '#'
         - if user_signed_in?
           %li.dropdown
             = link_to '#', class: "dropdown-toggle", data: { toggle: "dropdown" }, role: "button", aria: { haspopup: true, expanded: false } do
@@ -33,8 +32,8 @@
                 = image_tag current_user.foto.url(:thumb), size: "30x30", class: 'img-circle gutter-right-5 pull-left gutter-top--5'
               - else
                 .fake-avatar.small.gutter-top--5.pull-left.gutter-right-5
-                  = [current_user.last_name.try(:first), current_user.first_name.try(:first)].compact.join
-              = current_user.nick || current_user.name || current_user.email
+                  = [current_user.first_name.try(:first),current_user.last_name.try(:first)].compact.join
+              = current_user.name || current_user.email
               %span.caret
             %ul.dropdown-menu
               %li= link_to "Профиль", current_user
@@ -43,5 +42,6 @@
               %li.divider(role="separator")
               %li= link_to "Выход", destroy_user_session_path, method: :delete
         - else
+          %li= link_to 'Зарегистрироваться', '#', class: "reg-link", data: { toggle: "modal", target: "#sign_up" }
           %li= link_to 'Войти', '#', data: { toggle: "modal", target: "#sign_in" }
-          %li= link_to 'Зарегистрироваться', '#', data: { toggle: "modal", target: "#sign_up" }
+          

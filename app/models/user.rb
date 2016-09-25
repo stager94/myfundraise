@@ -17,6 +17,13 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name, :nick
 
+  def has_vk_integration?
+    identities.vk.any?
+  end
+  def has_ok_integration?
+    identities.ok.any?
+  end
+
 	def self.find_for_oauth(auth, signed_in_resource = nil)
     identity = Identity.find_for_oauth(auth)
 

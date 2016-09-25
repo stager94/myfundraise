@@ -45,6 +45,9 @@ Rails.application.routes.draw do
       resources :users, only: :show do
         get :vk_photos, on: :member
       end
+
+
+      get 'cities/search' => 'cities#search', as: :search_cities
     end
   end
 

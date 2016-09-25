@@ -13,10 +13,12 @@ class Campaign < ActiveRecord::Base
   belongs_to :currency
   belongs_to :category
   belongs_to :user
+  belongs_to :city
 
   has_many :donations
 
-  validates_presence_of :title, :address, :currency, :goal, :user
+  validates_presence_of :title, :currency, :goal, :user, :city
+  validates_numericality_of :goal, greater_than: 0
 
   after_initialize :set_default_currency
   after_create :update_slug!
