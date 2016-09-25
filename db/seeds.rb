@@ -122,5 +122,5 @@ categories = Category.create [{ title: "Медицина", full_title: "Medical,
 																description: "Start your own crowdfunding website for just about any idea you can think of!",
 																popular: false,
 																foto: File.open(generate_foto_path('categories/paper-plane.png')),
-																cover: File.open(generate_foto_path('categories_cover/paper-plane.png'))
+																cover: File.open(generate_foto_path('categories_cover/other.png'))
 															}]
