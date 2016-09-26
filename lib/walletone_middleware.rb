@@ -7,7 +7,7 @@ class WalletoneMiddleware < Walletone::Middleware::Base
 		raise 'Wrong sign' unless notify.valid? W1_SECRET_KEY
 
 		secret_key = notify[:DONATION_SECRET_KEY]
-		donation = Donation.find secret_key
+		donation = Donation.where(secret_key: secret_key).first
 
 		raise 'Wrong donation' unless donation
 
