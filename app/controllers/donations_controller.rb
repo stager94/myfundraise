@@ -1,6 +1,6 @@
 class DonationsController < ApplicationController
 	
-	WALLETONE_SECRET_KEY = Rails.application.secrets.w1_secret_key
+	W1_SECRET_KEY = Rails.application.secrets.w1_secret_key
 
 	before_action :fetch_campaign, except: :check
 
@@ -45,7 +45,7 @@ private
 			WMI_SUCCESS_URL: root_url,
 			DONATION_SECRET_KEY: @donation.secret_key
 		)
-		payment.sign! WALLETONE_SECRET_KEY
+		payment.sign! W1_SECRET_KEY
 
 		render locals: { form: payment.form }
 	end
