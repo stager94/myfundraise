@@ -52,5 +52,6 @@ Rails.application.routes.draw do
   end
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup
+  post '/donations/check' => 'donations#check', as: :check_payment
 
 end

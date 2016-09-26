@@ -2,7 +2,7 @@ class DonationsController < ApplicationController
 	
 	WALLETONE_SECRET_KEY = Rails.application.secrets.w1_secret_key
 
-	before_action :fetch_campaign
+	before_action :fetch_campaign, except: :check
 
 	def create
 		@donation = Donation.new permitted_params.merge(default_params)
@@ -16,6 +16,11 @@ class DonationsController < ApplicationController
 
 	def new
 		@donation = Donation.new
+	end
+
+	def check
+		p params
+		render text: ""
 	end
 
 private

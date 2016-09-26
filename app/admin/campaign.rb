@@ -17,7 +17,7 @@ ActiveAdmin.register Campaign do
 	filter :category
 	filter :user
 	filter :title
-	filter :address
+	filter :city
 	filter :is_active
 	filter :enable_comments
 	filter :goal
@@ -33,7 +33,7 @@ ActiveAdmin.register Campaign do
 			input :title
 			input :photo, as: :file
 			input :description
-			input :address
+			input :city
 			input :enable_comments
 			input :is_active
 		end
