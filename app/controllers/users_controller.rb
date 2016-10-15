@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-	before_action :set_user, only: :finish_signup
+	before_action :set_user, only: [:finish_signup, :show]
 	skip_before_filter :check_user_verifying, only: :finish_signup
 
   def finish_signup
@@ -14,6 +14,9 @@ class UsersController < ApplicationController
         @show_errors = true
       end
     end
+  end
+
+  def show
   end
 
 private

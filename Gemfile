@@ -24,6 +24,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "paperclip", "~> 5.0.0"
 gem 'paperclip-watermark', github: 'vikewoods/paperclip-watermark'
+gem 'carrierwave'
+gem "rmagick", "~> 2.13.1"
+
 gem 'devise'
 gem 'pg'
 gem 'activeadmin', github: 'gregbell/active_admin'
@@ -45,6 +48,9 @@ gem 'omniauth-odnoklassniki'
 # gem 'omniauth-google-oauth2'
 
 gem 'vkontakte_api', '~> 1.4'
+
+gem 'odnoklassniki'
+gem "lemur", "~> 0.0.6"
 
 gem 'pry'
 

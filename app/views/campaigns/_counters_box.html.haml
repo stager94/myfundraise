@@ -10,5 +10,4 @@
 	%span= number_with_delimiter object.comments_count
 %div{ title: "просмотров", data: { toggle: "tooltip" } }
 	= fa_icon :"eye"
-	/ %span= object.impressionist_count(filter: :ip_address)
-	%span= number_with_delimiter object.impressionist_count
+	%span= number_with_delimiter object.views_count

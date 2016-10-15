@@ -1,9 +1,8 @@
 .new-campaign-block {
 	background: #fff;
-	padding: 30px;
 	margin: 30px auto;
 	max-width: 600px;
-	padding: 40px;
+	padding: 40px 20px;
 	-webkit-box-shadow: 0 0.2rem 0.1rem -0.1rem #e0e0e0;
 	-moz-box-shadow: 0 0.2rem 0.1rem -0.1rem #e0e0e0;
 	-ms-box-shadow: 0 0.2rem 0.1rem -0.1rem #e0e0e0;
@@ -18,7 +17,7 @@
 		font-weight: 300;
 		font-family: Open Sans;
 
-		a {
+		a, button {
 			color: #666;
 	    font-size: 15px;
 	    line-height: 26px;
@@ -32,7 +31,7 @@
 
 	.goal {
 		// background: rgb(243, 249, 228) none repeat scroll 0% 0%;
-		margin: 20px -40px;
+		margin: 20px -20px;
 		padding: 0px 30px;
 		font-family: 0;
 		color: #71ab62;
@@ -136,36 +135,87 @@
 		font-weight: 300;
 	}
 
+	.photos-container {
+		column-count: 3;
+		-webkit-column-count: 3;
+		-moz-column-count: 3;
+		column-gap: 10px;
+		-webkit-column-gap: 10px;
+		-moz-column-gap: 10px;
+		-webkit-column-rule: 1px solid #ececec;
+		-moz-column-rule: 1px solid #ececec;
+		column-rule: 1px solid #ececec;
+	}
+
 	.grayed {
-		background: rgb(238, 238, 238) none repeat scroll 0% 0%;
+		// background: rgb(238, 238, 238) none repeat scroll 0% 0%;
+		border-top: 1px solid #ececec;
+		border-bottom: 1px solid #ececec;
 		padding: 20px;
-		margin: 0px -40px 40px;
+		margin: 0px -20px 40px;
 		a {
 			&.select-block {
 				display: block;
-				border: 1px solid rgb(204, 204, 204);
-				padding: 10px 5px;
 				font-size: 11px;
 				text-align: center;
 				color: rgb(102, 102, 102);
 				background: white;
-				// font-weight: bold;
 				font-family: Open Sans;
 				i {
-					display: block;
 					font-size: 50px;
-					margin-bottom: 15px;
+					display: block;
+					background: #eee;
+					width: 90px;
+					height: 90px;
+					line-height: 90px;
+					border-radius: 500px;
+					margin: 0 auto 10px;
 				}
 
 				&:hover, &:active, &:focus {
 					text-decoration: none;
-					color: #000;
+					color: #80b473;
+					i {
+						color: #fff;
+						background: #80b473;
+					}
 				}
 			}
 			&.photo {
 				display: block;
+				border-radius: 2px;
+				border: 1px solid #eee;
 				&:hover, &:active, &:focus {
 					outline: 2px solid green;
+				}
+			}
+		}
+	}
+
+	.actions {
+		height: 34px;
+		a, button, input[type=submit] {
+			min-width: 150px;
+			border: 1px solid #ececec;
+			color: #888;
+			border-color: #ddd;
+			font-family: Open Sans;
+			line-height: 34px;
+			border-radius: 3px;
+			font-weight: 300;
+			text-decoration: none;
+			padding: 0 15px;
+			&:hover {
+				color: #666;
+				border-color: #ccc;
+			}
+
+			&.green-btn {
+				background: #80b473;
+				border-color: #80b473;
+				color: #fff;
+				&:hover, &:active, &:focus {
+					background: lighten(#80b473, 5%);
 				}
 			}
 		}
@@ -185,6 +235,29 @@
 		height: 120px;
 		overflow: hidden;
 		margin-bottom: 15px;
+		background-size: cover;
+		position: relative;
+
+		span {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			line-height: 15px;
+			background: #80b473;
+			color: white;
+			font-size: 13px;
+			font-weight: 300;
+			letter-spacing: 1px;
+			display: none;
+			padding-top: 45px;
+		}
+		&:hover {
+			span {
+				background: rgba(0, 0, 0, .5);	
+				display: block;
+			}
+		}
 
 		img {
 			width: 100%;
@@ -436,6 +509,23 @@
 	}
 }
 
+.sorting-panel {
+	font-size: 12px;
+	margin-bottom: 30px;
+	font-family: Open Sans;
+	margin-top: -15px;
+	span {
+		font-family: Open Sans;
+		color: #ababab;
+		margin-right: 10px;
+	}
+	a {
+		margin-right: 10px;
+		&.active {
+			color: #333;
+		}
+	}
+}
 
 .small-campaign-block {
 	width: 100%;
@@ -458,17 +548,17 @@
 	.info {
 		position: absolute;
 		bottom: 10px;
-		right: 15px;
+		right: 10px;
 		z-index: 9;
-		padding: 7px;
+		padding: 5px;
 		// background: rgb(66, 66, 66);
 		border-radius: 3px;
-		font-size: 12px;
+		font-size: 11px;
 		color: rgb(204, 204, 204);
 		font-family: Open Sans;
 		font-weight: 300;
 		.fa {
-			font-size: 14px;
+			font-size: 12px;
 			vertical-align: middle;
 			margin-right: 2px;
 		}
@@ -489,12 +579,12 @@
 		}
 	}
 	.title {
-		font-size: 16px;
+		font-size: 14px;
 		font-weight: 300;
 		line-height: 20px;
 		margin-top: 10px;
 		// margin-bottom: 15px;
-		padding: 0 15px;
+		padding: 0 10px;
 		padding-bottom: 10px;
 		// border-bottom: 1px dashed rgb(236, 236, 236);
 		white-space: nowrap;
@@ -503,10 +593,10 @@
 		display: block;
 		color: #666;
 		border-bottom: 1px dashed #ececec;
-		margin-bottom: 15px;
+		margin-bottom: 10px;
 	}
 	.author {
-		padding: 10px 15px;
+		padding: 10px;
 		font-weight: 300;
 		position: absolute;
 		bottom: 0px;
@@ -514,11 +604,21 @@
 		// background: transparent linear-gradient(to bottom, transparent 0%, rgb(0, 0, 0) 100%) repeat scroll 0% 0%;
 		color: white;
 		font-family: 'Open Sans';
-		font-size: 13px;
+		font-size: 11px;
 
 		img {
 			margin-right: 5px;
-			border: 2px solid white;
+			border: 1px solid white;
+			width: 25px;
+			height: 25px;
+		}
+		.fake-avatar {
+			border: 1px solid white;
+			margin-right: 5px;
+			width: 25px;
+			height: 25px;
+			line-height: 23px;
+			font-size: 11px;
 		}
 		> span {
 			vertical-align: middle;
@@ -543,25 +643,26 @@
 	}
 	.category {
 		position: absolute;
-		left: 15px;
+		left: 10px;
 		top: 10px;
 		background: rgb(66, 66, 66) none repeat scroll 0% 0%;
-		padding: 0.6rem 1rem;
 		color: rgb(204, 204, 204);
 		border-radius: 3px;
 		font-weight: 300;
-		font-size: 13px;
+		font-size: 10px;
 		font-family: Open Sans;
+		padding: 0 10px;
+		line-height: 24px;
 	}
 	.goal {
-		font-size: 20px;
+		font-size: 16px;
 		font-weight: 300;
-		padding: 0 15px;
-		margin-bottom: 15px;
+		padding: 0 10px;
+		margin-bottom: 10px;
 
-		column-count: 3;
-		-webkit-column-count: 3;
-		-moz-column-count: 3;
+		column-count: 2;
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
 		column-gap: 10px;
 		-webkit-column-gap: 10px;
 		-moz-column-gap: 10px;
@@ -576,7 +677,7 @@
 			font-family: Open Sans;
 			
 			span.goal-title {
-				font-size: 10px;
+				font-size: 9px;
 				text-transform: uppercase;
 				display: block;
 				text-align: center;
@@ -589,7 +690,7 @@
 	.delete {
 		position: absolute;
 		top: 10px;
-		right: 15px;
+		right: 10px;
 		border-radius: 3px;
 		color: #ccc;
 		background: #424242;
@@ -606,9 +707,9 @@
 		span {
 			vertical-align: middle;
 			text-transform: lowercase;
-			font-size: 12px;
+			font-size: 10px;
 			&:first-child {
-				font-size: 21px;
+				font-size: 17px;
 				margin-right: 5px;
 			}
 		}
@@ -627,9 +728,9 @@
 }
 
 .small-campaign-container {
-	width: 50%;
+	width: 33.3333333333333333333%;
 	display: inline-block;
-	padding: 0 15px 30px;
+	padding: 0 5px 15px;
 }
 
 .campaign-wh-block {
@@ -656,7 +757,9 @@
 			text-decoration: none !important;
 		}
 		img {
-			// margin-right: 5px;
+			width: 40px;
+			height: 40px;
+			border-radius: 20px;
 		}
 		span {
 			vertical-align: middle;
@@ -742,11 +845,13 @@
 		textarea {
 			padding-left: 60px;
 		}
-		img {
+		img, .fake-avatar {
 			position: absolute;
 			top: 10px;
 			left: 10px;
-			border-radius: 50%;
+			border-radius: 20px;
+			width: 40px;
+			height: 40px;
 		}
 	}
 }
@@ -806,4 +911,8 @@
 	border: 0;
 	display: block;
 	width: 100%;
+}
+
+.campaigns-row {
+	margin: 0 -5px;
 }

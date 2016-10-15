@@ -1,7 +1,9 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery.jcrop
 //= require bootstrap-sprockets
 //= require tinymce-jquery
+//= require tinymce/plugin.placeholder
 //= require icheck
 //= require geocomplete
 //= require home
@@ -10,6 +12,7 @@
 //= require twitter/typeahead
 //= require select2-full
 //= require currency_selector
+//= require campaigns_crop
 
 var icheck = function(){
   if($(".icheck-me").length > 0){
@@ -40,7 +43,8 @@ $(function() {
   tinyMCE.init({
     selector: 'textarea.editor',
     menubar: false,
-    statusbar: false
+    statusbar: false,
+    plugins: ['placeholder']
   });
 
   onPageLoad();

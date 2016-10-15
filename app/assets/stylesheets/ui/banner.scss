@@ -76,7 +76,7 @@
 	font-family: Open Sans;
 
 	.container {
-		display: table-cell;
+		// display: table-cell;
 		vertical-align: middle;
 	}
 
@@ -88,4 +88,68 @@
 		font-size: 35px;
 		font-weight: 300;
 	}
+}
+
+.user-banner-wrapper {
+	padding: 30px 0;
+	background: #fff;
+	font-family: Open Sans;
+	img {
+		width: 150px;
+		border-radius: 100px;
+		// border: 2px solid #fff;
+	}
+}
+
+
+.counters {
+	margin-top: 30px;
+	font-size: 0;
+	height: 54px;
+	overflow: hidden;
+
+	.counter {
+		font-size: 30px;
+		line-height: 1;
+		font-weight: 300;
+		min-width: 155px;
+		display: inline-block;
+		padding: 0 14px;
+		color: #333;
+		background: #f8f8f8;
+		padding: 10px;
+		border-radius: 3px;
+		margin-bottom: 5px;
+		margin-right: 15px;
+		label {
+			// display: block;
+			font-weight: 100;
+			color: #999;
+			font-size: 14px;
+		}
+	}
+}
+
+.user-table {
+	display: table;
+	.user-cell {
+		display: table-cell;
+		vertical-align: middle;
+		h2, h5 {
+			margin: 0;
+		}
+		h2 {
+			margin-bottom: 5px !important;
+		}
+		h5 {
+			color: #999;
+		}
+		// .counters {
+		// 	margin-left: -15px;
+		// }
+	}
+}
+
+.padding-left-30 {
+	padding-left: 30px;
 }

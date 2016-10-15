@@ -1,6 +1,6 @@
 class CampaignsController < ApplicationController
 
-	impressionist
+	impressionist 
 
 	def show
 		@body_class = "gray-striped-inverse"
@@ -9,6 +9,7 @@ class CampaignsController < ApplicationController
 		@donations = @campaign.donations.paid.order(created_at: :desc).first(10)
 		@comments = @campaign.comments.order created_at: :desc
 		impressionist @campaign
+		@campaign.update_rating
 	end
 
 end

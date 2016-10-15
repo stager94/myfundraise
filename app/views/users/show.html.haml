@@ -1,0 +1,61 @@
+.user-banner-wrapper
+	.container
+		.user-table
+			.user-cell
+				= render_user_avatar_for @user, fake_styles: "size40"
+			.user-cell.padding-left-30
+				%h2= @user.name
+				%h5= raw "Пользуется сервисом #{distance_of_time_in_words_to_now @user.created_at}"
+				%h5
+					= fa_icon :"map-marker"
+					= @user.address
+
+				.counters
+					/ .counter
+					/ 	= @user.campaigns.count
+					/ 	%label 
+					/ 		кампаний
+					/ 		%br
+					/ 		создано
+					.counter
+						/ %label Актуальных кампаний
+						= @user.campaigns.active.count
+						%label 
+							актуальных
+							%br
+							кампаний
+					.counter
+						= @user.campaigns.where(percentage: 100).count
+						%label 
+							успешных
+							%br
+							кампаний
+					.counter
+						= @user.campaigns.sum(:donations_count)
+						%label 
+							пожертвований
+							%br
+							собрано
+					.counter
+						= @user.donations.count
+						%label
+							пожертвований
+							%br
+							сделано
+					.counter
+						= @user.campaigns.sum(:likes_count)
+						%label 
+							лайков
+							%br
+							получено
+					.counter
+						= @user.campaigns.sum(:comments_count)
+						%label 
+							комментариев
+							%br
+							получено
+
+.container#fundraise-container
+	.row
+		.col-md-12.main-wrapper
+			.campaigns-row= render @user.campaigns

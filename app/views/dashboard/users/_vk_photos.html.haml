@@ -3,14 +3,15 @@
 		= fa_icon :vk, style: "vertical-align:top;"
 		Выбрать из ВКонтакте
 		= link_to "Назад", dashboard_campaign_steps_path(campaign_id: params[:campaign_id], id: "media"), class: "pull-right"
-	.grayed.row
+	.grayed.row(style="padding-bottom:5px;")
 		.photo-wrapper
 			- @photos.each do |photo|
-				= link_to dashboard_select_campaign_picture_path(params[:campaign_id], type: :vk, url: photo['src_big']), class: 'photo', method: :post do
-					= image_tag photo['src_big']
+				= link_to dashboard_select_campaign_picture_path(params[:campaign_id], type: :vk, url: photo['src_big']), class: 'photo', method: :post, style: "background-image:url('#{photo['src_big']}');" do
+					%span
+						Использовать
+						%br
+						как обложку
 
-		.row
-			.col-md-6
-				= link_to 'Предыдущая страница', vk_photos_dashboard_user_path(current_user, count: 9, offset: params[:offset].to_i - 9,campaign_id: params[:campaign_id]), remote: true, class: "select-block"
-			.col-md-6
-				= link_to 'Следующая страница', vk_photos_dashboard_user_path(current_user, count: 9, offset: params[:offset].to_i + 9, campaign_id: params[:campaign_id]), remote: true, class: "select-block"
+	.actions
+		= link_to 'Предыдущая страница', vk_photos_dashboard_user_path(current_user, count: 9, offset: params[:offset].to_i - 9,campaign_id: params[:campaign_id]), remote: true, class: "pull-left"
+		= link_to 'Следующая страница', vk_photos_dashboard_user_path(current_user, count: 9, offset: params[:offset].to_i + 9, campaign_id: params[:campaign_id]), remote: true, class: "pull-right"

@@ -1,10 +1,7 @@
 .donation
 	.donation-image
-		- if can?(:show, donation)
-			= image_tag donation.user.foto.url(:thumb), size: "50x50", class: "img-circle"
-		- else
-			.fake-avatar
-				A
+		- donor = can?(:show, donation) ? donation.user : User.anonym
+		= render_user_avatar_for donor, image_styles: "img-circle"
 	.donation-info
 		.info
 			%b= "#{construct_amount(donation.amount, donation.currency)}".html_safe

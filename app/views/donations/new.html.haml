@@ -1,6 +1,6 @@
 .fake-page
 	.donation-campaign-info
-		= image_tag @campaign.photo.url(:cover), size: "300x200"
+		= image_tag @campaign.picture.url(:medium), size: "300x200"
 
 		%span Название кампании
 		%h5= @campaign.title

@@ -1,0 +1,10 @@
+.new-campaign-block
+	.campaign-container
+		%h3 Подтверждение обложки
+
+		.grayed
+			= image_tag @campaign.picture.url(:medium), class: "img-responsive"
+
+		.actions.text-center
+			= link_to "Назад".html_safe, prev_step_dashboard_campaign_path(@campaign), class: "pull-left"
+			= link_to "Подтвердить".html_safe, next_step_dashboard_campaign_path(@campaign), class: "pull-right green-btn"

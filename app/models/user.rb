@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 	has_many :identities, dependent: :destroy
   has_many :likes
   has_many :comments
+  has_many :donations
 
 	has_attached_file :foto, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "/images/:style/missing.png"
 	validates_attachment_content_type :foto, content_type: /\Aimage\/.*\z/   
@@ -22,6 +23,10 @@ class User < ActiveRecord::Base
   end
   def has_ok_integration?
     identities.ok.any?
+  end
+
+  def self.anonym
+    new first_name: "Anonym"
   end
 
 	def self.find_for_oauth(auth, signed_in_resource = nil)

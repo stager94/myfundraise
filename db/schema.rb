@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926012833) do
+ActiveRecord::Schema.define(version: 20161015174809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,12 @@ ActiveRecord::Schema.define(version: 20160926012833) do
     t.integer  "likes_count",        default: 0
     t.integer  "comments_count",     default: 0
     t.integer  "city_id"
+    t.string   "picture"
+    t.integer  "width",              default: 0
+    t.integer  "height",             default: 0
+    t.float    "rating",             default: 0.0
+    t.integer  "views_count",        default: 0
+    t.boolean  "is_draft",           default: true
   end
 
   add_index "campaigns", ["category_id"], name: "index_campaigns_on_category_id", using: :btree
@@ -154,7 +160,6 @@ ActiveRecord::Schema.define(version: 20160926012833) do
     t.datetime "updated_at",                  null: false
     t.string   "aasm_state"
     t.string   "secret_key"
-    t.json     "data"
   end
 
   add_index "donations", ["campaign_id"], name: "index_donations_on_campaign_id", using: :btree

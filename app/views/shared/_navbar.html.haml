@@ -28,11 +28,7 @@
         - if user_signed_in?
           %li.dropdown
             = link_to '#', class: "dropdown-toggle", data: { toggle: "dropdown" }, role: "button", aria: { haspopup: true, expanded: false } do
-              - if current_user.foto.present?
-                = image_tag current_user.foto.url(:thumb), size: "30x30", class: 'img-circle gutter-right-5 pull-left gutter-top--5'
-              - else
-                .fake-avatar.small.gutter-top--5.pull-left.gutter-right-5
-                  = [current_user.first_name.try(:first),current_user.last_name.try(:first)].compact.join
+              = render_user_avatar_for current_user, image_styles: "navbar-avatar", fake_styles: "small gutter-top--5 pull-left gutter-right-5"
               = current_user.name || current_user.email
               %span.caret
             %ul.dropdown-menu

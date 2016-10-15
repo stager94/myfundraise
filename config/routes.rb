@@ -27,12 +27,17 @@ Rails.application.routes.draw do
   end
 
   namespace :dashboard do
-    post 'campaigns/:campaign_id/select_picture' => 'campaigns#select_picture', as: :select_campaign_picture
+    match 'campaigns/:campaign_id/select_picture' => 'campaigns#select_picture', as: :select_campaign_picture, via: [:post, :patch]
 
     resources :campaigns, param: :campaign_id do
 
+      patch :crop, on: :member
+      post :activate, on: :member
+
       member do
         resources :campaign_steps, path: :steps
+
+        get :next_step, :prev_step
       end
     end
     resources :users, only: :show do

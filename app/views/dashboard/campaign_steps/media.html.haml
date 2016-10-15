@@ -1,20 +1,28 @@
 .new-campaign-block
-	= form_for [:dashboard, @campaign] do |f|
-		.campaign-container
-			%h3 Add a photo or video
-			.grayed.row
-				.col-md-4
-					= link_to vk_photos_dashboard_user_path(current_user, count: 9, campaign_id: @campaign.id), remote: true, class: "select-block" do
-						= fa_icon :vk
-						Выбрать из ВКонтакте
-				.col-md-4
-					= link_to '#', class: "select-block" do
-						= fa_icon :paperclip
-						Загрузить фото
-				.col-md-4
-					= link_to '#', class: "select-block" do
-						= fa_icon :youtube
-						YouTube или Vimeo
+	.campaign-container
+		%h3 Добавить фото или видео
+		.photos-container.grayed.row
+			/ %div
+			/ 	= link_to vk_photos_dashboard_user_path(current_user, count: 9, campaign_id: @campaign.id), remote: true, class: "select-block" do
+			/ 		= fa_icon :odnoklassniki
+			/ 		Выбрать из Одноклассников
+			%div
+				= link_to vk_photos_dashboard_user_path(current_user, count: 9, campaign_id: @campaign.id), remote: true, class: "select-block" do
+					= fa_icon :vk
+					Выбрать из ВКонтакте
+			%div
+				= form_for @campaign, url: dashboard_select_campaign_picture_path(@campaign, type: "regular"), html: { class: "hidden" } do |f|
+					= f.file_field :picture
+					= f.submit
 
-			.actions.text-center
-				= link_to "Пропустить".html_safe, '#', class: "btn btn-myf btn-lg"
+				= link_to '#', class: "select-block", onclick: "selectCoverFromComputer()" do
+					= fa_icon :paperclip
+					Загрузить фото
+			%div
+				= link_to '#', class: "select-block" do
+					= fa_icon :youtube
+					YouTube или Vimeo
+
+		.actions.text-center
+			= link_to "Назад".html_safe, '#', class: "pull-left"
+			= link_to "Пропустить".html_safe, next_step_dashboard_campaign_path(@campaign), class: "pull-right"

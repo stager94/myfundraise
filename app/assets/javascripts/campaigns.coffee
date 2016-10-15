@@ -1,4 +1,12 @@
 $ ->
+	$("#campaign_picture").on "change", ->
+		$(this).closest("form").submit()
+		return
+
+	window.selectCoverFromComputer = ->
+		$("#campaign_picture").click()
+		return
+
 	$('#selectize-city').selectize
 		valueField: 'id'
 		labelField: 'name_with_country'

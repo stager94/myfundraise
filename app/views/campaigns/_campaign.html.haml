@@ -6,13 +6,13 @@
 					%span= "&times;".html_safe
 					%span Удалить
 
-			= image_tag campaign.photo.url(:cover)
+			= image_tag campaign.picture.url(:medium)
 			.category
 				= fa_icon :tag
 				= (campaign.category || Category.first).title
 			.author-back
 			.author
-				= image_tag campaign.user.foto.url(:thumb), size: "34x34", class: 'img-circle'
+				= render_user_avatar_for campaign.user, image_styles: "img-circle", fake_styles: "small"
 				%span
 					= campaign.user.name
 					%span= campaign.address
@@ -31,6 +31,6 @@
 			.goal-tab
 				%span.goal-title Цель
 				= raw "#{construct_amount(campaign.goal, campaign.currency)}"
-			.goal-tab
-				%span.goal-title Пожертвований
-				= campaign.donations_count
+			/ .goal-tab
+			/ 	%span.goal-title Пожертвований
+			/ 	= campaign.donations_count

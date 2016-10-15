@@ -1,14 +1,24 @@
 class Campaign < ActiveRecord::Base
+
+  mount_uploader :picture, Campaigns::CoverUploader
+
   extend FriendlyId
   
   include Likeable
   include Commentable
 
-  is_impressionable
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
+  is_impressionable counter_cache: true, column_name: :views_count, unique: true
 
   friendly_id :friendly_code, use: [:slugged, :finders]
 
-	STEPS = [:media, :description, :share, :link]
+  scope :popular, -> { order rating: :desc }
+  scope :recent, -> { order created_at: :desc }
+  scope :almost_there, -> { order percentage: :desc }
+  scope :active, -> { where is_draft: false }
+
+	STEPS = [:media, :media_crop, :media_confirm, :description, :activate]
 
   belongs_to :currency
   belongs_to :category
@@ -22,23 +32,13 @@ class Campaign < ActiveRecord::Base
 
   after_initialize :set_default_currency
   after_create :update_slug!
+  after_update :reprocess_photo
 
-  has_attached_file :photo, processors: [:watermark], styles: { 
-    medium: "600x600#",
-    thumb: "300x300#", 
-    cover: "600x400#", 
-    cover_lg: { geometry: "1500x800#", watermark_path: "#{Rails.root}/public/logo.png" }
-  }, default_url: "/images/campaigns/:style/missing.jpg"
-	validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/   
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   def address
     return unless city
     [city.name, city.country.try(:name)].join ", "
-  end
-
-  def photo_from_url(url)
-  	self.photo = URI.parse(url) rescue nil
-  	save
   end
 
   def current_step
@@ -46,18 +46,40 @@ class Campaign < ActiveRecord::Base
   end
 
   def next_step
-  	STEPS[STEPS.index(current_step)+1] rescue nil
+    count = 1
+    count = 3 if current_step.to_sym == :media && !self.picture.present?
+  	STEPS[STEPS.index(current_step.to_sym)+count] rescue nil
+  end
+
+  def prev_step
+    STEPS[STEPS.index(current_step.to_sym)-1] rescue STEPS.first
   end
 
   def next_step!
   	update step: next_step
   end
 
+  def prev_step!
+    update step: prev_step
+  end
+
   def update_slug!
     update slug: nil
   end
 
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
+
+  def update_rating
+    update rating: recalculate_rating
+  end
+
 private
+
+  def recalculate_rating
+    views_count * 0.2 + likes_count * 0.3 + comments_count * 0.5
+  end
 
   def set_default_currency
   	self.currency = Currency.first unless currency
@@ -65,6 +87,10 @@ private
 
   def friendly_code
     "#{id} #{title}"
+  end
+
+  def reprocess_photo
+    picture.recreate_versions! if crop_x.present?
   end
 
 end

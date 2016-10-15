@@ -1,0 +1,12 @@
+= form_for @campaign, url: crop_dashboard_campaign_path(@campaign) do |f|
+	- %w[x y w h].each do |attribute|
+		= f.hidden_field "crop_#{attribute}"
+
+	.new-campaign-block
+		.campaign-container
+			%h3 Обрезка обложки
+			.grayed
+				= image_tag @campaign.picture.url(:original), id: "cropbox", class: "img-responsive", data: { width: @campaign.width, height: @campaign.height }
+			.actions.text-center
+				= link_to "Изменить обложку".html_safe, prev_step_dashboard_campaign_path(@campaign), class: "pull-left"
+				= f.submit "Подтвердить", class: "pull-right green-btn"

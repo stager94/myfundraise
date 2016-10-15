@@ -21,5 +21,12 @@
 		.col-md-3.sidebar-wrapper
 			#categories-wrapper= render 'shared/categories'
 		.col-md-9.main-wrapper
+			.sorting-panel
+				%span Сортировка: 
+				= link_to "Популярные", root_path(sort: :popular), class: "#{'active' if @sorting == 'popular'}"
+				= link_to "Новые", root_path(sort: :recent), class: "#{'active' if @sorting == 'recent'}"
+				/ = link_to "Возле меня", root_path(sort: :near_me), class: "#{'active' if @sorting == 'near_me'}"
+				= link_to "Почти собрано", root_path(sort: :almost_there), class: "#{'active' if @sorting == 'almost_there'}"
+				/ = link_to "Мои друзья", '#', class: "#{'active' if @sorting == 'popular'}"
 			.campaigns-row= render @campaigns
 			= paginate @campaigns
