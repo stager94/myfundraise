@@ -183,13 +183,16 @@ footer {
 	}
 	.row {
 		display: table;
-		// width: 100%;
+		width: 100%;
 	}
 }
 .campaigns-row {
 	// margin-right: -7.5px;
 	// margin-left: -7.5px;
 	font-size: 0;
+	p {
+		font-size: 14px;
+	}
 }
 
 .homepage {
@@ -278,7 +281,7 @@ footer {
 }
 
 .regular-currency {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -287,9 +290,10 @@ a {
 
 h4 {
 	&.heading {
-		font-weight: 300;
-		font-family: "Open Sans";
-		font-size: 20px;
+		font: normal 32px 'bebas_neuebook', Arial;
+		color: #767676;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-text-size-adjust: 100%;
 		margin-top: 30px;
 		margin-bottom: 20px;
 	}
@@ -314,4 +318,18 @@ h4 {
 .field-error {
 	font-family: Open Sans;
 	margin-top: 5px;
+}
+
+
+.warning-message {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: normal !important;
+	color: #767676;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+	text-align: center;
+	margin-bottom: 100px;
+	margin-top: 30px;
 }

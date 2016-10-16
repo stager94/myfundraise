@@ -39,9 +39,15 @@
 			}
 		}
 		.comment-text {
-			font-family: Open Sans;
-			font-size: 13px;
-			font-weight: 300;
+			// font-family: Open Sans;
+			// font-size: 13px;
+			// font-weight: 300;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			line-height: 20px;
+			font-weight: normal !important;
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-text-size-adjust: 100%;
 			margin-top: 10px;
 			color: #666;
 		}

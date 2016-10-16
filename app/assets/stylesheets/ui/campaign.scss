@@ -298,9 +298,10 @@
 		background: #fff;
 		float: none;
 		h4 {
-			font-weight: 300;
-			font-family: Open Sans;
-			font-size: 20px;
+			font: normal 32px 'bebas_neuebook', Arial;
+			color: #767676;
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-text-size-adjust: 100%;
 			margin-top: 30px;
 			margin-bottom: 20px;
 		}
@@ -315,17 +316,23 @@
 		}
 	}
 	p {
-		font-size: 13px;
-		font-weight: 300;
 		margin-top: 5px;
-		color: #999;
+    color: rgba(0, 0, 0, 0.35);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: normal !important;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
 	}
 	.campaign-description {
 		* {
 			font-size: 14px;
-			font-weight: 300;
+			font-weight: normal;
 			color: #666;
-			font-family: "Open Sans";	
+			font-family: "Open Sans";
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-text-size-adjust: 100%;
 		}
 		
 		p {
@@ -538,6 +545,46 @@
 	border: 0.1rem solid #e0e0e0;
 	display: inline-block;
 	vertical-align: top;
+	position: relative;
+	overflow: hidden;
+
+	.publish {
+		display: block;
+		line-height: 55.5px;
+		background: #71ab62;
+		font-size: 15px !important;
+		text-align: center;
+		color: white;
+		margin-top: -11px;
+		font-family: Open Sans;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-text-size-adjust: 100%;
+		transition: all ease 300ms;
+		&:hover, &:active, &:focus {
+			text-decoration: none;
+			background: lighten(#71ab62, 10%);
+		}
+	}
+
+	.ribbon {
+		top: 17px;
+		right: -25px;
+		transform: rotate(-45deg);
+		-webkit-transform: rotate(45deg);
+		font-size: 14px;
+		position: absolute;
+		z-index: 10;
+		background: #e43;
+		display: block;
+		width: 108px;
+		text-align: center;
+		line-height: 25px;
+		font-size: 15px;
+		color: #f0f0f0;
+		box-shadow: 0 0 3px rgba(0,0,0,.3);
+		font-family: 'bebas_neueregular', Arial;
+		letter-spacing: 1px;
+	}
 
 	.cover {
 		position: relative;
@@ -547,16 +594,18 @@
 	}
 	.info {
 		position: absolute;
-		bottom: 10px;
+		bottom: 8px;
 		right: 10px;
 		z-index: 9;
 		padding: 5px;
 		// background: rgb(66, 66, 66);
 		border-radius: 3px;
-		font-size: 11px;
+		font-size: 13px;
 		color: rgb(204, 204, 204);
-		font-family: Open Sans;
-		font-weight: 300;
+		font-weight: normal;
+		font-family: 'bebas_neueregular', Arial;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-text-size-adjust: 100%;
 		.fa {
 			font-size: 12px;
 			vertical-align: middle;
@@ -594,6 +643,10 @@
 		color: #666;
 		border-bottom: 1px dashed #ececec;
 		margin-bottom: 10px;
+		font-size: 18px;
+		font-family: 'bebas_neueregular', Arial;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-text-size-adjust: 100%;
 	}
 	.author {
 		padding: 10px;
@@ -674,16 +727,21 @@
 		.goal-tab {
 			text-align: center;
 			line-height: 1;
-			font-family: Open Sans;
+			font-size: 20px;
+			font-family: 'bebas_neueregular', Arial;
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-text-size-adjust: 100%;
 			
 			span.goal-title {
-				font-size: 9px;
+				font-size: 13px;
 				text-transform: uppercase;
 				display: block;
 				text-align: center;
 				color: rgb(153, 153, 153);
-				margin-bottom: 5px;
-				font-family: Open Sans;
+				margin-bottom: 1px;
+				font-family: 'bebas_neueregular', Arial;
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-text-size-adjust: 100%;
 			}
 		}
 	}
@@ -739,10 +797,13 @@
 
 	h1 {
 		font-size: 24px;
-		font-family: 'Open Sans';
+		// font-family: 'Open Sans';
 		font-weight: 300;
 		margin-top: 0px;
 		margin-bottom: 20px;
+		font-family: 'bebas_neueregular', Arial;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-text-size-adjust: 100%;
 	}
 	.campaign-author {
 		font-family: "Open Sans";
@@ -794,18 +855,22 @@
  	border-top: 1px solid rgb(236, 236, 236);
 	padding-top: 20px;
 	margin-top: 20px;
+	font-family: 'bebas_neueregular', Arial;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
 
 	a {
 		display: inline-block;
 		padding: 3px 5px;
 		font-weight: 300;
 		border-radius: 3px;
-		color: #666;
+		color: #999;
 		font-size: 14px;
 		text-decoration: none !important;
 		outline: none !important;
 		b {
 			font-weight: 400;
+			color: #666;
 		}
 		&:hover, &:active, &:focus {
 			background: #eee;
@@ -836,7 +901,8 @@
 		resize: none;
 		height: 75px;
 		font-family: Open Sans;
-		font-weight: 300;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-text-size-adjust: 100%;
 		border: none;
 	}
 	.with-avatar {
@@ -915,4 +981,46 @@
 
 .campaigns-row {
 	margin: 0 -5px;
+}
+
+
+.fundraise-subheader {
+	border-bottom: 1px solid #e0e0e0;
+	background: white;
+	ul {
+		padding: 0;
+		margin: 0 auto;
+		// text-align: center;
+		li {
+			display: inline-block;
+			padding: 0 10px;
+			a {
+				font-family: "bebas_neueregular", Arial;
+				font-size: 20px;
+				line-height: 54px;
+				color: #666666;
+				display: block;
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-text-size-adjust: 100%;
+				&:hover, &:active, &:focus {
+					color: #d34b4b;
+					text-decoration: none;
+				}
+				.fa {
+					font-size: 15px;
+					vertical-align: middle;
+					margin-right: 2px;
+				}
+				b {
+					color: #d34b4b;
+					font-weight: normal;
+				}
+			}
+			&.active {
+				a {
+					color: #d34b4b;
+				}
+			}
+		}
+	}
 }

@@ -1,10 +1,12 @@
 .small-campaign-container
 	.small-campaign-block(data-campaign-id="#{campaign.id}")
+		- if campaign.is_draft?
+			.ribbon Черновик
 		.cover
-			- if can?(:destroy, campaign)
-				= link_to '#', class: "delete" do
-					%span= "&times;".html_safe
-					%span Удалить
+			/ - if can?(:destroy, campaign)
+			/ 	= link_to '#', class: "delete" do
+			/ 		%span= "&times;".html_safe
+			/ 		%span Удалить
 
 			= image_tag campaign.picture.url(:medium)
 			.category
@@ -24,13 +26,13 @@
 
 		= link_to campaign.title, campaign, class: "title"
 
-		.goal
-			.goal-tab
-				%span.goal-title Собрано
-				= raw "#{construct_amount(campaign.total_amount.to_i, campaign.currency)}"
-			.goal-tab
-				%span.goal-title Цель
-				= raw "#{construct_amount(campaign.goal, campaign.currency)}"
-			/ .goal-tab
-			/ 	%span.goal-title Пожертвований
-			/ 	= campaign.donations_count
+		- unless campaign.is_draft?
+			.goal
+				.goal-tab
+					%span.goal-title Собрано
+					= raw "#{construct_amount(campaign.total_amount.to_i, campaign.currency)}"
+				.goal-tab
+					%span.goal-title Цель
+					= raw "#{construct_amount(campaign.goal, campaign.currency)}"
+		- else
+			= link_to "Дополнить информацию", '#', class: "publish"

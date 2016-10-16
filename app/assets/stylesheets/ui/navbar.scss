@@ -1,6 +1,14 @@
 .navbar-default {
 	background: #fff;
 	border-bottom-width: 2px;
+	a {
+		font-family: Arial, sans-serif;
+		font-size: 14px;
+		line-height: 20px;
+		font-weight: normal !important;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-text-size-adjust: 100%;
+	}
 }
 
 .navbar-brand {
@@ -13,7 +21,7 @@
 	background: #71ab62;
 	color: white !important;
 	border-radius: 3px;
-	font-family: Open Sans;
+	// font-family: Open Sans;
 	font-weight: 400;
 	margin-left: 20px;
 	&:hover, &:active, &:focus {
@@ -23,7 +31,6 @@
 }
 
 .navbar-nav > li > a {
-	font-family: Open Sans;
 	padding: 15px 10px;
 }
 

@@ -3,6 +3,9 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:finish_signup, :show]
 	skip_before_filter :check_user_verifying, only: :finish_signup
 
+  POSSIBLE_FILTERS = %w(active successfull drafts favourites)
+  DEFAULT_FILTER = "active"
+
   def finish_signup
     # authorize! :update, @user 
     if request.patch? && params[:user] #&& params[:user][:email]
@@ -17,6 +20,15 @@ class UsersController < ApplicationController
   end
 
   def show
+    scope = Campaign
+    @filter = DEFAULT_FILTER
+    @filter = params[:filter] if POSSIBLE_FILTERS.include?(params[:filter])
+
+    if @filter != "favourites"
+      @campaigns = scope.send(@filter).by_author(@user).page params[:page]
+    else
+      @campaigns = scope.favourites(@user).page params[:page]
+    end
   end
 
 private

@@ -17,6 +17,10 @@ class Campaign < ActiveRecord::Base
   scope :recent, -> { order created_at: :desc }
   scope :almost_there, -> { order percentage: :desc }
   scope :active, -> { where is_draft: false }
+  scope :drafts, -> { where is_draft: true }
+  scope :successfull, -> { active.where percentage: 100 }
+  scope :by_author, ->(user) { where user_id: user.id }
+  scope :favourites, ->(user) { includes(:likes).where likes: { user_id: user.id } }
 
 	STEPS = [:media, :media_crop, :media_confirm, :description, :activate]
 
