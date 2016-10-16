@@ -54,7 +54,12 @@
 				= link_to url_for(filter: :favourites) do
 					= fa_icon :"star-o"
 					Избранное
-					%b= @user.campaigns.favourites(@user).count
+					%b= Campaign.favourites(@user).count
+			%li(class="#{'active' if @filter == 'donations'}")
+				= link_to url_for(filter: :donations) do
+					= fa_icon :"credit-card"
+					Инвестор
+					%b= Campaign.donations(@user).count
 		%ul
 			%li(class="#{'active' if @filter == 'active'}")
 				= link_to url_for(filter: :active) do
@@ -75,13 +80,16 @@
 .container#fundraise-container
 	.row
 		.col-md-12.main-wrapper
-			.campaigns-row
-				- if @campaigns.count > 0
+			- if @campaigns.count > 0
+				.campaigns-row
 					= render @campaigns
-				- else
-					%p.warning-message
-						Stanislav wants to know what guests think about this event..
-						%br
-						This will helps to make his events more interesting!
-						%br
-						Be the Guest and you can be the first who leave review of this event!
+			- else
+				%p.warning-message
+					Stanislav wants to know what guests think about this event..
+					%br
+					This will helps to make his events more interesting!
+					%br
+					Be the Guest and you can be the first who leave review of this event!
+.navigator
+	.container
+		= paginate @campaigns

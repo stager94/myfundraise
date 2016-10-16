@@ -83,10 +83,15 @@
 	h5 {
 		font-weight: 300;	
 		font-size: 16px;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-text-size-adjust: 100%;
+		font-weight: normal;
 	}
 	h2 {
 		font-size: 35px;
-		font-weight: 300;
+		font-family: "arvobold";
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-text-size-adjust: 100%;
 	}
 }
 

@@ -9,6 +9,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="gray <%= @body_class %>">
+
+<div class="wrapper-overlay hidden"></div>
 <%= render 'shared/navbar' %>
 <%= yield %>
 <%= render 'shared/footer' %>

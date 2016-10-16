@@ -21,6 +21,7 @@ class Campaign < ActiveRecord::Base
   scope :successfull, -> { active.where percentage: 100 }
   scope :by_author, ->(user) { where user_id: user.id }
   scope :favourites, ->(user) { includes(:likes).where likes: { user_id: user.id } }
+  scope :donations, ->(user) { includes(:donations).where donations: { user_id: user.id } }
 
 	STEPS = [:media, :media_crop, :media_confirm, :description, :activate]
 

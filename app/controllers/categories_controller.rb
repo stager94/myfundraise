@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
 
   def show
   	@body_class = "gray-striped"
-  	@campaigns = @category.campaigns
+  	@campaigns = @category.campaigns.active
   end
 
 private

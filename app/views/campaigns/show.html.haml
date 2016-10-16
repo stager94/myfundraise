@@ -7,11 +7,27 @@
 						= image_tag @campaign.picture.url(:large), class: "img-responsive"
 					.campaign-wh-block
 						%h1= @campaign.title
+						
+						.fundraise-subheader.campaign-tabs
+							%ul
+								%li.active
+									= link_to "#description", data: { toggle: "tab" }, "aria-controls" => "description" do
+										Описание
+								%li
+									= link_to "#updates", data: { toggle: "tab" }, "aria-controls" => "updates" do
+										Обновления
+										%b 0
+								
+						.campaign-description.tab-content
+							#description.tab-pane.active(role="tabpanel")= raw @campaign.description
+							#updates.tab-pane(role="tabpanel") 
+								%p Updates tab is coming..
+
 						.campaign-author
-							= link_to root_path do
+							= link_to @campaign.user do
 								= render_user_avatar_for @campaign.user, fake_styles: "size40"
 							.campaign-info
-								= link_to root_path do
+								= link_to @campaign.user do
 									%span= @campaign.user.name
 								%span= @campaign.created_at.strftime('%d.%m.%Y %H:%M')
 								.campaign-address
@@ -19,9 +35,6 @@
 										%span
 											= fa_icon :'map-marker'
 											= @campaign.address
-								
-						.campaign-description
-							= raw @campaign.description
 
 						.share-info(data-campaign-id="#{@campaign.id}")= render 'campaigns/counters', object: @campaign
 
@@ -57,9 +70,9 @@
 
 				- if @campaign.donations.any?
 					- days_number = (Date.today - @campaign.created_at.to_date).to_i + 1
-					%p= "Собрано #{@campaign.donations_count} #{Russian::p(@campaign.donations_count, 'человеком', 'людьми', 'людьми')} за #{days_number} #{Russian::p(days_number, 'день', 'дня', 'дней')}"
+					%p.gutter-top-10= "Собрано #{@campaign.donations_count} #{Russian::p(@campaign.donations_count, 'человеком', 'людьми', 'людьми')} за #{days_number} #{Russian::p(days_number, 'день', 'дня', 'дней')}"
 				- else
-					%p Автор еще не получал пожертвования для этой кампании
+					%p.gutter-top-10 Автор еще не получал пожертвования для этой кампании
 					
 
 				= link_to "Внести пожертвование", new_donation_path(@campaign), class: "btn btn-lg btn-block gutter-top-30"

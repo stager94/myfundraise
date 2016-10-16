@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:finish_signup, :show]
 	skip_before_filter :check_user_verifying, only: :finish_signup
 
-  POSSIBLE_FILTERS = %w(active successfull drafts favourites)
+  POSSIBLE_FILTERS = %w(active successfull drafts favourites donations)
+  ALL_CAMPAIGNS_FILTERS = %w(favourites donations)
   DEFAULT_FILTER = "active"
 
   def finish_signup
@@ -24,10 +25,10 @@ class UsersController < ApplicationController
     @filter = DEFAULT_FILTER
     @filter = params[:filter] if POSSIBLE_FILTERS.include?(params[:filter])
 
-    if @filter != "favourites"
-      @campaigns = scope.send(@filter).by_author(@user).page params[:page]
+    if ALL_CAMPAIGNS_FILTERS.include? @filter
+      @campaigns = scope.send(@filter, @user).page(params[:page]).per 6
     else
-      @campaigns = scope.favourites(@user).page params[:page]
+      @campaigns = scope.send(@filter).by_author(@user).page(params[:page]).per 6
     end
   end
 

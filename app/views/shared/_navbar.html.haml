@@ -7,7 +7,7 @@
         %span.icon-bar
         %span.icon-bar
       = link_to root_path, class: "navbar-brand" do
-        = image_tag 'logo.png', size: "156x50"
+        = image_tag 'logo.png', size: "156x50", class: "gutter-top-5"
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li= link_to "Смотреть видео", '#'
@@ -15,15 +15,6 @@
       
       %ul.nav.navbar-nav.navbar-right
         = render partial: 'menu_items/menu_item', collection: MenuItem.enabled
-        - if user_signed_in?
-          %li.dropdown
-            = link_to '#', class: "dropdown-toggle", data: { toggle: "dropdown" }, role: "button", aria: { haspopup: true, expanded: false } do
-              Другое
-              %span.caret
-            %ul.dropdown-menu
-              %li= link_to "Пожертвования", '#'
-              %li= link_to "Комментарии", '#'
-              %li= link_to "Уведомления", '#'
 
         - if user_signed_in?
           %li.dropdown
@@ -32,11 +23,38 @@
               = current_user.name || current_user.email
               %span.caret
             %ul.dropdown-menu
-              %li= link_to "Профиль", current_user
-              %li= link_to "Мои кампании", '#'
-              %li= link_to "Новая компания", new_dashboard_campaign_path
+              %li
+                = link_to current_user do
+                  = fa_icon :"user"
+                  Моя страница
+
               %li.divider(role="separator")
-              %li= link_to "Выход", destroy_user_session_path, method: :delete
+              %li
+                = link_to '#' do
+                  %span.pull-right 0
+                  = fa_icon :"usd"
+                  Пожертвования
+              %li
+                = link_to '#' do
+                  %span.pull-right 0
+                  = fa_icon :"comment"
+                  Комментарии
+              %li
+                = link_to '#' do
+                  %span.pull-right 0
+                  = fa_icon :"bell"
+                  Уведомления
+              %li.divider(role="separator")
+              %li
+                = link_to new_dashboard_campaign_path do
+                  = fa_icon :"plus-square"
+                  Новая компания
+
+              %li.divider(role="separator")
+              %li
+                = link_to destroy_user_session_path, method: :delete do
+                  = fa_icon :"power-off"
+                  Выход
         - else
           %li= link_to 'Зарегистрироваться', '#', class: "reg-link", data: { toggle: "modal", target: "#sign_up" }
           %li= link_to 'Войти', '#', data: { toggle: "modal", target: "#sign_in" }

@@ -13,6 +13,7 @@
 //= require select2-full
 //= require currency_selector
 //= require campaigns_crop
+//= require page
 
 var icheck = function(){
   if($(".icheck-me").length > 0){
