@@ -1,13 +1,13 @@
 .donation
 	.donation-image
-		- donor = can?(:show, donation) ? donation.user : User.anonym
+		- donor = can?(:show, donation) ? donation.author : User.anonym
 		= render_user_avatar_for donor, image_styles: "img-circle"
 	.donation-info
 		.info
 			%b= "#{construct_amount(donation.amount, donation.currency)}".html_safe
 			от
 			- if can?(:show, donation)
-				= link_to "#{donation.user.name}", '#'
+				= link_to "#{donation.author.name}", '#'
 			- else
 				%u Анонима
 			

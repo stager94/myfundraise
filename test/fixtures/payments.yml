@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  params: 
+  donation_id: 
+
+two:
+  params: 
+  donation_id: 

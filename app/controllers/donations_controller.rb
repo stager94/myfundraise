@@ -2,7 +2,7 @@ class DonationsController < ApplicationController
 	
 	W1_SECRET_KEY = Rails.application.secrets.w1_secret_key
 
-	before_action :fetch_campaign, except: :check
+	before_action :fetch_campaign, except: [:check, :test]
 
 	def create
 		@donation = Donation.new permitted_params.merge(default_params)
@@ -10,6 +10,7 @@ class DonationsController < ApplicationController
 		if @donation.save
 			run_payment_flow
 		else
+			binding.pry
 			render :new
 		end
 	end
@@ -20,6 +21,7 @@ class DonationsController < ApplicationController
 
 	def check
 		p params
+		Myfundraise::Payments::Interkassa::InteractorCallback.new(params: params).run!
 		render text: ""
 	end
 
@@ -38,16 +40,16 @@ private
 	end
 
 	def run_payment_flow
-		payment = Walletone::Payment.new(
-			WMI_MERCHANT_ID:    Rails.application.secrets.w1_merchant_id,
-			WMI_PAYMENT_AMOUNT:  @donation.amount,
-			WMI_CURRENCY_ID:     @donation.currency.wallet_one_id,
-			WMI_SUCCESS_URL: root_url,
-			DONATION_SECRET_KEY: @donation.secret_key
-		)
-		payment.sign! W1_SECRET_KEY
+		# payment = Walletone::Payment.new(
+		# 	WMI_MERCHANT_ID:    Rails.application.secrets.w1_merchant_id,
+		# 	WMI_PAYMENT_AMOUNT:  @donation.amount,
+		# 	WMI_CURRENCY_ID:     @donation.currency.wallet_one_id,
+		# 	WMI_SUCCESS_URL: root_url,
+		# 	DONATION_SECRET_KEY: @donation.secret_key
+		# )
+		# payment.sign! W1_SECRET_KEY
 
-		render locals: { form: payment.form }
+		# render locals: { form: payment.form }
 	end
 
 end

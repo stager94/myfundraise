@@ -5,7 +5,9 @@ class Donation < ActiveRecord::Base
   belongs_to :campaign
   belongs_to :currency
 
-  validates_presence_of :user, :campaign, :currency, :amount
+  has_many :payments, dependent: :destroy
+
+  validates_presence_of :campaign, :currency, :amount
 
   after_initialize :generate_secret_key!
   after_destroy :decrement_counters
@@ -32,10 +34,15 @@ class Donation < ActiveRecord::Base
   end
 
   def decrement_counters
+    return unless paid?
     total_amount = campaign.total_amount - self.amount
     campaign.update total_amount: total_amount,
                     percentage: (total_amount.to_f / campaign.goal * 100),
                     donations_count: (campaign.donations_count - 1)
+  end
+
+  def author
+    user || User.anonym
   end
 
 private

@@ -31,10 +31,10 @@
 
 
 .container#fundraise-container
-	.row
-		.col-md-3.sidebar-wrapper
+	.main-table
+		.sidebar-wrapper
 			#categories-wrapper= render 'shared/categories'
-		.col-md-9.main-wrapper
+		.main-wrapper.with-sidebar
 			/ .sorting-panel
 			/ 	%span Сортировка:
 			/ 	= link_to "Популярные", root_path(sort: :popular), class: "#{'active' if @sorting == 'popular'}"

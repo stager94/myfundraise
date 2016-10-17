@@ -1,9 +1,33 @@
+/ .text-center.campaign-block.alone
+/ 	= image_tag "receipt.png", size: "128x128", class: "gutter-top-20 gutter-bottom-20"
+
+/ 	%h5.gutter-bottom-30 В течение 5-и секунд вы будете переправлены на страницу оплаты.
+/ 	= form_tag form.checkout_url, form.options.merge(data: { autosubmit: true }) do |f|
+/ 		= raw form.hidden_fields_tags
+/ 		= button_tag 'Перейти к оплате', class: 'btn btn-bordered gutter-bottom-15', data: { disable_with: 'Переправляю на сайт оплаты..' }
+
+/ %p.sub-campaign-block Продолжая, вы согласны с условиями пользования MyFundraise и политикой конфиденциальности.
+
+
+
 .text-center.campaign-block.alone
 	= image_tag "receipt.png", size: "128x128", class: "gutter-top-20 gutter-bottom-20"
 
 	%h5.gutter-bottom-30 В течение 5-и секунд вы будете переправлены на страницу оплаты.
-	= form_tag form.checkout_url, form.options.merge(data: { autosubmit: true }) do |f|
-		= raw form.hidden_fields_tags
+	= form_tag "https://sci.interkassa.com/", data: { autosubmit: true } do |f|
+		= hidden_field_tag :"ik_co_id", "57ee6be43b1eaf43168b4570"
+		= hidden_field_tag :"ik_pm_no", @donation.secret_key
+		= hidden_field_tag :"ik_am", @donation.amount
+		= hidden_field_tag :"ik_cur", @donation.currency.code
+		= hidden_field_tag :"ik_desc", "Пожертвование #{@donation.amount}#{@donation.currency.code} на '#{@donation.campaign.title}'"
+		= hidden_field_tag :"ik_x_message", @donation.message
+		= hidden_field_tag :"ik_suc_u", campaign_url(@donation.campaign)
+		= hidden_field_tag :"ik_suc_m", "GET"
+		= hidden_field_tag :"ik_fal_u", campaign_url(@donation.campaign)
+		= hidden_field_tag :"ik_fal_m", "GET"
+		= hidden_field_tag :"ik_pnd_u", campaign_url(@donation.campaign)
+		= hidden_field_tag :"ik_pnd_m", "GET"
+
 		= button_tag 'Перейти к оплате', class: 'btn btn-bordered gutter-bottom-15', data: { disable_with: 'Переправляю на сайт оплаты..' }
 
 %p.sub-campaign-block Продолжая, вы согласны с условиями пользования MyFundraise и политикой конфиденциальности.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161015174809) do
+ActiveRecord::Schema.define(version: 20161017211552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20161015174809) do
     t.float    "rating",             default: 0.0
     t.integer  "views_count",        default: 0
     t.boolean  "is_draft",           default: true
+    t.datetime "published_at"
   end
 
   add_index "campaigns", ["category_id"], name: "index_campaigns_on_category_id", using: :btree
@@ -249,6 +250,17 @@ ActiveRecord::Schema.define(version: 20161015174809) do
     t.datetime "updated_at",        null: false
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.json     "params"
+    t.integer  "donation_id"
+    t.boolean  "is_success",  default: false
+    t.boolean  "is_failed",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "payments", ["donation_id"], name: "index_payments_on_donation_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -286,4 +298,5 @@ ActiveRecord::Schema.define(version: 20161015174809) do
   add_foreign_key "donations", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "likes", "users"
+  add_foreign_key "payments", "donations"
 end

@@ -3,15 +3,11 @@
 		- if campaign.is_draft?
 			.ribbon Черновик
 		.cover
-			/ - if can?(:destroy, campaign)
-			/ 	= link_to '#', class: "delete" do
-			/ 		%span= "&times;".html_safe
-			/ 		%span Удалить
-
 			= image_tag campaign.picture.url(:medium)
-			.category
-				= fa_icon :tag
-				= (campaign.category || Category.first).title
+			- if campaign.category.present?
+				.category
+					= fa_icon :"hashtag"
+					= campaign.category.title
 			.author-back
 			.author
 				= render_user_avatar_for campaign.user, image_styles: "img-circle", fake_styles: "small"
@@ -19,7 +15,8 @@
 					= campaign.user.name
 					%span= campaign.address
 
-			.share-info.info(data-campaign-id="#{campaign.id}")= render 'campaigns/counters_box', object: campaign
+			- if !campaign.is_draft?
+				.share-info.info(data-campaign-id="#{campaign.id}")= render 'campaigns/counters_box', object: campaign
 
 		.percentage
 			.done(style="width:#{campaign.percentage}%")
@@ -35,4 +32,4 @@
 					%span.goal-title Цель
 					= raw "#{construct_amount(campaign.goal, campaign.currency)}"
 		- else
-			= link_to "Дополнить информацию", '#', class: "publish"
+			= link_to "Дополнить информацию", dashboard_campaign_steps_path(campaign, id: campaign.current_step), class: "publish"

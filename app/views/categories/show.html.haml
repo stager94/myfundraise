@@ -17,9 +17,9 @@
 			%li{ class: "#{'active' if @sorting == 'almost_there'}" }= link_to "Почти собрано", root_path(sort: :almost_there)
 
 .container#fundraise-container
-	.row
-		.col-md-3.sidebar-wrapper
+	.main-table
+		.sidebar-wrapper
 			#categories-wrapper= render 'shared/categories'
 			= render 'shared/adsense_left'
-		.col-md-9.main-wrapper
+		.main-wrapper.with-sidebar
 			.campaigns-row= render @campaigns

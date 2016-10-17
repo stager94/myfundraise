@@ -78,8 +78,8 @@
 					%b= @user.campaigns.drafts.count
 
 .container#fundraise-container
-	.row
-		.col-md-12.main-wrapper
+	.main-table
+		.main-wrapper
 			- if @campaigns.count > 0
 				.campaigns-row
 					= render @campaigns

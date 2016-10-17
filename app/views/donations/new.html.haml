@@ -35,9 +35,10 @@
 			%label Сообщение
 			= f.text_area :message
 
-			%label.checkbox
-				= f.check_box :anonymous, data: { skin: "square", color: "green" }, class: "icheck-me"
-				Показывать текст и моё имя только получателю 
+			- if user_signed_in?
+				%label.checkbox
+					= f.check_box :anonymous, data: { skin: "square", color: "green" }, class: "icheck-me"
+					Показывать текст и моё имя только получателю 
 
 			.gutter-top-30
 				= submit_tag "Перейти к оплате", class: "btn btn-lg myf-btn myf-btn-primary gutter-right-10"

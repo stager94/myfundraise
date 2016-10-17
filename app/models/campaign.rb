@@ -14,13 +14,13 @@ class Campaign < ActiveRecord::Base
   friendly_id :friendly_code, use: [:slugged, :finders]
 
   scope :popular, -> { order rating: :desc }
-  scope :recent, -> { order created_at: :desc }
+  scope :recent, -> { order published_at: :desc }
   scope :almost_there, -> { order percentage: :desc }
   scope :active, -> { where is_draft: false }
   scope :drafts, -> { where is_draft: true }
   scope :successfull, -> { active.where percentage: 100 }
   scope :by_author, ->(user) { where user_id: user.id }
-  scope :favourites, ->(user) { includes(:likes).where likes: { user_id: user.id } }
+  scope :favourites, ->(user) { includes(:likes).where(likes: { user_id: user.id }).order "likes.created_at DESC" }
   scope :donations, ->(user) { includes(:donations).where donations: { user_id: user.id } }
 
 	STEPS = [:media, :media_crop, :media_confirm, :description, :activate]
@@ -38,6 +38,7 @@ class Campaign < ActiveRecord::Base
   after_initialize :set_default_currency
   after_create :update_slug!
   after_update :reprocess_photo
+  before_update :set_published_at
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
@@ -96,6 +97,10 @@ private
 
   def reprocess_photo
     picture.recreate_versions! if crop_x.present?
+  end
+
+  def set_published_at
+    self.published_at = Time.now if is_draft_changed?
   end
 
 end
