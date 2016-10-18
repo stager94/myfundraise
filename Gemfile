@@ -37,7 +37,7 @@ gem 'haml'
 gem 'acts_as_positioned', git: 'git://github.com/stager94/acts_as_positioned.git'
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 gem "font-awesome-rails"
-
+gem 'public_activity'
 
 gem 'omniauth'
 gem 'omniauth-vkontakte'

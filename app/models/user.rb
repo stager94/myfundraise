@@ -13,14 +13,21 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :donations
 
+  # has_many :activities, class_name: "::PublicActivity::Activity", as: :owner
+
 	has_attached_file :foto, styles: { medium: "300x300#", thumb: "100x100#" }, default_url: "/images/:style/missing.png"
 	validates_attachment_content_type :foto, content_type: /\Aimage\/.*\z/   
 
   validates_presence_of :first_name, :last_name, :nick
 
+  def activities
+    PublicActivity::Activity.where "(recipient_type = 'Campaign' AND recipient_id IN (?)) OR (recipient_type = 'Comment' AND recipient_id IN (?)) OR (recipient_type = 'Donation' AND recipient_id IN (?))", campaigns.pluck(:id), comments.pluck(:id), campaigns.map {|c| c.donations.pluck(:id) }.flatten
+  end
+
   def has_vk_integration?
     identities.vk.any?
   end
+
   def has_ok_integration?
     identities.ok.any?
   end
@@ -86,5 +93,9 @@ class User < ActiveRecord::Base
   def like?(object)
     object.likes.by_user(self).any?
   end
+
+  # def activities
+  #   PublicActivity::Activity.where owner_type: "User", owner_id: 8
+  # end
 
 end

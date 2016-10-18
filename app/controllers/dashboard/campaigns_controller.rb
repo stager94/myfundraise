@@ -1,6 +1,6 @@
 class Dashboard::CampaignsController < ApplicationController
 
-	before_action :load_campaign, only: [:show, :select_picture, :prev_step, :next_step, :crop, :activate]
+	before_action :load_campaign, only: [:show, :select_picture, :prev_step, :next_step, :crop, :activate, :edit, :update, :destroy]
 
 	def new
 		@campaign = Campaign.new
@@ -54,6 +54,18 @@ class Dashboard::CampaignsController < ApplicationController
 		@campaign.update is_draft: false
 		@campaign.next_step!
 		redirect_to @campaign
+	end
+
+	def edit
+	end
+
+	def update
+		
+	end
+
+	def destroy
+		@campaign.destroy
+		redirect_to root_path
 	end
 
 private

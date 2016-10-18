@@ -20,9 +20,10 @@
 .fundraise-subheader
 	.container
 		.search-form.pull-right
-			= form_tag root_path do
+			= form_tag root_path, method: :get do
+				= hidden_field_tag :sort, @sorting
 				= text_field_tag :q, params[:q], placeholder: "Введите название кампании или город.."
-				= button_tag do
+				= button_tag name: nil do
 					= fa_icon :"search"
 		%ul.gutter-left--10
 			%li{ class: "#{'active' if @sorting == 'popular'}" }= link_to "Популярные", root_path(sort: :popular)

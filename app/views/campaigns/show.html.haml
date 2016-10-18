@@ -62,6 +62,12 @@
 
 
 			.col-md-4.sidebar
+				- if user_signed_in? && current_user.id == @campaign.user_id
+					%h4.gutter-top-0 Управление
+					= link_to "Редактировать", '#', class: "btn btn-primary"
+					= link_to "Удалить", dashboard_campaign_path(campaign_id: @campaign.id), class: "btn btn-danger", data: { method: :delete, confirm: "Вы действительно хотите удалить кампанию '#{@campaign.title}'?" }
+					%hr
+
 				.price
 					%b= raw "#{construct_amount(@campaign.total_amount.to_i, @campaign.currency)}"
 					= raw " из #{construct_amount(@campaign.goal, @campaign.currency)}"
@@ -74,8 +80,8 @@
 				- else
 					%p.gutter-top-10 Автор еще не получал пожертвования для этой кампании
 					
-
-				= link_to "Внести пожертвование", new_donation_path(@campaign), class: "btn btn-lg btn-block gutter-top-30"
+				- if current_user.try(:id) != @campaign.user_id
+					= link_to "Внести пожертвование", new_donation_path(@campaign), class: "btn btn-lg btn-block gutter-top-30"
 
 				%h4 Пожертвования
 				- if @donations.any?

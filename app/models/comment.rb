@@ -1,6 +1,13 @@
 class Comment < ActiveRecord::Base
 
 	include Likeable
+	include ::PublicActivity::Model
+	
+  tracked only: [:create, :destroy], owner: :user, recipient: :commentable_author,
+				  params: {
+						subject_type: proc {|controller, model| model.commentable_type },
+						subject_id: proc {|controller, model| model.commentable_id }
+					}
 
 	belongs_to :user
 	belongs_to :commentable, polymorphic: true, counter_cache: true
@@ -9,6 +16,11 @@ class Comment < ActiveRecord::Base
 
 	after_create :update_campaigns_rating
 	after_destroy :update_campaigns_rating
+
+
+	def commentable_author
+		commentable.user
+	end
 
 private
 

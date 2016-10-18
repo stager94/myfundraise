@@ -364,10 +364,21 @@
 
 		border: 0;
 		background: #71ab62;
+		border: 1px solid #71ab62;
 		font-weight: 300;
 		color: white;
 		&:hover, &:active, &:focus {
 			background: lighten(#71ab62, 5%);
+		}
+
+		&.btn-danger {
+			background: #fff;
+			border: 1px solid;
+			color: #d34b4b;
+
+			&:hover, &:active, &:focus {
+				color: lighten(#d34b4b, 15%);
+			}			
 		}
 	}
 }

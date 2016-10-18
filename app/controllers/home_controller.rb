@@ -6,7 +6,15 @@ class HomeController < ApplicationController
   def index
   	@sorting = sorting
   	@body_class = "gray-striped homepage"
-  	@campaigns = Campaign.active.includes(:currency, :category, :user, :likes).send(@sorting).page(params[:page]).per(9)
+  	class_name = Campaign
+
+  	q = params[:q]
+  	qt = Translit.convert q if q.present?
+
+  	if q && q.present?
+  		class_name = Campaign.joins(:city).where("campaigns.title ILIKE :q OR cities.name_ru ILIKE :q OR cities.name_en ILIKE :q OR cities.name_en ILIKE :qt", q: "%#{q}%", qt: "%#{qt}%")
+  	end
+  	@campaigns = class_name.active.includes(:currency, :category, :user, :likes).send(@sorting).page(params[:page]).per(9)
   end
 
 private
