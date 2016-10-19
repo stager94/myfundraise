@@ -1,0 +1,103 @@
+.notifications-block {
+	margin: 20px 0;
+	background: white none repeat scroll 0% 0%;
+	padding: 20px 15px;
+	-webkit-box-shadow: 0 0.2rem 0.1rem -0.1rem #e0e0e0;
+	-moz-box-shadow: 0 0.2rem 0.1rem -0.1rem #e0e0e0;
+	-ms-box-shadow: 0 0.2rem 0.1rem -0.1rem #e0e0e0;
+	-o-box-shadow: 0 0.2rem 0.1rem -0.1rem #e0e0e0;
+	box-shadow: 0 0.2rem 0.1rem -0.1rem #e0e0e0;
+	border: 0.1rem solid #e0e0e0;
+
+	h1 {
+		margin-top: 0px;
+		margin-bottom: 20px;
+		font: normal 32px 'bebas_neuebook', Arial;
+		color: #444;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-text-size-adjust: 100%;
+	}
+	.notifications-list {
+		margin: 0 -15px -20px;
+		padding: 0;
+		list-style-type: none;
+		li {
+			padding: 20px 15px;
+			border-top: 1px solid #ccc;
+			font: normal 16px/20px Arial;
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-text-size-adjust: 100%;
+			font-size: 0;
+			display: table;
+			width: 100%;
+
+			.avatar-part {
+				display: table-cell;
+				vertical-align: top;
+				padding-right: 15px;
+				width: 50px;
+				position: relative;
+			}
+			.info-part {
+				display: table-cell;
+				vertical-align: middle;
+				font: normal 16px/20px Arial;
+				padding: 0;
+				span {
+					display: block;
+					font-size: 90%;
+					color: #999;
+					margin-top: 2px;
+				}
+			}
+		}
+	}
+
+	.pagination {
+		text-align: center;
+		margin: 0 -15px -20px;
+		display: block;
+		padding: 0;
+
+		span {
+			display: none;
+			&.current {
+				display: none;
+			}
+			&.next {
+				display: block;
+				a {
+					display: block;
+					padding: 10px 0;
+					border-top: 1px solid #ccc;
+					border-radius: 0;
+					margin-top: 20px;
+					&:hover, &:active, &:focus {
+						background: #fbfbfb;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+.activity-icon {
+	font-size: 9px;
+	width: 22px;
+	height: 22px;
+	background-color: #58b66d;
+	color: #fff;
+	line-height: 18px;
+	text-align: center;
+	border-radius: 10px;
+	position: absolute;
+	top: 30px;
+	right: 15px;
+	border: 2px solid #fff;
+
+	&.red {
+		background-color: #d25b5b;
+		color: #fff;
+	}
+}

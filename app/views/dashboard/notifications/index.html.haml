@@ -1,0 +1,9 @@
+.container
+	.notifications-block
+		%h1 Уведомления
+
+		%ul.notifications-list
+			= render 'shared/notifications', notifications: @notifications
+
+		#pagination.pagination
+			%span.next= link_to_next_page @notifications, 'Загрузить еще..', remote: true, data: { disable_with: "Загрузка.." }

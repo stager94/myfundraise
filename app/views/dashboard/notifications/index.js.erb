@@ -1,0 +1,2 @@
+$(".notifications-list").append("<%= j render 'shared/notifications', notifications: @notifications %>");
+$("#pagination span").html("<%= j link_to_next_page @notifications, 'Загрузить еще..', remote: true, data: { disable_with: "Загрузка.." } %>")

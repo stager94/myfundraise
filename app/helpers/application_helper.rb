@@ -13,4 +13,8 @@ module ApplicationHelper
 		a.join
 	end
 
+	def render_notification(notification)
+		render "shared/notifications/#{notification.key}", notification: notification
+	end
+
 end

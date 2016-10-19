@@ -1,0 +1,14 @@
+- subject_type = notification.parameters[:subject_type]
+- subject_id   = notification.parameters[:subject_id]
+- subject = subject_type.constantize.find subject_id
+
+.avatar-part
+	= image_tag notification.owner.foto.url(:thumb), size: "50x50", class: "img-circle"
+	.activity-icon.red= fa_icon :"thumbs-down"
+.info-part
+	= link_to notification.owner.name, notification.owner
+	- if subject_type == "Campaign"
+		= raw "больше не нравится Ваша кампания '#{link_to subject.title, subject}'"
+	- elsif subject_type == "Comment"
+		= raw "больше не нравится Ваш комментарий '#{subject.text}' к кампании '#{link_to subject.commentable.title, subject.commentable}'"
+	%span= notification.created_at.strftime "%d.%m.%Y %H:%M"

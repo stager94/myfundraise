@@ -30,6 +30,11 @@
 
               %li.divider(role="separator")
               %li
+                = link_to dashboard_notifications_path do
+                  %span.pull-right= current_user.activities.where(is_seen: false).count
+                  = fa_icon :"bell"
+                  Все уведомления
+              %li
                 = link_to '#' do
                   %span.pull-right= current_user.campaigns.sum(:donations_count)
                   = fa_icon :"usd"
@@ -39,11 +44,6 @@
                   %span.pull-right= current_user.campaigns.sum(:comments_count)
                   = fa_icon :"comment"
                   Комментарии
-              %li
-                = link_to '#' do
-                  %span.pull-right= current_user.activities.where(is_seen: false).count
-                  = fa_icon :"bell"
-                  Уведомления
               %li.divider(role="separator")
               %li
                 = link_to new_dashboard_campaign_path do
