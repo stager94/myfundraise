@@ -1,0 +1,11 @@
+.container
+	.row
+		.col-md-8.col-md-offset-2
+			.notifications-block
+				%h1 Пожертвования
+
+				/ %ul.notifications-list
+				/ 	= render 'shared/notifications', notifications: @notifications
+
+				/ #pagination.pagination
+				/ 	%span.next= link_to_next_page @notifications, 'Загрузить еще..', remote: true, data: { disable_with: "Загрузка.." }

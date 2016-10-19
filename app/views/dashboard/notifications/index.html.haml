@@ -1,9 +1,18 @@
 .container
-	.notifications-block
-		%h1 Уведомления
+	.row
+		.col-md-8.col-md-offset-2
+			.notifications-block
+				%h1 Уведомления
 
-		%ul.notifications-list
-			= render 'shared/notifications', notifications: @notifications
+				.fundraise-subheader
+					%ul
+						%li(class="#{'active' if @tab == 'all'}")= link_to "Все", dashboard_notifications_path
+						%li(class="#{'active' if @tab == 'donation'}")= link_to "Пожертвования", dashboard_notifications_path(tab: :donation)
+						%li(class="#{'active' if @tab == 'comment'}")= link_to "Комментарии", dashboard_notifications_path(tab: :comment)
+						%li(class="#{'active' if @tab == 'like'}")= link_to "Лайки", dashboard_notifications_path(tab: :like)
 
-		#pagination.pagination
-			%span.next= link_to_next_page @notifications, 'Загрузить еще..', remote: true, data: { disable_with: "Загрузка.." }
+				%ul.notifications-list
+					= render 'shared/notifications', notifications: @notifications
+
+				#pagination.pagination
+					%span.next= link_to_next_page @notifications, 'Загрузить еще..', params: { tab: @tab }, remote: true, data: { disable_with: "Загрузка.." }

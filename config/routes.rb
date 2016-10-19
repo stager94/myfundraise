@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     match 'campaigns/:campaign_id/select_picture' => 'campaigns#select_picture', as: :select_campaign_picture, via: [:post, :patch]
 
     resources :notifications, only: :index
+    resources :comments, only: :index
+    resources :donations, only: :index
 
     resources :campaigns, param: :campaign_id do
 

@@ -23,8 +23,7 @@
 		list-style-type: none;
 		li {
 			padding: 20px 15px;
-			border-top: 1px solid #ccc;
-			font: normal 16px/20px Arial;
+			border-top: 1px solid #eaeaea;
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-text-size-adjust: 100%;
 			font-size: 0;
@@ -41,14 +40,33 @@
 			.info-part {
 				display: table-cell;
 				vertical-align: middle;
-				font: normal 16px/20px Arial;
+				font: normal 14px/20px Arial;
 				padding: 0;
-				span {
+				.time {
 					display: block;
 					font-size: 90%;
 					color: #999;
 					margin-top: 2px;
 				}
+				.comment {
+					display: block;
+					font-size: 90%;
+					color: #333;
+					margin-top: 2px;
+				}
+			}
+			.money-part {
+				font-size: 25px;
+				line-height: 20px;
+				vertical-align: middle;
+				display: table-cell;
+				text-align: right;
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-text-size-adjust: 100%;
+				font-family: bebas_neueregular;
+				color: #666;
+				white-space: nowrap;
+				padding-left: 15px;
 			}
 		}
 	}
@@ -69,7 +87,7 @@
 				a {
 					display: block;
 					padding: 10px 0;
-					border-top: 1px solid #ccc;
+					border-top: 1px solid #eaeaea;
 					border-radius: 0;
 					margin-top: 20px;
 					&:hover, &:active, &:focus {
@@ -78,6 +96,13 @@
 				}
 			}
 		}
+	}
+
+	.fundraise-subheader {
+		border-bottom: none;
+		border-top: 1px solid #eaeaea;
+		margin: 0 -15px;
+		padding: 0 5px;
 	}
 }
 
@@ -88,16 +113,20 @@
 	height: 22px;
 	background-color: #58b66d;
 	color: #fff;
-	line-height: 18px;
+	line-height: 17px;
 	text-align: center;
 	border-radius: 10px;
 	position: absolute;
 	top: 30px;
-	right: 15px;
+	right: 13px;
 	border: 2px solid #fff;
 
 	&.red {
 		background-color: #d25b5b;
+		color: #fff;
+	}
+	&.blue {
+		background-color: #53a1e4;
 		color: #fff;
 	}
 }

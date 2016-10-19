@@ -1,0 +1,11 @@
+%li
+	.avatar-part
+		= render_user_avatar_for donation.user, image_styles: 'w50 img-circle'
+	.info-part
+		- if donation.user.present?
+			= raw "#{link_to donation.author.name, donation.author} внес пожертвование для Вашей кампании '#{link_to donation.campaign.title, donation.campaign}'"
+		- else
+			= raw "Неизвестный пользователь внес пожертвование для Вашей кампании '#{link_to donation.campaign.title, donation.campaign}'"
+		%span.time= donation.created_at.strftime("%d.%m.%Y %H:%M")
+	.money-part
+		= "#{construct_amount(donation.amount, donation.currency)}".html_safe

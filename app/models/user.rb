@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :nick
 
   def activities
-    PublicActivity::Activity.where "(recipient_type = 'Campaign' AND recipient_id IN (?)) OR (recipient_type = 'Comment' AND recipient_id IN (?)) OR (recipient_type = 'Donation' AND recipient_id IN (?))", campaigns.pluck(:id), comments.pluck(:id), campaigns.map {|c| c.donations.pluck(:id) }.flatten
+    PublicActivity::Activity.where recipient_type: "User", recipient_id: self.id
   end
 
   def has_vk_integration?

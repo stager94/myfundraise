@@ -1,6 +1,8 @@
 class Donation < ActiveRecord::Base
   include AASM
 
+  include ::PublicActivity::Model
+
   belongs_to :user
   belongs_to :campaign
   belongs_to :currency
@@ -18,7 +20,7 @@ class Donation < ActiveRecord::Base
   	state :failed
 
   	event :pay, after: :increment_counters do
-  		transitions from: [:pending, :failed], to: :paid
+  		transitions from: [:pending, :failed], to: :paid, after: :after_pay_callback
   	end
 
   	event :fail do
@@ -43,6 +45,10 @@ class Donation < ActiveRecord::Base
 
   def author
     user || User.anonym
+  end
+
+  def after_pay_callback
+    create_activity action: "create", recipient: campaign.user, owner: user
   end
 
 private
