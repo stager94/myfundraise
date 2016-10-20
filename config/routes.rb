@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
       patch :crop, on: :member
       post :activate, on: :member
+      post :post_update, on: :member
 
       member do
         resources :campaign_steps, path: :steps

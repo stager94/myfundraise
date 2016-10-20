@@ -6,7 +6,8 @@ class Dashboard::CampaignStepsController < ApplicationController
 	prepend_before_action :set_steps
 
 	def show
-		@campaign.update step: params[:id]
+		@campaign.update_attribute :step, params[:id]
+		redirect_to @campaign and return if @campaign.step == 'activate' && !@campaign.is_draft?
 		render_wizard
 	end
 

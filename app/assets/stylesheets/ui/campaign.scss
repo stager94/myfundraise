@@ -327,7 +327,7 @@
     -webkit-text-size-adjust: 100%;
 	}
 	.campaign-description {
-		* {
+		p, div {
 			font: normal 14px/20px Arial;
 			color: #666;
 			-moz-osx-font-smoothing: grayscale;
@@ -353,6 +353,10 @@
 			&:hover, &:active, &:focus {
 				text-decoration: none !important;
 			}
+		}
+		.btn {
+			text-decoration: none !important;
+			border-radius: 50px;
 		}
 	}
 	.btn {
@@ -1062,7 +1066,29 @@
 
 
 .campaign-tabs {
-	margin: 0 -15px;
+	margin: 0 -15px 20px;
 	padding: 0 15px;
 	border-top: 1px solid #e0e0e0;
+}
+
+.updates-info {
+	min-height: 42px;
+	margin-bottom: 20px;
+	div {
+		line-height: 1.51;
+	}
+}
+
+.update-form {
+	margin-top: 20px;
+}
+
+.updates-wrapper {
+	p {
+		margin-top: 0 !important;
+		margin-bottom: 20px !important;
+	}
+	h4 {
+		margin-bottom: 5px !important;
+	}
 }

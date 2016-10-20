@@ -291,6 +291,16 @@ footer {
 	&.bg-white {
 		background: white;
 	}
+	&.big {
+		width: 100px;
+		height: 100px;
+		line-height: 100px;
+		border-radius:50px;
+		font-size: 35px;
+	}
+	&.with-border {
+		border: 2px solid white;
+	}
 }
 
 .regular-currency {

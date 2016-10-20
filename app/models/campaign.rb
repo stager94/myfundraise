@@ -23,7 +23,7 @@ class Campaign < ActiveRecord::Base
   scope :favourites, ->(user) { includes(:likes).where(likes: { user_id: user.id }).order "likes.created_at DESC" }
   scope :donations, ->(user) { includes(:donations).where donations: { user_id: user.id } }
 
-	STEPS = [:media, :media_crop, :media_confirm, :description, :activate]
+	STEPS = [:general, :media, :media_crop, :media_confirm, :description, :activate]
 
   belongs_to :currency
   belongs_to :category
@@ -31,8 +31,10 @@ class Campaign < ActiveRecord::Base
   belongs_to :city
 
   has_many :donations
+  has_many :updates
 
   validates_presence_of :title, :currency, :goal, :user, :city
+  validates_presence_of :description, if: :on_description_step?
   validates_numericality_of :goal, greater_than: 0
 
   after_initialize :set_default_currency
@@ -79,6 +81,10 @@ class Campaign < ActiveRecord::Base
 
   def update_rating
     update rating: recalculate_rating
+  end
+
+  def on_description_step?
+    current_step.to_s == "description"
   end
 
 private

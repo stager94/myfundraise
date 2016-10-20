@@ -1,6 +1,6 @@
 .user-banner-wrapper
 	.rel
-		= render_user_avatar_for @user, fake_styles: "size40"
+		= render_user_avatar_for @user, fake_styles: "big with-border"
 		%h2= @user.name
 		%h5
 			= raw "Пользуется сервисом #{distance_of_time_in_words_to_now @user.created_at}"
@@ -30,7 +30,7 @@
 						%br
 						собрано
 				.counter
-					= @user.donations.count
+					= @user.donations.paid.count
 					%label
 						пожертвований
 						%br

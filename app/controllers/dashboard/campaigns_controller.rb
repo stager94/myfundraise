@@ -1,6 +1,6 @@
 class Dashboard::CampaignsController < ApplicationController
 
-	before_action :load_campaign, only: [:show, :select_picture, :prev_step, :next_step, :crop, :activate, :edit, :update, :destroy]
+	before_action :load_campaign, only: [:show, :select_picture, :prev_step, :next_step, :crop, :activate, :edit, :update, :destroy, :post_update]
 
 	def new
 		@campaign = Campaign.new
@@ -9,8 +9,7 @@ class Dashboard::CampaignsController < ApplicationController
   def create
   	@campaign = current_user.campaigns.new permitted_params
 	  if @campaign.save
-	    session[:campaign_id] = @campaign.id
-	    redirect_to [:dashboard, @campaign]
+	    redirect_to dashboard_campaign_steps_path(@campaign, id: :media)
 	  else
 	    render :new
 	  end
@@ -66,6 +65,10 @@ class Dashboard::CampaignsController < ApplicationController
 	def destroy
 		@campaign.destroy
 		redirect_to root_path
+	end
+
+	def post_update
+		@update = @campaign.updates.create params.require(:update).permit!
 	end
 
 private

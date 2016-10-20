@@ -14,6 +14,9 @@
 //= require currency_selector
 //= require campaigns_crop
 //= require page
+//= require Chart.bundle
+//= require chartkick
+//= require campaign_updates
 
 var icheck = function(){
   if($(".icheck-me").length > 0){

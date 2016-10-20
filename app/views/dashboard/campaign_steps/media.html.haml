@@ -2,10 +2,6 @@
 	.campaign-container
 		%h3 Добавить фото или видео
 		.photos-container.grayed.row
-			/ %div
-			/ 	= link_to vk_photos_dashboard_user_path(current_user, count: 9, campaign_id: @campaign.id), remote: true, class: "select-block" do
-			/ 		= fa_icon :odnoklassniki
-			/ 		Выбрать из Одноклассников
 			%div
 				= link_to vk_photos_dashboard_user_path(current_user, count: 9, campaign_id: @campaign.id), remote: true, class: "select-block" do
 					= fa_icon :vk
@@ -24,5 +20,5 @@
 					YouTube или Vimeo
 
 		.actions.text-center
-			= link_to "Назад".html_safe, '#', class: "pull-left"
-			= link_to "Пропустить".html_safe, next_step_dashboard_campaign_path(@campaign), class: "pull-right"
+			= link_to "Назад".html_safe, dashboard_campaign_steps_path(@campaign, id: @campaign.prev_step), class: "pull-left"
+			= link_to "Пропустить".html_safe, dashboard_campaign_steps_path(@campaign, id: 'description'), class: "pull-right"

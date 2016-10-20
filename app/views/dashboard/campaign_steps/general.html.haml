@@ -1,0 +1,32 @@
+.new-campaign-block
+	= form_for @campaign, url: dashboard_campaign_step_path(campaign_id: @campaign.id), html: { class: 'myfundraise-form' } do |f|
+		= f.hidden_field :currency_id
+
+		%h4= "Привет, #{current_user.try(:first_name)}, введите Ваши цели:"
+		.goal
+			%span.currency-selector
+				%span(onclick="CurrencySelector.toggle()")= @campaign.currency.sign.html_safe
+				%ul.selector
+					- Currency.all.each do |c|
+						%li(onclick="CurrencySelector.select(#{c.to_json})")= "#{c.sign} #{c.name}".html_safe
+
+			= text_field_tag :"campaign[goal]", @campaign.goal, placeholder: "0"
+		- if @campaign.errors[:goal].any?
+			.gutter-top--15.gutter-bottom-20.field-error.text-danger= @campaign.errors[:goal].first
+
+		.form-group
+			= f.label :title
+			= f.text_field :title, class: "form-control input-lg", placeholder: "Example: Susie's Medical Fund or My Volunteer Trip"
+			.field-error.text-danger= @campaign.errors[:title].first
+		.form-group
+			= f.label :city_id
+			= f.select :city_id, {}, {include_blank: false}, id: "select-city", data: { placeholder: "Выберите город из списка" }, class: 'form-control input-lg'
+			.field-error.text-danger= @campaign.errors[:city].first
+		.form-group
+			= f.label :category_id
+			= f.select :category_id, Category.all.collect {|c| [c.title, c.id] }, { include_blank: false }, class: "form-control input-lg", placeholder: "Enter your ZIP or Postal Code..."
+			.field-error.text-danger= @campaign.errors[:category].first
+		.form-group.text-center.gutter-top-30
+			= f.submit "Дальше", class: "btn btn-myf btn-lg"
+
+		.helper Don’t worry, you can easily make changes to your campaign at any time. 

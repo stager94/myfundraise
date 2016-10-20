@@ -1,3 +1,5 @@
+.alert
+	= @campaign.errors.full_messages
 .new-campaign-block
 	= form_for @campaign, url: dashboard_campaign_step_path(campaign_id: @campaign.id) do |f|
 		.campaign-container
@@ -6,9 +8,6 @@
 			.grayed.form-group
 				= f.text_area :description, class: "form-control editor", placeholder: "Введите сюда вашу историю. Очень важно чтобы рассказ был честный, интересный и главное правдивый. Люди хотят знать всю конкретику и подробности. Напишите все о ваших потребностях и нуждах. ", rows: 10
 
-			/ .actions.text-center
-			/ 	= f.submit "Дальше".html_safe, class: "btn btn-lg btn-myf gutter-top-20"
 		.actions.text-center
 			= link_to "Предыдущий шаг".html_safe, prev_step_dashboard_campaign_path(@campaign), class: "pull-left"
-			/ = link_to "Подтвердить".html_safe, next_step_dashboard_campaign_path(@campaign), class: "pull-right green-btn"
 			= f.submit "Подтвердить".html_safe, class: "pull-right green-btn"
