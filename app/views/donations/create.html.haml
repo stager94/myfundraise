@@ -15,7 +15,7 @@
 
 	%h5.gutter-bottom-30 В течение 5-и секунд вы будете переправлены на страницу оплаты.
 	= form_tag "https://sci.interkassa.com/", data: { autosubmit: true } do |f|
-		= hidden_field_tag :"ik_co_id", "57ee6be43b1eaf43168b4570"
+		= hidden_field_tag :"ik_co_id", "cHwDyx49dL9X1SDc"
 		= hidden_field_tag :"ik_pm_no", @donation.secret_key
 		= hidden_field_tag :"ik_am", @donation.amount
 		= hidden_field_tag :"ik_cur", @donation.currency.code

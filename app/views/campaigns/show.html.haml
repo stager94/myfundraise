@@ -16,7 +16,7 @@
 								%li
 									= link_to "#updates", data: { toggle: "tab" }, "aria-controls" => "updates" do
 										Обновления
-										%b 0
+										%b= @campaign.updates.count
 								
 						.campaign-description.tab-content
 							#description.tab-pane.active(role="tabpanel")= raw @campaign.description
