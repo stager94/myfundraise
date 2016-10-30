@@ -11,9 +11,9 @@
 			%u Сайт №1 
 			для личного сбора средств
 		- if user_signed_in?
-			= link_to "Создать компанию", new_dashboard_campaign_path, class: 'btn btn-lg'
+			= link_to "Собрать деньги", new_dashboard_campaign_path, class: 'btn btn-lg'
 		- else
-			= link_to "Создать компанию", '#', class: "btn btn-lg", data: { toggle: "modal", target: "#sign_up" }
+			= link_to "Собрать деньги", '#', class: "btn btn-lg", data: { toggle: "modal", target: "#sign_up" }
 / = render 'shared/partners'
 
 

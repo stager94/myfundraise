@@ -1,3 +1,11 @@
+window.MediaSelector =
+	showVideo: ->
+		$(".select-container").addClass "hidden"
+		$(".video-container").removeClass "hidden"
+	showAllVariants: ->
+		$(".select-container").removeClass "hidden"
+		$(".video-container").addClass "hidden"
+
 $ ->
 	$("#campaign_picture").on "change", ->
 		$(this).closest("form").submit()

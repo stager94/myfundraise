@@ -1,7 +1,6 @@
 $ ->
 	$("form#sign_in_user, form#sign_up_user").bind("ajax:success", (event, xhr, settings) ->
-		# $(this).parents('.modal').modal('hide')
-		window.location.reload()
+		window.location = "/dashboard/campaigns/new"
 	).bind("ajax:error", (event, xhr, settings, exceptions) ->
 		error_messages = if xhr.responseJSON['error']
 			"<div class='alert alert-danger pull-left'>" + xhr.responseJSON['error'] + "</div>"

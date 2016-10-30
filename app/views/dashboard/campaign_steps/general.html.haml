@@ -16,7 +16,7 @@
 
 		.form-group
 			= f.label :title
-			= f.text_field :title, class: "form-control input-lg", placeholder: "Example: Susie's Medical Fund or My Volunteer Trip"
+			= f.text_field :title, class: "form-control input-lg", placeholder: "Например: Волонтерская помощь на лечение Вики Шевченко"
 			.field-error.text-danger= @campaign.errors[:title].first
 		.form-group
 			= f.label :city_id
@@ -29,4 +29,4 @@
 		.form-group.text-center.gutter-top-30
 			= f.submit "Дальше", class: "btn btn-myf btn-lg"
 
-		.helper Don’t worry, you can easily make changes to your campaign at any time. 
+		.helper Не переживайте, Вы сможете вносить изменения в кампанию в любой момент.

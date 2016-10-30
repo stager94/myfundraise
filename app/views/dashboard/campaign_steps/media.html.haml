@@ -1,24 +1,33 @@
 .new-campaign-block
 	.campaign-container
 		%h3 Добавить фото или видео
-		.photos-container.grayed.row
-			%div
-				= link_to vk_photos_dashboard_user_path(current_user, count: 9, campaign_id: @campaign.id), remote: true, class: "select-block" do
-					= fa_icon :vk
-					Выбрать из ВКонтакте
-			%div
-				= form_for @campaign, url: dashboard_select_campaign_picture_path(@campaign, type: "regular"), html: { class: "hidden" } do |f|
-					= f.file_field :picture
-					= f.submit
+		.select-container
+			.photos-container.grayed.row
+				%div
+					= link_to vk_photos_dashboard_user_path(current_user, count: 9, campaign_id: @campaign.id), remote: true, class: "select-block" do
+						= fa_icon :vk
+						Выбрать из ВКонтакте
+				%div
+					= form_for @campaign, url: dashboard_select_campaign_picture_path(@campaign, type: "regular"), html: { class: "hidden" } do |f|
+						= f.file_field :picture
+						= f.submit
 
-				= link_to '#', class: "select-block", onclick: "selectCoverFromComputer()" do
-					= fa_icon :paperclip
-					Загрузить фото
-			%div
-				= link_to '#', class: "select-block" do
-					= fa_icon :youtube
-					YouTube или Vimeo
+					= link_to '#', class: "select-block", onclick: "selectCoverFromComputer()" do
+						= fa_icon :paperclip
+						Загрузить фото
+				%div
+					= link_to 'javascript:void(0)', class: "select-block", onclick: "return MediaSelector.showVideo();" do
+						= fa_icon :youtube
+						YouTube или Vimeo
 
-		.actions.text-center
-			= link_to "Назад".html_safe, dashboard_campaign_steps_path(@campaign, id: @campaign.prev_step), class: "pull-left"
-			= link_to "Пропустить".html_safe, dashboard_campaign_steps_path(@campaign, id: 'description'), class: "pull-right"
+			.actions.text-center
+				= link_to "Назад".html_safe, dashboard_campaign_steps_path(@campaign, id: @campaign.prev_step), class: "pull-left"
+				= link_to "Пропустить".html_safe, dashboard_campaign_steps_path(@campaign, id: 'description'), class: "pull-right"
+		.video-container.hidden
+			= form_for @campaign, html: { class: "myfundraise-form" } do |f|
+				.form-group
+					= f.text_field :video_url, placeholder: "Place the YouTube or Vimeo URL...", class: "form-control input-lg"
+
+			.actions.text-center
+				= link_to "Назад".html_safe, dashboard_campaign_steps_path(@campaign, id: @campaign.prev_step), class: "pull-left"
+				= link_to "Далее".html_safe, dashboard_campaign_steps_path(@campaign, id: 'description'), class: "pull-right"
