@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     match 'campaigns/:campaign_id/select_picture' => 'campaigns#select_picture', as: :select_campaign_picture, via: [:post, :patch]
+    match 'campaigns/:campaign_id/select_video' => 'campaigns#select_video', as: :select_campaign_video, via: [:post, :patch]
 
     resources :notifications, only: :index
     resources :comments, only: :index

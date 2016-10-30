@@ -4,7 +4,13 @@
 			.col-md-8.main-part
 				.campaign-wr
 					.campaign-header
-						= image_tag @campaign.picture.url(:large), class: "img-responsive"
+						- unless @campaign.video_url.present?
+							= image_tag @campaign.picture.url(:large), class: "img-responsive"
+						- else
+							- if @campaign.embedded_video_url[:provider] == "youtube"
+								%iframe{ src: @campaign.embedded_video_url[:url], width: "100%", height: "400", style: "border:none;display:block;" }
+							- if @campaign.embedded_video_url[:provider] == "vimeo"
+								%iframe{ src: @campaign.embedded_video_url[:url], width: "100%", height: 400, frameborder: 0, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true, style: "border:none;display:block;" }
 					.campaign-wh-block
 						%h1= @campaign.title
 						

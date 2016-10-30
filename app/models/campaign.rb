@@ -6,6 +6,7 @@ class Campaign < ActiveRecord::Base
   
   include Likeable
   include Commentable
+  include VideoHelper
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
@@ -43,6 +44,10 @@ class Campaign < ActiveRecord::Base
   before_update :set_published_at
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
+  def embedded_video_url
+    parse_video_url video_url
+  end
 
   def address
     return unless city

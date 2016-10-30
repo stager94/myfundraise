@@ -1,6 +1,6 @@
 class Dashboard::CampaignsController < ApplicationController
 
-	before_action :load_campaign, only: [:show, :select_picture, :prev_step, :next_step, :crop, :activate, :edit, :update, :destroy, :post_update]
+	before_action :load_campaign, only: [:show, :select_picture, :select_video, :prev_step, :next_step, :crop, :activate, :edit, :update, :destroy, :post_update]
 
 	def new
 		@campaign = Campaign.new
@@ -27,6 +27,16 @@ class Dashboard::CampaignsController < ApplicationController
 		end
 
 		if @campaign.picture.present?
+			@campaign.next_step!
+			redirect_to dashboard_campaign_steps_path(campaign_id: @campaign.id, id: @campaign.current_step)
+		else
+			redirect_to dashboard_campaign_steps_path(campaign_id: @campaign.id, id: "media")
+		end
+	end
+
+	def select_video
+		@campaign.update params.require(:campaign).permit(:video_url)
+		if @campaign.video_url.present?
 			@campaign.next_step!
 			redirect_to dashboard_campaign_steps_path(campaign_id: @campaign.id, id: @campaign.current_step)
 		else
