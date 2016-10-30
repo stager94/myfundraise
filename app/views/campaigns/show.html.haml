@@ -99,7 +99,15 @@
 					%p.gutter-top-10 Автор еще не получал пожертвования для этой кампании
 					
 				- if current_user.try(:id) != @campaign.user_id
-					= link_to "Внести пожертвование", new_donation_path(@campaign), class: "btn btn-lg btn-block gutter-top-30"
+					= link_to "Помочь сейчас", new_donation_path(@campaign), class: "btn btn-lg btn-block gutter-top-30"
+
+				.campaign-author
+					= link_to @campaign.user do
+						= render_user_avatar_for @campaign.user, image_styles: "img-circle w50"
+					.campaign-info
+						= link_to @campaign.user, style: "color:#999;" do
+							%span{ style: "display:block;" }= @campaign.user.name
+							Открыть профиль в MyFundraise
 
 				%h4 Пожертвования
 				- if @donations.any?
