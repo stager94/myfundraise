@@ -17,6 +17,7 @@
 //= require Chart.bundle
 //= require chartkick
 //= require campaign_updates
+//= require share
 
 var icheck = function(){
   if($(".icheck-me").length > 0){
@@ -48,7 +49,8 @@ $(function() {
     selector: 'textarea.editor',
     menubar: false,
     statusbar: false,
-    plugins: ['placeholder']
+    plugins: ['placeholder', 'uploadimage', 'textcolor'],
+    toolbar: "forecolor,fontsizeselect,|,bold,italic,|,uploadimage,|,alignleft,aligncenter,alignright,alignjustify,|,bullist,numlist"
   });
 
   onPageLoad();

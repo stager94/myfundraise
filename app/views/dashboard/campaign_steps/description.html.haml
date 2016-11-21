@@ -1,10 +1,8 @@
-.alert
-	= @campaign.errors.full_messages
 .new-campaign-block
 	= form_for @campaign, url: dashboard_campaign_step_path(campaign_id: @campaign.id) do |f|
 		.campaign-container
 			%h3 Расскажите свою историю
-			
+
 			.grayed.form-group
 				= f.text_area :description, class: "form-control editor", placeholder: "Введите сюда вашу историю. Очень важно чтобы рассказ был честный, интересный и главное правдивый. Люди хотят знать всю конкретику и подробности. Напишите все о ваших потребностях и нуждах. ", rows: 10
 

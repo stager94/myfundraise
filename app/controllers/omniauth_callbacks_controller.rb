@@ -5,7 +5,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         @user = User.find_for_oauth(env["omniauth.auth"], current_user)
 
         if @user.persisted?
-          sign_in_and_redirect @user, event: :authentication
+          sign_in @user, event: :authentication
+          if request.env["omniauth.params"]["return_url"].present?
+            redirect_to request.env["omniauth.params"]["return_url"]
+          else
+            redirect_to root_path
+          end
           set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
         else
           session["devise.#{provider}_data"] = env["omniauth.auth"]
@@ -15,7 +20,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     }
   end
 
-  [:vkontakte, :odnoklassniki].each do |provider|
+  [:vkontakte, :odnoklassniki, :instagram].each do |provider|
     provides_callback_for provider
   end
 

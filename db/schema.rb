@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161030214404) do
+ActiveRecord::Schema.define(version: 20161121005836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,6 +211,15 @@ ActiveRecord::Schema.define(version: 20161030214404) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "images", force: :cascade do |t|
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
   create_table "impressions", force: :cascade do |t|
     t.string   "impressionable_type"
     t.integer  "impressionable_id"
@@ -279,6 +288,15 @@ ActiveRecord::Schema.define(version: 20161030214404) do
   end
 
   add_index "payments", ["donation_id"], name: "index_payments_on_donation_id", using: :btree
+
+  create_table "redactor_images", force: :cascade do |t|
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
   create_table "updates", force: :cascade do |t|
     t.integer  "campaign_id"

@@ -1,0 +1,12 @@
+/ http://localhost:3000/dashboard/campaigns/48/steps/instagram
+
+.new-campaign-block
+  .campaign-container
+    %h3 Поделиться на ВК может увеличить пожертвования 3х
+
+    .grayed.form-group
+      = link_to "Поделиться ВК", 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','');return false;"
+
+  .actions.text-center
+    = link_to "Предыдущий шаг".html_safe, prev_step_dashboard_campaign_path(@campaign), class: "pull-left"
+    = link_to "Далее".html_safe, dashboard_campaign_steps_path(@campaign, id: @campaign.next_step), class: "pull-right green-btn"

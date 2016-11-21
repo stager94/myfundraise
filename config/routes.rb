@@ -6,15 +6,17 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: { 
+  devise_for :users, controllers: {
     omniauth_callbacks: 'omniauth_callbacks',
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  
+
+  post '/tinymce_assets' => 'tinymce_assets#create'
+
   resources :categories, only: [:show]
   resources :users
-  
+
   resources :campaigns do
     member do
       resources :donations

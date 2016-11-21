@@ -268,6 +268,7 @@ Devise.setup do |config|
 
   config.omniauth :vkontakte, Rails.application.secrets.omniauth["vkontakte"]["key"], Rails.application.secrets.omniauth["vkontakte"]["secret"], scope: Rails.application.secrets.omniauth["vkontakte"]["scope"]
   config.omniauth :odnoklassniki, Rails.application.secrets.omniauth["odnoklassniki"]["key"], Rails.application.secrets.omniauth["odnoklassniki"]["secret"], public_key: Rails.application.secrets.omniauth["odnoklassniki"]["public_key"], authorize_options: { callback_url: Rails.application.secrets.omniauth["odnoklassniki"]["redirect_uri"], scope: Rails.application.secrets.omniauth["odnoklassniki"]["scope"] }
+  config.omniauth :instagram, Rails.application.secrets.omniauth["instagram"]["key"], Rails.application.secrets.omniauth["instagram"]["secret"]
   OmniAuth.config.logger = Rails.logger if Rails.env.development?
   config.secret_key = '53e792630194fd71daf192e7075a9f1bbb4b35952ac8fc4f628816f52c21fc3c0b2f9ad4d26814f3e1198cd0f63584a8d812407e11973cc6c3c49778199c899e'
 end

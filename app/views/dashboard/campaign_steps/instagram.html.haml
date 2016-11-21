@@ -1,0 +1,10 @@
+.new-campaign-block
+  .campaign-container
+    %h3 Добавить профиль Instagram
+
+    .grayed.form-group
+      = link_to "Добавить Instagram", user_instagram_omniauth_authorize_path(return_url: dashboard_campaign_steps_url(@campaign, id: @campaign.next_step))
+
+  .actions.text-center
+    = link_to "Предыдущий шаг".html_safe, prev_step_dashboard_campaign_path(@campaign), class: "pull-left"
+    = link_to "Пропустить".html_safe, dashboard_campaign_steps_path(@campaign, id: @campaign.next_step), class: "pull-right green-btn"

@@ -3,7 +3,7 @@ class Campaign < ActiveRecord::Base
   mount_uploader :picture, Campaigns::CoverUploader
 
   extend FriendlyId
-  
+
   include Likeable
   include Commentable
   include VideoHelper
@@ -24,7 +24,7 @@ class Campaign < ActiveRecord::Base
   scope :favourites, ->(user) { includes(:likes).where(likes: { user_id: user.id }).order "likes.created_at DESC" }
   scope :donations, ->(user) { includes(:donations).where donations: { user_id: user.id } }
 
-	STEPS = [:general, :media, :media_crop, :media_confirm, :description, :activate]
+	STEPS = [:general, :media, :media_crop, :media_confirm, :description, :instagram, :share, :activate]
 
   belongs_to :currency
   belongs_to :category

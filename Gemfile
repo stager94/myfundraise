@@ -44,7 +44,7 @@ gem 'omniauth-vkontakte'
 gem 'omniauth-odnoklassniki'
 # gem 'omniauth-facebook'
 # gem 'omniauth-twitter'
-# gem 'omniauth-instagram'
+gem 'omniauth-instagram'
 # gem 'omniauth-google-oauth2'
 
 gem 'vkontakte_api', '~> 1.4'
@@ -56,6 +56,7 @@ gem 'pry'
 
 gem 'wicked'
 gem 'tinymce-rails'
+gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
