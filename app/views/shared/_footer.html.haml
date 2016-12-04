@@ -1,26 +1,31 @@
 %footer
 	.container
 		.row
-			.col-md-3
+			.col-md-2
 				%h5 Знакомство
 				%ul
 					%li= link_to 'Как это работает?', '#'
 					%li= link_to 'Онлайн блог', '#'
 					%li= link_to 'Вопросы и ответы', '#'
 					%li= link_to 'Задать вопрос', '#'
-			.col-md-3
+			.col-md-2
 				%h5 О нас
 				%ul
 					%li= link_to 'Смотреть видео', '#'
 					%li= link_to 'Отзывы', '#'
 					%li= link_to 'Цены и тарифы', '#'
 					%li= link_to 'Правила и условия', '#'
-			.col-md-3
+			.col-md-2
 				%h5 Связаться с нами
 				%ul
 					%li= link_to 'Задать вопрос', '#'
 					%li= link_to 'Часто задаваемые вопросы', '#'
 					%li= link_to 'Центр помощи', '#'
+			.col-md-3
+				%h5 Популярные
+				%ul
+					- Campaign.popular.first(4).each do |c|
+						%li= link_to c.title, c
 			.col-md-3.text-right
 				= link_to '#' do
 					= image_tag 'guarantee.png'

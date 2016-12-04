@@ -67,6 +67,8 @@ gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'pg_search'
+
 gem 'walletone'
 gem 'icheck-rails'
 gem 'aasm'

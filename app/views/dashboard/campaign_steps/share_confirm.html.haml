@@ -1,0 +1,20 @@
+.new-campaign-block
+  .campaign-container
+    %h3 Знаете ли Вы?
+
+    .grayed.form-group
+      %p Обмен в социальных сетях является наиболее эффективным для распространения о Вашем сборе
+
+      %ul
+        %li Помогает быстро найти доноров из ваших друзей и знакомых
+        %li Быстрое распространение информации
+        %li Заинтересованность знакомых и друзей ваших друзей
+
+      .text-center.gutter-top-30.gutter-bottom-10
+        = link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','', '#{dashboard_campaign_steps_path(@campaign, id: 'activate')}');return false;", class: "share-vk" do
+          %span.left-part= fa_icon :vk
+          Поделиться ВК
+
+  .actions.text-center
+    = link_to "Предыдущий шаг".html_safe, prev_step_dashboard_campaign_path(@campaign), class: "pull-left"
+    = link_to "Далее".html_safe, dashboard_campaign_steps_path(@campaign, id: @campaign.next_step), class: "pull-right green-btn"

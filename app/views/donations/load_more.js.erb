@@ -1,0 +1,2 @@
+$("#donations-list").append("<%= j render @donations %>");
+$(".donations-list-more-link").html("<%= j link_to_next_page @donations, 'Показать еще', remote: true, params: { controller: :donations, action: :load_more } %>")

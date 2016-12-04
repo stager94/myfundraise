@@ -22,4 +22,7 @@
 			#categories-wrapper= render 'shared/categories'
 			= render 'shared/adsense_left'
 		.main-wrapper.with-sidebar
-			.campaigns-row= render @campaigns
+			.campaigns-row
+				= render @campaigns
+				.pagination
+					= link_to_next_page @campaigns, "Посмотреть еще"

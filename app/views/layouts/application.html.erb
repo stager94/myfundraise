@@ -7,6 +7,7 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag %>
 </head>
 <body class="gray <%= @body_class %>">
 
@@ -16,5 +17,6 @@
 <%= render 'shared/promo' %>
 <%= render 'shared/footer' %>
 <%= render 'shared/modals' %>
+<%= render 'layouts/yandex_metrica' %>
 </body>
 </html>

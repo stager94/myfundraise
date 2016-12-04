@@ -1,4 +1,5 @@
 class Donation < ActiveRecord::Base
+  paginates_per 10
   include AASM
 
   include ::PublicActivity::Model

@@ -1,4 +1,5 @@
 class Campaign < ActiveRecord::Base
+  paginates_per 12
 
   mount_uploader :picture, Campaigns::CoverUploader
 
@@ -24,7 +25,7 @@ class Campaign < ActiveRecord::Base
   scope :favourites, ->(user) { includes(:likes).where(likes: { user_id: user.id }).order "likes.created_at DESC" }
   scope :donations, ->(user) { includes(:donations).where donations: { user_id: user.id } }
 
-	STEPS = [:general, :media, :media_crop, :media_confirm, :description, :instagram, :share, :activate]
+	STEPS = [:general, :media, :media_crop, :media_confirm, :description, :instagram, :share, :share_confirm, :activate]
 
   belongs_to :currency
   belongs_to :category
@@ -33,6 +34,7 @@ class Campaign < ActiveRecord::Base
 
   has_many :donations
   has_many :updates
+  has_one :reward
 
   validates_presence_of :title, :currency, :goal, :user, :city
   validates_presence_of :description, if: :on_description_step?

@@ -1,18 +1,18 @@
 Share = {
-  vkontakte: function(purl, ptitle, pimg, text) {
+  vkontakte: function(purl, ptitle, pimg, text, redirect_url) {
     url  = 'http://vkontakte.ru/share.php?';
     url += 'url='          + encodeURIComponent(purl);
     url += '&title='       + encodeURIComponent(ptitle);
     url += '&description=' + encodeURIComponent(text);
     url += '&image='       + encodeURIComponent(pimg);
     url += '&noparse=true';
-    Share.popup(url);
+    Share.popup(url, redirect_url);
   },
-  odnoklassniki: function(purl, text) {
+  odnoklassniki: function(purl, text, redirect_url) {
     url  = 'http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1';
     url += '&st.comments=' + encodeURIComponent(text);
     url += '&st._surl='    + encodeURIComponent(purl);
-    Share.popup(url);
+    Share.popup(url, redirect_url);
   },
   facebook: function(purl, ptitle, pimg, text) {
     url  = 'http://www.facebook.com/sharer.php?s=100';
@@ -38,10 +38,16 @@ Share = {
     Share.popup(url)
   },
 
-  popup: function(url) {
-    window.a = window.open(url,'importwindow','toolbar=0,status=0,width=626,height=436');
-    window.a.onbeforeunload = function() {
-      alert(1);
+  popup: function(url, redirect_url) {
+    var win = window.open(url,'importwindow','toolbar=0,status=0,width=626,height=436');
+    if (redirect_url) {
+      var pollTimer = window.setInterval(function() {
+          if (win.closed !== false) {
+              window.clearInterval(pollTimer);
+              window.location = redirect_url;
+          }
+      }, 200);
     }
+
   }
 };

@@ -17,4 +17,8 @@ module ApplicationHelper
 		render "shared/notifications/#{notification.key}", notification: notification
 	end
 
+	def campaign_page?
+		params[:controller] == "campaigns" && params[:action] == "show"
+	end
+
 end

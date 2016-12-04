@@ -160,11 +160,6 @@ footer {
 
 
 #fundraise-container {
-	// width: 100%;
-	// > .row {
-	// 	display: table;
-	// 	width: 100%;
-	// }
 	.sidebar-wrapper, .main-wrapper {
 		display: table-cell;
 		vertical-align: top;
@@ -173,12 +168,18 @@ footer {
 	.sidebar-wrapper {
 		background: white;
 		width: 175px;
+		&.static {
+			border-right: 2px solid #e7e7e7;
+		}
 	}
 	.main-wrapper {
 		padding: 30px 0 15px;
 		background: rgb(238, 238, 238) none repeat scroll 0% 0%;
 		&.with-sidebar {
 			padding-left: 15px;
+		}
+		&.static {
+			background: white;
 		}
 	}
 	.row {
@@ -201,7 +202,7 @@ footer {
 	// }
 	// .main-wrapper {
 	// 	box-shadow: 0px 0.2rem 0.1rem -0.1rem rgb(224, 224, 224) inset;
-	// }	
+	// }
 }
 
 
@@ -210,11 +211,17 @@ footer {
 }
 .pagination {
 	background: white none repeat scroll 0% 0%;
-	padding: 5px 0;
+	padding: 0;
 	font-size: 16px;
 	font-family: 'bebas_neueregular', Arial;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+	clear: both;
+	display: block;
+	text-align: center;
+	a {
+		width: 100%;
+	}
 
 	span {
 		&.current {

@@ -14,12 +14,20 @@ Rails.application.routes.draw do
 
   post '/tinymce_assets' => 'tinymce_assets#create'
 
+  get '/how_it_works' => 'static#how_it_works', as: :how_it_works
+  get '/pricing' => 'static#pricing', as: :pricing
+  get '/questions' => 'static#questions', as: :questions
+  get '/privacy_policy' => 'static#privacy_policy', as: :privacy_policy
+  get '/terms_of_use' => 'static#terms_of_use', as: :terms_of_use
+
   resources :categories, only: [:show]
   resources :users
 
   resources :campaigns do
     member do
-      resources :donations
+      resources :donations do
+        get :load_more, on: :collection
+      end
     end
     resources :likes, only: [:create], on: :member
     resources :comments, only: [:create, :index], on: :member
@@ -41,6 +49,8 @@ Rails.application.routes.draw do
       patch :crop, on: :member
       post :activate, on: :member
       post :post_update, on: :member
+
+      resources :rewards
 
       member do
         resources :campaign_steps, path: :steps

@@ -13,8 +13,16 @@
 								%iframe{ src: @campaign.embedded_video_url[:url], width: "100%", height: 400, frameborder: 0, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true, style: "border:none;display:block;" }
 					.campaign-wh-block
 						%h1= @campaign.title
-						
+
 						.fundraise-subheader.campaign-tabs
+							%ul.pull-right.share
+								%li Поделиться:
+								%li
+									= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','');return false;" do
+										= fa_icon :vk
+								%li
+									= link_to 'javascript:void(0);', onclick: "Share.odnoklassniki('#{campaign_url(@campaign)}','#{@campaign.title}');return false;" do
+										= fa_icon :odnoklassniki
 							%ul
 								%li.active
 									= link_to "#description", data: { toggle: "tab" }, "aria-controls" => "description" do
@@ -23,10 +31,11 @@
 									= link_to "#updates", data: { toggle: "tab" }, "aria-controls" => "updates" do
 										Обновления
 										%b= @campaign.updates.count
-								
+
+
 						.campaign-description.tab-content
 							#description.tab-pane.active(role="tabpanel")= raw @campaign.description
-							#updates.tab-pane(role="tabpanel") 
+							#updates.tab-pane(role="tabpanel")
 								- if current_user == @campaign.user
 									.updates-info.update-fake-form
 										.pull-right= link_to "Добавить обновление", 'javascript:void(0)', class: "btn btn-myf", onclick: "CampaignUpdates.openForm();return false;"
@@ -42,19 +51,20 @@
 									= render @campaign.updates.order(created_at: :desc)
 
 						.campaign-author
-							= link_to @campaign.user do
-								= render_user_avatar_for @campaign.user, fake_styles: "size40"
-							.campaign-info
-								= link_to @campaign.user do
-									%span= @campaign.user.name
-								%span= @campaign.created_at.strftime('%d.%m.%Y %H:%M')
-								.campaign-address
-									- if @campaign.address.present?
-										%span
-											= fa_icon :'map-marker'
-											= @campaign.address
+							/ = link_to @campaign.user do
+							/ 	= render_user_avatar_for @campaign.user, fake_styles: "size40"
+							/ .campaign-info
+							/ 	= link_to @campaign.user do
+							/ 		%span= @campaign.user.name
+							/ 	%span= @campaign.created_at.strftime('%d.%m.%Y %H:%M')
+							/ 	.campaign-address
+							/ 		- if @campaign.address.present?
+							/ 			%span
+							/ 				= fa_icon :'map-marker'
+							/ 				= @campaign.address
+							%span= @campaign.created_at.strftime('%d.%m.%Y %H:%M')
 
-						.share-info(data-campaign-id="#{@campaign.id}")= render 'campaigns/counters', object: @campaign
+						/ .share-info(data-campaign-id="#{@campaign.id}")= render 'campaigns/counters', object: @campaign
 
 				- if @campaign.enable_comments?
 					%h4.heading Комментарии
@@ -75,7 +85,7 @@
 						- else
 							- if user_signed_in?
 								.empty-comments-results.empty-results
-									Еще никто не оставлял свой отзыв о кампании 
+									Еще никто не оставлял свой отзыв о кампании
 									%u= "'#{@campaign.title}'"
 
 
@@ -97,9 +107,10 @@
 					%p.gutter-top-10= "Собрано #{@campaign.donations_count} #{Russian::p(@campaign.donations_count, 'человеком', 'людьми', 'людьми')} за #{days_number} #{Russian::p(days_number, 'день', 'дня', 'дней')}"
 				- else
 					%p.gutter-top-10 Автор еще не получал пожертвования для этой кампании
-					
+
 				- if current_user.try(:id) != @campaign.user_id
 					= link_to "Помочь сейчас", new_donation_path(@campaign), class: "btn btn-lg btn-block gutter-top-30"
+				= link_to "Рассказать друзьям", new_donation_path(@campaign), class: "btn btn-block gutter-top-10 gutter-bottom-20"
 
 				.campaign-author
 					= link_to @campaign.user do
@@ -109,11 +120,16 @@
 							%span{ style: "display:block;" }= @campaign.user.name
 							Открыть профиль в MyFundraise
 
+				.gutter-top-20= render 'dashboard/rewards/reward', reward: @campaign.reward, campaign: @campaign if @campaign.reward
+
 				%h4 Пожертвования
 				- if @donations.any?
-					= render @donations
+					#donations-list
+						= render @donations
+					.donations-list-more-link
+						= link_to_next_page @donations, 'Показать еще', remote: true, params: { controller: :donations, action: :load_more }
 				- else
 					.donation
 						%p.gutter-top--10
-							Еще никто не оставлял пожертвования, 
+							Еще никто не оставлял пожертвования,
 							= link_to "будьте первым", new_donation_path(@campaign), class: "bordered"

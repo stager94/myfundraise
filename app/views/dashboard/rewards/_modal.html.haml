@@ -1,0 +1,34 @@
+:javascript
+  window.setNewAmount = function(el) {
+    $(".reward-container .amount ._amount").html($(el).val());
+  }
+  window.setNewDescription = function(el) {
+    $(".reward-container .description").html($(el).val());
+  }
+
+#myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      = form_for @reward, url: dashboard_campaign_rewards_path(@campaign), method: :post, remote: true, html: { class: 'myfundraise-form' } do |f|
+        .modal-header
+          %h4#myModalLabel.modal-title Введите информацию
+        .modal-body.reward-block
+          .goal
+            %span.currency-selector= raw @campaign.currency.sign
+            = f.text_field :amount, placeholder: "1000", oninput: "setNewAmount(this)"
+
+          .gutter-top-20 Введите сумму, кто-то должен пожертвовать, чтобы получить данный уровень вознаграждения
+          %hr.gutter-left--15.gutter-right--15
+
+          .form-group
+            = label_tag :description, "Описание"
+            = f.text_area :description, class: "form-control", placeholder: "Например: Приглашение на День рождения в клуб", oninput: "setNewDescription(this)"
+
+          %hr.gutter-left--15.gutter-right--15
+
+          %h5 Предварительный просмотр
+          = render 'dashboard/rewards/reward', reward: @reward, campaign: @campaign
+
+        .modal-footer.actions
+          %button.btn.btn-link{"data-dismiss" => "modal", :type => "button"} Закрыть
+          = f.submit "Сохранить и продолжить", class: "green-btn"

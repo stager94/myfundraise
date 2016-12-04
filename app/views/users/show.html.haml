@@ -13,19 +13,19 @@
 				.counter
 					/ %label Актуальных кампаний
 					= @user.campaigns.active.count
-					%label 
+					%label
 						актуальных
 						%br
 						кампаний
 				.counter
 					= @user.campaigns.where(percentage: 100).count
-					%label 
+					%label
 						успешных
 						%br
 						кампаний
 				.counter
 					= @user.campaigns.sum(:donations_count)
-					%label 
+					%label
 						пожертвований
 						%br
 						собрано
@@ -37,13 +37,13 @@
 						сделано
 				.counter
 					= @user.campaigns.sum(:likes_count)
-					%label 
+					%label
 						лайков
 						%br
 						получено
 				.counter
 					= @user.campaigns.sum(:comments_count)
-					%label 
+					%label
 						комментариев
 						%br
 						получено
@@ -70,12 +70,16 @@
 				= link_to url_for(filter: :successfull) do
 					= fa_icon :"trophy"
 					Успешные кампании
-					%b= @user.campaigns.successfull.count	
+					%b= @user.campaigns.successfull.count
 			%li(class="#{'active' if @filter == 'drafts'}")
 				= link_to url_for(filter: :drafts) do
 					= fa_icon :"lock"
 					Черновики
 					%b= @user.campaigns.drafts.count
+			- identity = @user.identities.where.not(provider: "instagram").first
+			- if identity.present?
+				%li
+					= link_to "Смотреть профиль в сети", identity.link, target: "_blank"
 
 .container#fundraise-container
 	.main-table

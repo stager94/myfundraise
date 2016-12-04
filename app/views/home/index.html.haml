@@ -4,11 +4,11 @@
 		%source.webm(src="/videos/video.webm")
 		%source.ogg(src="/videos/video.ogg")
 	.text
-		%h2 
-			%b Fundraising 
+		%h2
+			%b Fundraising
 			для каждого!
-		%h5 
-			%u Сайт №1 
+		%h5
+			%u Сайт №1
 			для личного сбора средств
 		- if user_signed_in?
 			= link_to "Собрать деньги", new_dashboard_campaign_path, class: 'btn btn-lg'
@@ -36,12 +36,10 @@
 		.sidebar-wrapper
 			#categories-wrapper= render 'shared/categories'
 		.main-wrapper.with-sidebar
-			/ .sorting-panel
-			/ 	%span Сортировка:
-			/ 	= link_to "Популярные", root_path(sort: :popular), class: "#{'active' if @sorting == 'popular'}"
-			/ 	= link_to "Новые", root_path(sort: :recent), class: "#{'active' if @sorting == 'recent'}"
-			/ 	= link_to "Почти собрано", root_path(sort: :almost_there), class: "#{'active' if @sorting == 'almost_there'}"
 			.campaigns-row= render @campaigns
-			= paginate @campaigns
+			- if @search
+				.pagination
+					= link_to_next_page @campaigns, "Посмотреть еще"
+			= render 'layouts/ad_block'
 
 = render 'shared/partners'

@@ -20,4 +20,19 @@ class Identity < ActiveRecord::Base
   def vk?
   	provider == 'vkontakte'
   end
+
+  def instagram?
+    provider == 'instagram'
+  end
+
+  def link
+    if ok?
+      "https://ok.ru/profile/#{uid}"
+    elsif vk?
+      "https://vk.com/id#{uid}"
+    else
+      "#"
+    end
+  end
+
 end

@@ -1,11 +1,16 @@
 .new-campaign-block
-	= form_for @campaign, url: dashboard_campaign_step_path(campaign_id: @campaign.id) do |f|
-		.campaign-container
-			%h3 Расскажите свою историю
+  = form_for @campaign, url: dashboard_campaign_step_path(campaign_id: @campaign.id) do |f|
+    .campaign-container
+      %h3 Расскажите свою историю
 
-			.grayed.form-group
-				= f.text_area :description, class: "form-control editor", placeholder: "Введите сюда вашу историю. Очень важно чтобы рассказ был честный, интересный и главное правдивый. Люди хотят знать всю конкретику и подробности. Напишите все о ваших потребностях и нуждах. ", rows: 10
+      .grayed.form-group
+        = f.text_area :description, class: "form-control editor", placeholder: "Введите сюда вашу историю. Очень важно чтобы рассказ был честный, интересный и главное правдивый. Люди хотят знать всю конкретику и подробности. Напишите все о ваших потребностях и нуждах. ", rows: 10
 
-		.actions.text-center
-			= link_to "Предыдущий шаг".html_safe, prev_step_dashboard_campaign_path(@campaign), class: "pull-left"
-			= f.submit "Подтвердить".html_safe, class: "pull-right green-btn"
+        .gutter-top-20
+          = raw "Дополнительные возможности: #{link_to 'Предложить награду', dashboard_campaign_rewards_path(@campaign), remote: true} (при пожертвовании человек получит от Вас награду)"
+
+    .actions.text-center
+      = link_to "Предыдущий шаг".html_safe, prev_step_dashboard_campaign_path(@campaign), class: "pull-left"
+      = f.submit "Подтвердить".html_safe, class: "pull-right green-btn"
+
+.modal-container

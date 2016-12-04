@@ -1,7 +1,7 @@
 .small-campaign-container
 	.small-campaign-block(data-campaign-id="#{campaign.id}")
 		- if campaign.is_draft?
-			.ribbon Черновик
+			._ribbon Черновик
 		.cover
 			= image_tag campaign.picture.url(:medium)
 			- if campaign.category.present?

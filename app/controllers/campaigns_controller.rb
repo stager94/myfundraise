@@ -1,12 +1,12 @@
 class CampaignsController < ApplicationController
 
-	impressionist 
+	impressionist
 
 	def show
 		@body_class = "gray-striped-inverse"
 		@campaign = Campaign.find params[:id]
 
-		@donations = @campaign.donations.paid.order(created_at: :desc).first(10)
+		@donations = @campaign.donations.paid.order(created_at: :desc).page 1
 		@comments = @campaign.comments.order created_at: :desc
 		impressionist @campaign
 		@campaign.update_rating

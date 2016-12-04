@@ -1,3 +1,40 @@
+.reward-block {
+	.goal {
+		margin: -16px -15px 0;
+		padding: 0 30px;
+		font-family: Open Sans;
+		color: #71ab62;
+		line-height: 110px;
+		border-width: 1px 0;
+		border-color: #71ab62;
+		border-style: solid;
+
+		input {
+			max-width: 100%;
+			background: transparent none repeat scroll 0% 0%;
+			border: 0px none;
+			width: 365px;
+			letter-spacing: -5px;
+			height: 156px;
+			font-weight: 600 !important;
+			font-size: 100px;
+		}
+		.currency-selector {
+			-webkit-user-select: none;  /* Chrome all / Safari all */
+			-moz-user-select: none;     /* Firefox all */
+			-ms-user-select: none;      /* IE 10+ */
+			user-select: none;          /* Likely future */
+			font-size: 100px;
+			display: inline-block;
+			width: 80px;
+			text-align: center;
+			position: relative;
+			cursor: pointer;
+		}
+
+	}
+}
+
 .new-campaign-block {
 	background: #fff;
 	margin: 30px auto;
@@ -39,7 +76,7 @@
 		border-width: 1px 0;
 		border-color: #71ab62;
 		border-style: solid;
-		
+
 		input {
 			max-width: 100%;
 			background: transparent none repeat scroll 0% 0%;
@@ -54,7 +91,7 @@
 			-webkit-user-select: none;  /* Chrome all / Safari all */
 			-moz-user-select: none;     /* Firefox all */
 			-ms-user-select: none;      /* IE 10+ */
-			user-select: none;          /* Likely future */  
+			user-select: none;          /* Likely future */
 			font-size: 100px;
 			display: inline-block;
 			width: 80px;
@@ -113,7 +150,7 @@
 			}
 
 		}
-		
+
 	}
 	.helper {
 		text-align: center;
@@ -209,16 +246,25 @@
 				color: #666;
 				border-color: #ccc;
 			}
-
-			&.green-btn {
-				background: #80b473;
-				border-color: #80b473;
-				color: #fff;
-				&:hover, &:active, &:focus {
-					background: lighten(#80b473, 5%);
-				}
-			}
 		}
+	}
+}
+
+.green-btn {
+	background: #80b473;
+	border: 1px solid #ececec;
+	border-color: #80b473 !important;
+	color: #fff !important;
+	min-width: 150px;
+	border-color: #ddd;
+	font-family: Open Sans;
+	line-height: 34px;
+	border-radius: 3px !important;
+	font-weight: 300;
+	text-decoration: none;
+	padding: 0 15px;
+	&:hover, &:active, &:focus {
+		background: lighten(#80b473, 5%);
 	}
 }
 
@@ -254,7 +300,7 @@
 		}
 		&:hover {
 			span {
-				background: rgba(0, 0, 0, .5);	
+				background: rgba(0, 0, 0, .5);
 				display: block;
 			}
 		}
@@ -333,7 +379,7 @@
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-text-size-adjust: 100%;
 		}
-		
+
 		p {
 			margin-top: 20px;
 		}
@@ -382,7 +428,7 @@
 
 			&:hover, &:active, &:focus {
 				color: lighten(#d34b4b, 15%);
-			}			
+			}
 		}
 	}
 }
@@ -588,7 +634,7 @@
 		}
 	}
 
-	.ribbon {
+	._ribbon {
 		top: 17px;
 		right: -25px;
 		transform: rotate(-45deg);
@@ -759,7 +805,7 @@
 			font-family: 'bebas_neueregular', Arial;
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-text-size-adjust: 100%;
-			
+
 			span.goal-title {
 				font-size: 13px;
 				text-transform: uppercase;
@@ -835,10 +881,11 @@
 		-webkit-text-size-adjust: 100%;
 	}
 	.campaign-author {
-		// color: #666;
-		background: rgb(249, 249, 249) none repeat scroll 0% 0%;
-		padding: 10px 15px;
+		color: #999;
+		// background: rgb(249, 249, 249) none repeat scroll 0% 0%;
+		padding: 15px 15px 0;
 		margin: 20px -15px 0;
+		border-top: 1px solid #e7e7e7;
 		a {
 			color: #666;
 			font-weight: 400;
@@ -986,7 +1033,7 @@
 		color: #999;
 		cursor: pointer;
 	}
-	input, select, .selectize-input {
+	input, select, .selectize-input, textarea {
 		box-shadow: none !important;
 		border-radius: 0;
 		font-weight: 300;
@@ -1060,6 +1107,17 @@
 					color: #d34b4b;
 				}
 			}
+		}
+	}
+	ul.share {
+		font-family: "bebas_neueregular", Arial;
+		font-size: 15px;
+		line-height: 54px;
+		color: #666666;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-text-size-adjust: 100%;
+		.fa {
+			font-size: 20px !important;
 		}
 	}
 }

@@ -1,5 +1,5 @@
 class DonationsController < ApplicationController
-	
+
 	W1_SECRET_KEY = Rails.application.secrets.w1_secret_key
 
 	before_action :fetch_campaign, except: [:check, :test]
@@ -10,7 +10,6 @@ class DonationsController < ApplicationController
 		if @donation.save
 			run_payment_flow
 		else
-			binding.pry
 			render :new
 		end
 	end
@@ -23,6 +22,10 @@ class DonationsController < ApplicationController
 		p params
 		Myfundraise::Payments::Interkassa::InteractorCallback.new(params: params).run!
 		render text: ""
+	end
+
+	def load_more
+		@donations = @campaign.donations.page params[:page]
 	end
 
 private

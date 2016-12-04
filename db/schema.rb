@@ -11,10 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121005836) do
+ActiveRecord::Schema.define(version: 20161204023103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
+  enable_extension "fuzzystrmatch"
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -289,6 +291,13 @@ ActiveRecord::Schema.define(version: 20161121005836) do
 
   add_index "payments", ["donation_id"], name: "index_payments_on_donation_id", using: :btree
 
+  create_table "questions", force: :cascade do |t|
+    t.string   "title"
+    t.text     "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "redactor_images", force: :cascade do |t|
     t.string   "file_file_name"
     t.string   "file_content_type"
@@ -297,6 +306,16 @@ ActiveRecord::Schema.define(version: 20161121005836) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
+
+  create_table "rewards", force: :cascade do |t|
+    t.integer  "campaign_id"
+    t.integer  "amount",      default: 1
+    t.text     "description"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "rewards", ["campaign_id"], name: "index_rewards_on_campaign_id", using: :btree
 
   create_table "updates", force: :cascade do |t|
     t.integer  "campaign_id"
@@ -345,5 +364,6 @@ ActiveRecord::Schema.define(version: 20161121005836) do
   add_foreign_key "identities", "users"
   add_foreign_key "likes", "users"
   add_foreign_key "payments", "donations"
+  add_foreign_key "rewards", "campaigns"
   add_foreign_key "updates", "campaigns"
 end

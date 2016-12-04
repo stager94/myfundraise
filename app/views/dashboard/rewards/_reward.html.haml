@@ -1,0 +1,8 @@
+.reward-container
+  .amount
+    - unless campaign.currency.sign_after_amount?
+      = raw campaign.currency.sign
+    %span._amount= reward.amount
+    - if campaign.currency.sign_after_amount?
+      = raw campaign.currency.sign
+  .description= reward.description
