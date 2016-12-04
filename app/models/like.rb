@@ -1,7 +1,7 @@
 class Like < ActiveRecord::Base
 
 	include ::PublicActivity::Model
-	
+
 	tracked only: [:create, :destroy], owner: :user, recipient: :likeable_author,
 					params: {
 						subject_type: proc {|controller, model| model.likeable_type },
@@ -18,7 +18,7 @@ class Like < ActiveRecord::Base
 	after_destroy :update_campaigns_rating
 
 	def likeable_author
-		likeable.user
+		likeable.user rescue nil
 	end
 
 private

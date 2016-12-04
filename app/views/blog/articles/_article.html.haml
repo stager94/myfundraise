@@ -1,0 +1,5 @@
+= link_to article do
+  %h4= article.title
+%p= raw article.snippet
+.article-counters.share-info(data-blog-article-id="#{article.id}")= render 'blog/articles/counters_box', object: article
+%hr

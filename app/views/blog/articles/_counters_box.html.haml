@@ -1,0 +1,13 @@
+%div{ title: "лайков" }
+  = link_to [object, Like.new, { partial_postfix: "box" }], data: { method: :post, remote: true } do
+    - if current_user && current_user.like?(object)
+      = fa_icon :"heart"
+    - else
+      = fa_icon :"heart-o"
+    %span= number_with_delimiter object.likes_count
+%div{ title: "комментариев" }
+  = fa_icon :"comment"
+  %span= number_with_delimiter object.comments_count
+%div{ title: "просмотров" }
+  = fa_icon :"eye"
+  %span= number_with_delimiter object.views_count

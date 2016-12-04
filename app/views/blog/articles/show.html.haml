@@ -1,0 +1,30 @@
+.page-header.gutter-top-0
+  %h1.gutter-top-0= @article.title
+
+= raw @article.text
+.gutter-top-20.gutter-bottom-30.article-counters.share-info(data-blog-article-id="#{@article.id}")= render 'blog/articles/counters_box', object: @article
+
+
+%h4.heading Комментарии
+- if user_signed_in?
+  = form_for [@article, Comment.new], data: { remote: true, method: :post }, html: { class: "modern-form" } do |f|
+    .form-group.with-avatar
+      = render_user_avatar_for current_user, fake_styles: "size40"
+      = f.text_area :text, class: "form-control", placeholder: "Напишите здесь Ваш отзыв о кампании '#{@article.title}'", style: "border:1px solid #e7e7e7"
+    .text-right= f.submit "Добавить комментарий", class: "btn"
+- else
+  .empty-comments-results.empty-results.gutter-top-0
+    Авторизируйтесь, чтобы оставить свой отзыв о кампании
+    %u= "'#{@article.title}'"
+
+#comments-list
+  - if @comments.any?
+    = render @comments
+  - else
+    - if user_signed_in?
+      .empty-comments-results.empty-results
+        Еще никто не оставлял свой отзыв о кампании
+        %u= "'#{@article.title}'"
+
+
+= render 'layouts/ad_block'

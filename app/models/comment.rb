@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base
 
 	include Likeable
 	include ::PublicActivity::Model
-	
+
   tracked only: [:create, :destroy], owner: :user, recipient: :commentable_author,
 				  params: {
 						subject_type: proc {|controller, model| model.commentable_type },
@@ -19,12 +19,13 @@ class Comment < ActiveRecord::Base
 
 
 	def commentable_author
-		commentable.user
+		commentable.user rescue nil
 	end
 
 private
 
 	def update_campaigns_rating
+		return if commentable_type != "Campaign"
 		commentable.reload
 		commentable.update_rating
 	end

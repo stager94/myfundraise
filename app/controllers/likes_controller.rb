@@ -19,7 +19,8 @@ private
 	def find_likeable
 		params.each do |name, value|
 			if name =~ /(.+)_id$/
-				return $1.classify.constantize.find(value)
+				m = $1 == 'article' ? 'blog/article' : $1
+				return m.classify.constantize.find(value)
 			end
 		end
 		nil

@@ -8,9 +8,9 @@ class CommentsController < ApplicationController
 	end
 
 	def index
-		
+
 	end
-	
+
 private
 
 	def permitted_params
@@ -24,7 +24,8 @@ private
 	def find_commentable
 		params.each do |name, value|
 			if name =~ /(.+)_id$/
-				return $1.classify.constantize.find(value)
+				m = $1 == 'article' ? 'blog/article' : $1
+				return m.classify.constantize.find(value)
 			end
 		end
 		nil

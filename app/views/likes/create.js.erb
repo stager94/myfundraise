@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 	<% partial_name = ["counters", params[:partial_postfix]].compact.join("_") %>
-	$(".share-info[data-<%= @likeable_class %>-id=<%= @likeable.id %>]").html('<%= j render "#{@likeable_class}s/#{partial_name}", object: @likeable %>');
+	$(".share-info[data-<%= @likeable_class.gsub('/', '-') %>-id=<%= @likeable.id %>]").html('<%= j render "#{@likeable_class}s/#{partial_name}", object: @likeable %>');
 	$("[data-toggle=tooltip]").tooltip();
 <% else %>
 	alert("Необходимо авторизоваться!")

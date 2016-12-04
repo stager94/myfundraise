@@ -1,0 +1,10 @@
+.comment(data-comment-id="#{comment.id}")
+  .comment-author
+    = render_user_avatar_for comment.user, fake_styles: "size40 bg-white"
+    / = image_tag comment.user.foto.url(:thumb), size: "40x40"
+    %span
+      = link_to comment.user.name, comment.user
+      = comment.created_at.strftime "%d.%m.%Y %H:%M"
+
+    .share-info(data-comment-id="#{comment.id}")= render 'comments/counters', object: comment
+  .comment-text= raw comment.text

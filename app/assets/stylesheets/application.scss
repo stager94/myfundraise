@@ -252,3 +252,18 @@
     color: #666;
   }
 }
+
+.article-counters {
+  > div {
+    display: inline-block;
+    margin-right: 10px;
+    color: #999;
+    a {
+      color: #999;
+      &:hover, &:active, &:focus {
+        color: #666;
+        text-decoration: none;
+      }
+    }
+  }
+}

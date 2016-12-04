@@ -23,6 +23,13 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
   resources :users
 
+  namespace :blog do
+    resources :articles, only: [:index, :show] do
+      resources :likes, only: [:create], on: :member
+      resources :comments, only: [:create, :index], on: :member
+    end
+  end
+
   resources :campaigns do
     member do
       resources :donations do

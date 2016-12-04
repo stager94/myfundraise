@@ -1,0 +1,4 @@
+%h5.gutter-top-30 Популярное
+%ul.sidebar-menu
+  - Blog::Article.popular.limit(10).each do |article|
+    %li= link_to article.title, article
