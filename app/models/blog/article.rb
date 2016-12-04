@@ -1,5 +1,7 @@
 class Blog::Article < ActiveRecord::Base
 
+  paginates_per 10
+
   extend FriendlyId
   include Likeable
   include Commentable
