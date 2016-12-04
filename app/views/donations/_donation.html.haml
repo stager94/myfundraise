@@ -7,10 +7,10 @@
 			%b= "#{construct_amount(donation.amount, donation.currency)}".html_safe
 			от
 			- if can?(:show, donation)
-				= link_to "#{donation.author.name}", '#'
+				= link_to "#{donation.name}", '#'
 			- else
 				%u Анонима
-			
+
 		.time= donation.created_at.strftime "%d.%m.%Y %H:%M"
 	- if can?(:show, donation)
 		%p= donation.message
