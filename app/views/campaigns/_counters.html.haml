@@ -1,17 +1,8 @@
 .campaign-shares
 	= link_to [object, Like.new], data: { method: :post, remote: true }, class: "gutter-left--5" do
 		- if current_user && current_user.like?(object)
-			= fa_icon :"heart", class: "red gutter-right-3"
+			= fa_icon :"heart", class: "gutter-right-3"
 		- else
 			= fa_icon :"heart-o", class: "gutter-right-3"
-		Мне нравится
-		- if object.likes_count > 0 
+		- if object.likes_count > 0
 			%b= number_with_delimiter object.likes_count
-
-	.pull-right
-		.box.comments-count
-			= fa_icon :"comment-o"
-			= number_with_delimiter object.comments_count
-		.box.views-count
-			= fa_icon :"eye"
-			%span= number_with_delimiter object.views_count

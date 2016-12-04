@@ -66,3 +66,71 @@
 		}
 	}
 }
+
+.share-info.new-style {
+	position: relative;
+	.campaign-shares {
+    position: absolute;
+    text-align: right;
+    width: 100%;
+    padding-right: 15px;
+		a {
+			color: white;
+			background: rgba(#000, .5);
+			font-size: 20px;
+			b {
+				color: white;
+			}
+		}
+	}
+}
+
+
+.campaign-vk-share {
+	background: #507299 !important;
+	border: none !important;
+	text-align: left;
+	&:hover, &:active, &:focus {
+		background: #486991 !important;
+	}
+	.fa {
+		display: inline-block;
+		font-size: 18px;
+		width: 20px;
+		text-align: center;
+		margin-left: -15px;
+		margin-right: 5px;
+	}
+}
+.campaign-ok-share {
+	background: #ee8208 !important;
+	border: none !important;
+	text-align: left;
+	&:hover, &:active, &:focus {
+		background: #e26000 !important;
+	}
+	.fa {
+		display: inline-block;
+		font-size: 18px;
+		width: 20px;
+		text-align: center;
+		margin-left: -15px;
+		margin-right: 5px;
+	}
+}
+.campaign-twitter-share {
+	text-align: left;
+	background: rgb(29, 161, 242) !important;
+	border: none !important;
+	&:hover, &:active, &:focus {
+		background: rgb(0, 132, 180) !important;
+	}
+	.fa {
+		display: inline-block;
+		font-size: 18px;
+		width: 20px;
+		text-align: center;
+		margin-left: -15px;
+		margin-right: 5px;
+	}
+}

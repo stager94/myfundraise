@@ -4,6 +4,7 @@
 			.col-md-8.main-part
 				.campaign-wr
 					.campaign-header
+						.share-info.new-style(data-campaign-id="#{@campaign.id}")= render 'campaigns/counters', object: @campaign
 						- unless @campaign.video_url.present?
 							= image_tag @campaign.picture.url(:large), class: "img-responsive"
 						- else
@@ -50,18 +51,23 @@
 								.updates-wrapper
 									= render @campaign.updates.order(created_at: :desc)
 
+						%hr
+						%h5.heading Помочь собрать больше денег!
+						.row
+							.col-md-4
+								= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','');return false;", class: "btn btn-block campaign-vk-share" do
+									= fa_icon :vk
+									Рассказать друзьям
+							.col-md-4
+								= link_to 'javascript:void(0);', onclick: "Share.odnoklassniki('#{campaign_url(@campaign)}','#{@campaign.title}');return false;", class: "btn btn-block campaign-ok-share" do
+									= fa_icon :odnoklassniki
+									Поделиться
+							.col-md-4
+								= link_to 'javascript:void(0);', onclick: "Share.twitter('#{campaign_url(@campaign)}','#{@campaign.title}');return false;", class: "btn btn-block campaign-twitter-share" do
+									= fa_icon :twitter
+									Твитнуть
+
 						.campaign-author
-							/ = link_to @campaign.user do
-							/ 	= render_user_avatar_for @campaign.user, fake_styles: "size40"
-							/ .campaign-info
-							/ 	= link_to @campaign.user do
-							/ 		%span= @campaign.user.name
-							/ 	%span= @campaign.created_at.strftime('%d.%m.%Y %H:%M')
-							/ 	.campaign-address
-							/ 		- if @campaign.address.present?
-							/ 			%span
-							/ 				= fa_icon :'map-marker'
-							/ 				= @campaign.address
 							%span= @campaign.created_at.strftime('%d.%m.%Y %H:%M')
 
 						/ .share-info(data-campaign-id="#{@campaign.id}")= render 'campaigns/counters', object: @campaign

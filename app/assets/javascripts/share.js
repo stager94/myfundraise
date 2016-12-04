@@ -22,12 +22,12 @@ Share = {
     url += '&p[images][0]=' + encodeURIComponent(pimg);
     Share.popup(url);
   },
-  twitter: function(purl, ptitle) {
+  twitter: function(purl, ptitle, redirect_url) {
     url  = 'http://twitter.com/share?';
     url += 'text='      + encodeURIComponent(ptitle);
     url += '&url='      + encodeURIComponent(purl);
     url += '&counturl=' + encodeURIComponent(purl);
-    Share.popup(url);
+    Share.popup(url, redirect_url);
   },
   mailru: function(purl, ptitle, pimg, text) {
     url  = 'http://connect.mail.ru/share?';

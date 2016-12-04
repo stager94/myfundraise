@@ -327,6 +327,16 @@ h4 {
 	}
 }
 
+h5 {
+	&.heading {
+		font: normal 22px 'bebas_neuebook', Arial;
+		color: #767676;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-text-size-adjust: 100%;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+}
 
 .errors {
 	.alert {
