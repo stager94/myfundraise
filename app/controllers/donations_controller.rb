@@ -35,7 +35,7 @@ private
 	end
 
 	def permitted_params
-		params.require(:donation).permit :amount, :message, :anonymous
+		params.require(:donation).permit :amount, :message, :anonymous, :name, :email
 	end
 
 	def default_params

@@ -549,10 +549,10 @@
 	}
 	#amount {
     width: 100%;
-    font-size: 40px;
+    font-size: 50px;
     padding: 0px;
 	}
-	textarea {
+	textarea, input.stylized {
 		display: block;
 		resize: none;
 		border: 1px solid #e7e7e7;
@@ -573,10 +573,11 @@
 	display: table;
 	border-bottom: 2px solid !important;
 	margin-bottom: 20px;
+	color: #80b473;
 	span {
 		display: table-cell;
 		vertical-align: middle;
-		font-size: 40px;
+		font-size: 50px;
 	}
 	input {
 		display: table-cell;
