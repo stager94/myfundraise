@@ -14,7 +14,9 @@
 <div class="wrapper-overlay hidden"></div>
 <%= render 'shared/navbar' %>
 <%= yield %>
-<%= render 'shared/promo' %>
+<%- if @show_promo %>
+  <%= render 'shared/promo' %>
+<% end %>
 <%= render 'shared/footer' %>
 <%= render 'shared/modals' %>
 <%= render 'layouts/yandex_metrica' %>

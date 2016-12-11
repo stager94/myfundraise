@@ -1,23 +1,25 @@
 class Dashboard::RewardsController < ApplicationController
 
   before_action :find_campaign
-  before_action :find_reward
 
-  def index
+  def new
+    @reward = @campaign.rewards.new
   end
 
   def create
-    @reward.update reward_params
+    @campaign.rewards.create reward_params
+    render 'reload'
+  end
+
+  def destroy
+    @reward = Reward.find(params[:id]).destroy
+    render 'reload'
   end
 
   private
 
   def find_campaign
     @campaign = Campaign.find params[:campaign_campaign_id]
-  end
-
-  def find_reward
-    @reward = @campaign.reward || @campaign.build_reward
   end
 
   def reward_params

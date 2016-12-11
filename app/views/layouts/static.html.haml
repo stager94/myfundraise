@@ -17,7 +17,8 @@
         = render 'static/menu'
       .main-wrapper.with-sidebar.static
         = yield
-  - unless (params[:controller] == 'campaigns' && params[:action] == 'show')
+
+  - if @show_promo
     = render 'shared/promo'
   = render 'shared/footer'
   = render 'shared/modals'

@@ -1,12 +1,14 @@
 ActiveAdmin.register Category do
 
 	filter :title
+	filter :full_title
 	filter :slug
 	filter :popular
 
 	form do |f|
 		inputs "Информация" do
 			input :title
+			input :full_title
 			input :slug
 			input :foto
 			input :cover
@@ -24,6 +26,7 @@ ActiveAdmin.register Category do
 			image_tag c.foto.url(:small), size: "24x24"
 		end
 		column :title
+		column :full_title
 		column :slug
 		column :description
 		column :popular
@@ -34,6 +37,7 @@ ActiveAdmin.register Category do
 		attributes_table do
 			row :id
 			row :title
+			row :full_title
 			row :slug
 			row :description
 			row :popular

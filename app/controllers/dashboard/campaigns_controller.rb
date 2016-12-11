@@ -3,10 +3,12 @@ class Dashboard::CampaignsController < ApplicationController
 	before_action :load_campaign, only: [:show, :select_picture, :select_video, :prev_step, :next_step, :crop, :activate, :edit, :update, :destroy, :post_update]
 
 	def new
+		@show_promo = false
 		@campaign = Campaign.new
 	end
-  
+
   def create
+  	@show_promo = false
   	@campaign = current_user.campaigns.new permitted_params
 	  if @campaign.save
 	    redirect_to dashboard_campaign_steps_path(@campaign, id: :media)
@@ -69,7 +71,7 @@ class Dashboard::CampaignsController < ApplicationController
 	end
 
 	def update
-		
+
 	end
 
 	def destroy

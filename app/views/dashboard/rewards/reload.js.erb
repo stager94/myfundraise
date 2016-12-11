@@ -1,0 +1,2 @@
+$("#myModal").modal("hide");
+$("#rewards-list").html("<%= j render partial: 'dashboard/rewards/reward', collection: @campaign.rewards, as: :reward %>");

@@ -19,7 +19,7 @@
 							%ul.pull-right.share
 								%li Поделиться:
 								%li
-									= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','#{sanitize(@campaign.description)}');return false;" do
+									= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','#{truncate(strip_tags(@campaign.description),length: 200)}');return false;" do
 										= fa_icon :vk
 								%li
 									= link_to 'javascript:void(0);', onclick: "Share.odnoklassniki('#{campaign_url(@campaign)}','#{@campaign.title}');return false;" do
@@ -32,7 +32,6 @@
 									= link_to "#updates", data: { toggle: "tab" }, "aria-controls" => "updates" do
 										Обновления
 										%b= @campaign.updates.count
-
 
 						.campaign-description.tab-content
 							#description.tab-pane.active(role="tabpanel")= raw @campaign.description
@@ -55,7 +54,7 @@
 						%h5.heading Помочь собрать больше денег!
 						.row
 							.col-md-4
-								= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','#{sanitize(@campaign.description)}');return false;", class: "btn btn-block campaign-vk-share" do
+								= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','#{truncate(strip_tags(@campaign.description),length: 200)}');return false;", class: "btn btn-block campaign-vk-share" do
 									= fa_icon :vk
 									Рассказать друзьям
 							.col-md-4
@@ -126,7 +125,7 @@
 							%span{ style: "display:block;" }= @campaign.user.name
 							Открыть профиль в MyFundraise
 
-				.gutter-top-20= render 'dashboard/rewards/reward', reward: @campaign.reward, campaign: @campaign if @campaign.reward
+				.gutter-top-10= render partial: 'dashboard/rewards/reward_item', collection: @campaign.rewards, as: :reward
 
 				%h4 Пожертвования
 				- if @donations.any?

@@ -7,7 +7,7 @@ class Dashboard::CampaignStepsController < ApplicationController
 
 	def show
 		@campaign.update_attribute :step, params[:id]
-		@reward = @campaign.reward || @campaign.build_reward
+		@rewards = @campaign.rewards
 		redirect_to @campaign and return if @campaign.step == 'activate' && !@campaign.is_draft?
 		render_wizard
 	end
@@ -28,6 +28,7 @@ private
 	end
 
 	def fetch_campaign
+		@show_promo = false
 		@campaign = Campaign.find params[:campaign_id]
 	end
 

@@ -1,11 +1,8 @@
-.reward-container
+= link_to new_donation_path(reward.campaign, amount: reward.amount), class: "reward-container" do
   .amount
     - unless reward.campaign.currency.sign_after_amount?
       = raw reward.campaign.currency.sign
     %span._amount= reward.amount
     - if reward.campaign.currency.sign_after_amount?
       = raw reward.campaign.currency.sign
-    - unless reward.new_record? && user_signed_in? && current_user == reward.campaign.user
-      .pull-right
-        = link_to "&times;".html_safe, dashboard_campaign_reward_path(reward.campaign, reward), method: :delete, remote: true
   .description= reward.description

@@ -3,6 +3,7 @@ class CampaignsController < ApplicationController
 	impressionist
 
 	def show
+    @show_promo = false
 		@body_class = "gray-striped-inverse"
 		@campaign = Campaign.find params[:id]
 

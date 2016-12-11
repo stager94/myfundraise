@@ -15,7 +15,7 @@ class DonationsController < ApplicationController
 	end
 
 	def new
-		@donation = Donation.new
+		@donation = Donation.new amount: params[:amount]
 	end
 
 	def check
