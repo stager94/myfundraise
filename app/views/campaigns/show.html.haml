@@ -1,140 +1,152 @@
-.campaign-page(data-campaign-id="#{@campaign.id}")
-	.container
-		.row
-			.col-md-8.main-part
-				.campaign-wr
-					.campaign-header
-						.share-info.new-style(data-campaign-id="#{@campaign.id}")= render 'campaigns/counters', object: @campaign
-						- unless @campaign.video_url.present?
-							= image_tag @campaign.picture.url(:large), class: "img-responsive"
-						- else
-							- if @campaign.embedded_video_url[:provider] == "youtube"
-								%iframe{ src: @campaign.embedded_video_url[:url], width: "100%", height: "400", style: "border:none;display:block;" }
-							- if @campaign.embedded_video_url[:provider] == "vimeo"
-								%iframe{ src: @campaign.embedded_video_url[:url], width: "100%", height: 400, frameborder: 0, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true, style: "border:none;display:block;" }
-					.campaign-wh-block
-						%h1= @campaign.title
+- meta title: "#{@campaign.title} - MyFundraise", description: truncate(strip_tags(@campaign.description),length: 200)
 
-						.fundraise-subheader.campaign-tabs
-							%ul.pull-right.share
-								%li Поделиться:
-								%li
-									= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','#{truncate(strip_tags(@campaign.description),length: 200)}');return false;" do
+
+- if params[:ik_inv_st] == 'success'
+	.text-center
+		%h1.gutter-top-100.gutter-bottom-50 Ваш платеж прошел успешно
+
+		= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{current_user.first_name}, спасибо за помощь','#{@campaign.picture.url}','Я помог собрать деньги #{@campaign.user.name} на \"#{@campaign.title}\". Не будь и ты равнодушным!');return false;", class: "gutter-bottom-50 btn campaign-vk-share", style: "display:inline-block;color:white;" do
+			= fa_icon :vk
+			Рассказать друзьям
+
+- else
+	.campaign-page(data-campaign-id="#{@campaign.id}")
+		.container
+			.row
+				.col-md-8.main-part
+					.campaign-wr
+						.campaign-header
+							.share-info.new-style(data-campaign-id="#{@campaign.id}")= render 'campaigns/counters', object: @campaign
+							- unless @campaign.video_url.present?
+								= image_tag @campaign.picture.url(:large), class: "img-responsive"
+							- else
+								- if @campaign.embedded_video_url[:provider] == "youtube"
+									%iframe{ src: @campaign.embedded_video_url[:url], width: "100%", height: "400", style: "border:none;display:block;" }
+								- if @campaign.embedded_video_url[:provider] == "vimeo"
+									%iframe{ src: @campaign.embedded_video_url[:url], width: "100%", height: 400, frameborder: 0, webkitallowfullscreen: true, mozallowfullscreen: true, allowfullscreen: true, style: "border:none;display:block;" }
+						.campaign-wh-block
+							%h1= @campaign.title
+
+							.fundraise-subheader.campaign-tabs
+								%ul.pull-right.share
+									%li Поделиться:
+									%li
+										= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','#{truncate(strip_tags(@campaign.description),length: 200)}');return false;" do
+											= fa_icon :vk
+									%li
+										= link_to 'javascript:void(0);', onclick: "Share.odnoklassniki('#{campaign_url(@campaign)}','#{@campaign.title}');return false;" do
+											= fa_icon :odnoklassniki
+								%ul
+									%li.active
+										= link_to "#description", data: { toggle: "tab" }, "aria-controls" => "description" do
+											Описание
+									%li
+										= link_to "#updates", data: { toggle: "tab" }, "aria-controls" => "updates" do
+											Обновления
+											%b= @campaign.updates.count
+
+							.campaign-description.tab-content
+								#description.tab-pane.active(role="tabpanel")= raw @campaign.description
+								#updates.tab-pane(role="tabpanel")
+									- if current_user == @campaign.user
+										.updates-info.update-fake-form
+											.pull-right= link_to "Добавить обновление", 'javascript:void(0)', class: "btn btn-myf", onclick: "CampaignUpdates.openForm();return false;"
+											Обновления будут уведомлять доноров об активности Вашей кампании, а также позволит привлечь новых доноров!
+										.update-form.hidden
+											= form_for [@campaign, Update.new], url: post_update_dashboard_campaign_path(@campaign), remote: true do |f|
+												.updates-info
+													.pull-right
+														= link_to "Скрыть форму", 'javascript:void(0)', class: "btn btn-myf-gray", onclick: "CampaignUpdates.hideForm();return false;"
+														= f.submit "Сохранить обновление", class: "btn btn-myf"
+												= f.text_area :text, class: "form-control editor", placeholder: "Введите сюда вашу историю. Очень важно чтобы рассказ был честный, интересный и главное правдивый. Люди хотят знать всю конкретику и подробности. Напишите все о ваших потребностях и нуждах. ", rows: 10
+									.updates-wrapper
+										= render @campaign.updates.order(created_at: :desc)
+
+							%hr
+							%h5.heading Помочь собрать больше денег!
+							.row
+								.col-md-4
+									= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','#{truncate(strip_tags(@campaign.description),length: 200)}');return false;", class: "btn btn-block campaign-vk-share" do
 										= fa_icon :vk
-								%li
-									= link_to 'javascript:void(0);', onclick: "Share.odnoklassniki('#{campaign_url(@campaign)}','#{@campaign.title}');return false;" do
+										Рассказать друзьям
+								.col-md-4
+									= link_to 'javascript:void(0);', onclick: "Share.odnoklassniki('#{campaign_url(@campaign)}','#{@campaign.title}');return false;", class: "btn btn-block campaign-ok-share" do
 										= fa_icon :odnoklassniki
-							%ul
-								%li.active
-									= link_to "#description", data: { toggle: "tab" }, "aria-controls" => "description" do
-										Описание
-								%li
-									= link_to "#updates", data: { toggle: "tab" }, "aria-controls" => "updates" do
-										Обновления
-										%b= @campaign.updates.count
+										Поделиться
+								.col-md-4
+									= link_to 'javascript:void(0);', onclick: "Share.twitter('#{campaign_url(@campaign)}','#{@campaign.title}');return false;", class: "btn btn-block campaign-twitter-share" do
+										= fa_icon :twitter
+										Твитнуть
 
-						.campaign-description.tab-content
-							#description.tab-pane.active(role="tabpanel")= raw @campaign.description
-							#updates.tab-pane(role="tabpanel")
-								- if current_user == @campaign.user
-									.updates-info.update-fake-form
-										.pull-right= link_to "Добавить обновление", 'javascript:void(0)', class: "btn btn-myf", onclick: "CampaignUpdates.openForm();return false;"
-										Обновления будут уведомлять доноров об активности Вашей кампании, а также позволит привлечь новых доноров!
-									.update-form.hidden
-										= form_for [@campaign, Update.new], url: post_update_dashboard_campaign_path(@campaign), remote: true do |f|
-											.updates-info
-												.pull-right
-													= link_to "Скрыть форму", 'javascript:void(0)', class: "btn btn-myf-gray", onclick: "CampaignUpdates.hideForm();return false;"
-													= f.submit "Сохранить обновление", class: "btn btn-myf"
-											= f.text_area :text, class: "form-control editor", placeholder: "Введите сюда вашу историю. Очень важно чтобы рассказ был честный, интересный и главное правдивый. Люди хотят знать всю конкретику и подробности. Напишите все о ваших потребностях и нуждах. ", rows: 10
-								.updates-wrapper
-									= render @campaign.updates.order(created_at: :desc)
+							.campaign-author
+								%span= @campaign.created_at.strftime('%d.%m.%Y %H:%M')
 
-						%hr
-						%h5.heading Помочь собрать больше денег!
-						.row
-							.col-md-4
-								= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','#{truncate(strip_tags(@campaign.description),length: 200)}');return false;", class: "btn btn-block campaign-vk-share" do
-									= fa_icon :vk
-									Рассказать друзьям
-							.col-md-4
-								= link_to 'javascript:void(0);', onclick: "Share.odnoklassniki('#{campaign_url(@campaign)}','#{@campaign.title}');return false;", class: "btn btn-block campaign-ok-share" do
-									= fa_icon :odnoklassniki
-									Поделиться
-							.col-md-4
-								= link_to 'javascript:void(0);', onclick: "Share.twitter('#{campaign_url(@campaign)}','#{@campaign.title}');return false;", class: "btn btn-block campaign-twitter-share" do
-									= fa_icon :twitter
-									Твитнуть
+							/ .share-info(data-campaign-id="#{@campaign.id}")= render 'campaigns/counters', object: @campaign
 
-						.campaign-author
-							%span= @campaign.created_at.strftime('%d.%m.%Y %H:%M')
-
-						/ .share-info(data-campaign-id="#{@campaign.id}")= render 'campaigns/counters', object: @campaign
-
-				- if @campaign.enable_comments?
-					%h4.heading Комментарии
-					- if user_signed_in?
-						= form_for [@campaign, Comment.new], data: { remote: true, method: :post }, html: { class: "modern-form" } do |f|
-							.form-group.with-avatar
-								= render_user_avatar_for current_user, fake_styles: "size40"
-								= f.text_area :text, class: "form-control", placeholder: "Напишите здесь Ваш отзыв о кампании '#{@campaign.title}'"
-							.text-right= f.submit "Добавить комментарий", class: "btn"
-					- else
-						.empty-comments-results.empty-results.gutter-top-0
-							Авторизируйтесь, чтобы оставить свой отзыв о кампании
-							%u= "'#{@campaign.title}'"
-
-					#comments-list
-						- if @comments.any?
-							= render @comments
+					- if @campaign.enable_comments?
+						%h4.heading Комментарии
+						- if user_signed_in?
+							= form_for [@campaign, Comment.new], data: { remote: true, method: :post }, html: { class: "modern-form" } do |f|
+								.form-group.with-avatar
+									= render_user_avatar_for current_user, fake_styles: "size40"
+									= f.text_area :text, class: "form-control", placeholder: "Напишите здесь Ваш отзыв о кампании '#{@campaign.title}'"
+								.text-right= f.submit "Добавить комментарий", class: "btn"
 						- else
-							- if user_signed_in?
-								.empty-comments-results.empty-results
-									Еще никто не оставлял свой отзыв о кампании
-									%u= "'#{@campaign.title}'"
+							.empty-comments-results.empty-results.gutter-top-0
+								Авторизируйтесь, чтобы оставить свой отзыв о кампании
+								%u= "'#{@campaign.title}'"
+
+						#comments-list
+							- if @comments.any?
+								= render @comments
+							- else
+								- if user_signed_in?
+									.empty-comments-results.empty-results
+										Еще никто не оставлял свой отзыв о кампании
+										%u= "'#{@campaign.title}'"
 
 
-			.col-md-4.sidebar
-				- if user_signed_in? && current_user.id == @campaign.user_id
-					%h4.gutter-top-0 Управление
-					= link_to "Редактировать", dashboard_campaign_steps_path(@campaign, id: 'general'), class: "btn btn-primary"
-					= link_to "Удалить", dashboard_campaign_path(campaign_id: @campaign.id), class: "btn btn-danger", data: { method: :delete, confirm: "Вы действительно хотите удалить кампанию '#{@campaign.title}'?" }
-					%hr
+				.col-md-4.sidebar
+					- if user_signed_in? && current_user.id == @campaign.user_id
+						%h4.gutter-top-0 Управление
+						= link_to "Редактировать", dashboard_campaign_steps_path(@campaign, id: 'general'), class: "btn btn-primary"
+						= link_to "Удалить", dashboard_campaign_path(campaign_id: @campaign.id), class: "btn btn-danger", data: { method: :delete, confirm: "Вы действительно хотите удалить кампанию '#{@campaign.title}'?" }
+						%hr
 
-				.price
-					%b= raw "#{construct_amount(@campaign.total_amount.to_i, @campaign.currency)}"
-					= raw " из #{construct_amount(@campaign.goal, @campaign.currency)}"
-				.price-range
-					.current(style="width:#{@campaign.percentage}%;")
+					.price
+						%b= raw "#{construct_amount(@campaign.total_amount.to_i, @campaign.currency)}"
+						= raw " из #{construct_amount(@campaign.goal, @campaign.currency)}"
+					.price-range
+						.current(style="width:#{@campaign.percentage}%;")
 
-				- if @campaign.donations.any?
-					- days_number = (Date.today - @campaign.created_at.to_date).to_i + 1
-					%p.gutter-top-10= "Собрано #{@campaign.donations_count} #{Russian::p(@campaign.donations_count, 'человеком', 'людьми', 'людьми')} за #{days_number} #{Russian::p(days_number, 'день', 'дня', 'дней')}"
-				- else
-					%p.gutter-top-10 Автор еще не получал пожертвования для этой кампании
+					- if @campaign.donations.any?
+						- days_number = (Date.today - @campaign.created_at.to_date).to_i + 1
+						%p.gutter-top-10= "Собрано #{@campaign.donations_count} #{Russian::p(@campaign.donations_count, 'человеком', 'людьми', 'людьми')} за #{days_number} #{Russian::p(days_number, 'день', 'дня', 'дней')}"
+					- else
+						%p.gutter-top-10 Автор еще не получал пожертвования для этой кампании
 
-				- if current_user.try(:id) != @campaign.user_id
-					= link_to "Помочь сейчас", new_donation_path(@campaign), class: "btn btn-lg btn-block gutter-top-30"
-				= link_to "Рассказать друзьям", new_donation_path(@campaign), class: "btn btn-block gutter-top-10 gutter-bottom-20"
+					- if current_user.try(:id) != @campaign.user_id
+						= link_to "Помочь сейчас", new_donation_path(@campaign), class: "btn btn-lg btn-block gutter-top-30"
+					= link_to "Рассказать друзьям", new_donation_path(@campaign), class: "btn btn-block gutter-top-10 gutter-bottom-20"
 
-				.campaign-author
-					= link_to @campaign.user do
-						= render_user_avatar_for @campaign.user, image_styles: "img-circle w50"
-					.campaign-info
-						= link_to @campaign.user, style: "color:#999;" do
-							%span{ style: "display:block;" }= @campaign.user.name
-							Открыть профиль в MyFundraise
+					.campaign-author
+						= link_to @campaign.user do
+							= render_user_avatar_for @campaign.user, image_styles: "img-circle w50"
+						.campaign-info
+							= link_to @campaign.user, style: "color:#999;" do
+								%span{ style: "display:block;" }= @campaign.user.name
+								Открыть профиль в MyFundraise
 
-				.gutter-top-10= render partial: 'dashboard/rewards/reward_item', collection: @campaign.rewards, as: :reward
+					.gutter-top-10= render partial: 'dashboard/rewards/reward_item', collection: @campaign.rewards, as: :reward
 
-				%h4 Пожертвования
-				- if @donations.any?
-					#donations-list
-						= render @donations
-					.donations-list-more-link
-						= link_to_next_page @donations, 'Показать еще', remote: true, params: { controller: :donations, action: :load_more }
-				- else
-					.donation
-						%p.gutter-top--10
-							Еще никто не оставлял пожертвования,
-							= link_to "будьте первым", new_donation_path(@campaign), class: "bordered"
+					%h4 Пожертвования
+					- if @donations.any?
+						#donations-list
+							= render @donations
+						.donations-list-more-link
+							= link_to_next_page @donations, 'Показать еще', remote: true, params: { controller: :donations, action: :load_more }
+					- else
+						.donation
+							%p.gutter-top--10
+								Еще никто не оставлял пожертвования,
+								= link_to "будьте первым", new_donation_path(@campaign), class: "bordered"

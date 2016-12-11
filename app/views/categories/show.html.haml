@@ -1,3 +1,5 @@
+- meta title: @category.meta_title, description: @category.meta_description
+
 .category-banner-wrapper(style="#{"background-image:url(#{@category.cover})" if @category.cover_file_size}")
 	.container
 		/ = image_tag @category.foto.url(:thumb), size: "100x100"

@@ -16,6 +16,11 @@ ActiveAdmin.register Category do
 			input :popular
 		end
 
+		inputs "SEO" do
+			input :meta_title
+			input :meta_description
+		end
+
 		actions
 	end
 

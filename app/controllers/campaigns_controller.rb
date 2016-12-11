@@ -4,7 +4,7 @@ class CampaignsController < ApplicationController
 
 	def show
     @show_promo = false
-		@body_class = "gray-striped-inverse"
+		@body_class = "gray-striped-inverse" if params[:ik_inv_st] != 'success'
 		@campaign = Campaign.find params[:id]
 
 		@donations = @campaign.donations.paid.order(created_at: :desc).page 1
