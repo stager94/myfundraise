@@ -25,7 +25,7 @@ class Comment < ActiveRecord::Base
 private
 
 	def update_campaigns_rating
-		return if commentable_type != "Campaign"
+		return if commentable_type != "Campaign" || commentable.nil?
 		commentable.reload
 		commentable.update_rating
 	end

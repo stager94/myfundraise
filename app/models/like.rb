@@ -24,7 +24,7 @@ class Like < ActiveRecord::Base
 private
 
 	def update_campaigns_rating
-		return if likeable_type != "Campaign"
+		return if likeable_type != "Campaign" || likeable.nil?
 		likeable.reload
 		likeable.update_rating
 	end

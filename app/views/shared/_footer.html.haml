@@ -35,11 +35,9 @@
 			= image_tag 'flag_ua.png'
 			= image_tag 'flag_ru.png'
 			%span Поддерживаемые валюты
-			%span.fake-share.fb
-				%b Поделиться
-				12345
-			%span.fake-share.twitter
-				Follow @myfundraise
+
+			= render 'shared/social_counters'
+
 
 		%ul.footer-menu
 			%li= link_to "Блог", '#'

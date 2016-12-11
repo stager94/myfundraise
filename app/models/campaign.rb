@@ -1,4 +1,6 @@
 class Campaign < ActiveRecord::Base
+  acts_as_paranoid
+
   paginates_per 12
 
   mount_uploader :picture, Campaigns::CoverUploader
@@ -32,9 +34,9 @@ class Campaign < ActiveRecord::Base
   belongs_to :user
   belongs_to :city
 
-  has_many :donations
-  has_many :updates
-  has_one :reward
+  has_many :donations, dependent: :destroy
+  has_many :updates, dependent: :destroy
+  has_one :reward, dependent: :destroy
 
   validates_presence_of :title, :currency, :goal, :user, :city
   validates_presence_of :description, if: :on_description_step?

@@ -1,0 +1,35 @@
+<div class="pull-right" style="margin-right: 10px;">
+  <!-- Put this script tag to the <head> of your page -->
+  <script type="text/javascript" src="https://vk.com/js/api/share.js?94" charset="windows-1251"></script>
+
+  <!-- Put this script tag to the place, where the Share button will be -->
+  <script type="text/javascript"><!--
+  document.write(VK.Share.button(false,{type: "round", text: "Рассказать друзьям"}));
+  --></script>
+</div>
+
+<div class="pull-right" style="margin-right: 10px;">
+  <div id="ok_shareWidget"></div>
+  <script>
+  !function (d, id, did, st, title, description, image) {
+    var js = d.createElement("script");
+    js.src = "https://connect.ok.ru/connect.js";
+    js.onload = js.onreadystatechange = function () {
+    if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+      if (!this.executed) {
+        this.executed = true;
+        setTimeout(function () {
+          OK.CONNECT.insertShareWidget(id,did,st, title, description, image);
+        }, 0);
+      }
+    }};
+    d.documentElement.appendChild(js);
+  }(document,"ok_shareWidget",document.URL,'{"sz":20,"st":"straight","ck":2}',"","","");
+  </script>
+</div>
+
+
+<div class="pull-right" style="margin-right: 10px;">
+  <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</div>

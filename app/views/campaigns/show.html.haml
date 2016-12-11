@@ -19,7 +19,7 @@
 							%ul.pull-right.share
 								%li Поделиться:
 								%li
-									= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','');return false;" do
+									= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','#{@campaign.description}');return false;" do
 										= fa_icon :vk
 								%li
 									= link_to 'javascript:void(0);', onclick: "Share.odnoklassniki('#{campaign_url(@campaign)}','#{@campaign.title}');return false;" do
@@ -55,7 +55,7 @@
 						%h5.heading Помочь собрать больше денег!
 						.row
 							.col-md-4
-								= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','');return false;", class: "btn btn-block campaign-vk-share" do
+								= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','#{@campaign.description}');return false;", class: "btn btn-block campaign-vk-share" do
 									= fa_icon :vk
 									Рассказать друзьям
 							.col-md-4
