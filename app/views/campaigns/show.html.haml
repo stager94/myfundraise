@@ -66,7 +66,7 @@
 							%h5.heading Помочь собрать больше денег!
 							.row
 								.col-md-4
-									= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','#{truncate(strip_tags(@campaign.description).gsub("\r", "").gsub("\n", ""),length: 200)}');return false;", class: "btn btn-block campaign-vk-share" do
+									= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{asset_url(@campaign.picture.url)}','#{truncate(strip_tags(@campaign.description).gsub("\r", "").gsub("\n", ""),length: 200)}');return false;", class: "btn btn-block campaign-vk-share" do
 										= fa_icon :vk
 										Рассказать друзьям
 								.col-md-4

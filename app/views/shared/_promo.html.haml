@@ -1,17 +1,30 @@
 .promo-bg
 	.container
 		.row
-			.col-md-8.col-md-offset-2
+			.col-md-10.col-md-offset-1
 				.row
 					.col-md-12
+						= image_tag 'logo.png', size: "156x50", class: "gutter-top-5"
 						.non-semantic-protector
 							%h3.ribbon
 								%strong.ribbon-content WORLD'S #1 FUNDRAISING SITE
-					.col-md-6 Создание страницы для сбора за пару минут
-					.col-md-6 Интеграция в соц. сети: Вконтакте, Одноклассники
-					.col-md-6 Более 50 способов оплаты
-					.col-md-6 Быстрый вывод собранных средств
-					.col-md-6 Никаких ограничительных сроков
-					.col-md-6 Быстрая техническая поддержка
+					.col-md-6.text-left
+						= fa_icon :check
+						Создание страницы для сбора за пару минут
+					.col-md-6.text-left
+						= fa_icon :check
+						Интеграция в соц. сети: VK, Одноклассники
+					.col-md-6.text-left
+						= fa_icon :check
+						Более 50 способов оплаты
+					.col-md-6.text-left
+						= fa_icon :check
+						Быстрый вывод собранных средств
+					.col-md-6.text-left
+						= fa_icon :check
+						Никаких ограничительных сроков
+					.col-md-6.text-left
+						= fa_icon :check
+						Быстрая техническая поддержка
 					.col-md-12
 						= link_to "Создать компанию", new_dashboard_campaign_path, class: 'btn btn-lg'
