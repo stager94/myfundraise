@@ -41,12 +41,12 @@
                   = fa_icon :"bell"
                   Все уведомления
               %li
-                = link_to dashboard_donations_path do
+                = link_to dashboard_notifications_path(tab: :donation) do
                   %span.pull-right= current_user.campaigns.sum(:donations_count)
                   = fa_icon :"usd"
                   Пожертвования
               %li
-                = link_to dashboard_comments_path do
+                = link_to dashboard_notifications_path(tab: :comment) do
                   %span.pull-right= current_user.campaigns.sum(:comments_count)
                   = fa_icon :"comment"
                   Комментарии
