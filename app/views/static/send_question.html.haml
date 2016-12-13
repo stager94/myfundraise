@@ -1,0 +1,12 @@
+.page-header.gutter-top-0
+  %h1.gutter-top-0 Задать вопрос
+
+= form_for CustomQuestion.new do |f|
+  .form-group
+    = f.label :email, class: 'control-label'
+    = f.email_field :email, class: 'form-control'
+  .form-group
+    = f.label :text, class: 'control-label', value: "Сообщение"
+    = f.text_area :text, class: "form-control"
+  .form-group
+    = f.submit "Отправить", class: "btn btn-mf"

@@ -17,11 +17,13 @@ Rails.application.routes.draw do
   get '/how_it_works' => 'static#how_it_works', as: :how_it_works
   get '/pricing' => 'static#pricing', as: :pricing
   get '/questions' => 'static#questions', as: :questions
+  match '/send_question' => 'static#send_question', as: :send_question, via: [:get, :post]
   get '/privacy_policy' => 'static#privacy_policy', as: :privacy_policy
   get '/terms_of_use' => 'static#terms_of_use', as: :terms_of_use
 
   resources :categories, only: [:show]
   resources :users
+  resources :custom_questions
 
   namespace :blog do
     resources :articles, only: [:index, :show] do

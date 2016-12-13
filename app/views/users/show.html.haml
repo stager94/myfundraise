@@ -89,11 +89,10 @@
 					= render @campaigns
 			- else
 				%p.warning-message
-					Stanislav wants to know what guests think about this event..
-					%br
-					This will helps to make his events more interesting!
-					%br
-					Be the Guest and you can be the first who leave review of this event!
+					У Вас еще нет ни одной кампании
+					- if current_user == @user
+						%br
+						= link_to 'Создать сейчас', new_campaign_path
 .navigator
 	.container
 		= paginate @campaigns

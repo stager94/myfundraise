@@ -12,7 +12,11 @@
 						%li(class="#{'active' if @tab == 'like'}")= link_to "Лайки", dashboard_notifications_path(tab: :like)
 
 				%ul.notifications-list
-					= render 'shared/notifications', notifications: @notifications
+					= render 'shared/notifications', notifications: @notifications rescue ""
+				- if @notifications.count == 0
+					%hr
+					#pagination.pagination.gutter-bottom-20
+						%span.next Вы еще не получали уведомления
 
 				#pagination.pagination
 					%span.next= link_to_next_page @notifications, 'Загрузить еще..', params: { tab: @tab }, remote: true, data: { disable_with: "Загрузка.." }

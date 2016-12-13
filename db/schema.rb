@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161211230317) do
+ActiveRecord::Schema.define(version: 20161213223253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -185,6 +185,13 @@ ActiveRecord::Schema.define(version: 20161211230317) do
   end
 
   add_index "currencies", ["wallet_one_id"], name: "index_currencies_on_wallet_one_id", using: :btree
+
+  create_table "custom_questions", force: :cascade do |t|
+    t.string   "email"
+    t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "donations", force: :cascade do |t|
     t.integer  "user_id"

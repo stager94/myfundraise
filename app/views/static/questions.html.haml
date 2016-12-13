@@ -8,3 +8,5 @@
     = text_field_tag :search, params[:search], class: "form-control", placeholder: "Быстрый поиск вопроса"
 
 = render @questions
+
+= link_to "Задать вопрос", send_question_path

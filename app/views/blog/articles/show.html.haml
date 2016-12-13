@@ -6,6 +6,7 @@
 = raw @article.text
 .gutter-top-20.gutter-bottom-30.article-counters.share-info(data-blog-article-id="#{@article.id}")= render 'blog/articles/counters_box', object: @article
 
+= render 'layouts/ad_block'
 
 %h4.heading Комментарии
 - if user_signed_in?
@@ -27,6 +28,3 @@
       .empty-comments-results.empty-results
         Еще никто не оставлял свой отзыв о кампании
         %u= "'#{@article.title}'"
-
-
-= render 'layouts/ad_block'

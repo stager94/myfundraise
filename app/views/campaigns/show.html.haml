@@ -93,7 +93,7 @@
 								.text-right= f.submit "Добавить комментарий", class: "btn"
 						- else
 							.empty-comments-results.empty-results.gutter-top-0
-								Авторизируйтесь, чтобы оставить свой отзыв о кампании
+								= raw "#{link_to 'Авторизируйтесь', '#', data: { toggle: "modal", target: "#sign_in" } }, чтобы оставить свой отзыв о кампании"
 								%u= "'#{@campaign.title}'"
 
 						#comments-list
@@ -127,7 +127,7 @@
 
 					- if current_user.try(:id) != @campaign.user_id
 						= link_to "Помочь сейчас", new_donation_path(@campaign), class: "btn btn-lg btn-block gutter-top-30"
-					= link_to "Рассказать друзьям", new_donation_path(@campaign), class: "btn btn-block gutter-top-10 gutter-bottom-20"
+					= link_to "Рассказать друзьям", 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{asset_url(@campaign.picture.url)}','#{truncate(strip_tags(@campaign.description).gsub("\r", "").gsub("\n", ""),length: 200)}');return false;", class: "btn btn-block gutter-top-10 gutter-bottom-20"
 
 					.campaign-author
 						= link_to @campaign.user do
@@ -137,7 +137,9 @@
 								%span{ style: "display:block;" }= @campaign.user.name
 								Открыть профиль в MyFundraise
 
-					.gutter-top-10= render partial: 'dashboard/rewards/reward_item', collection: @campaign.rewards, as: :reward
+					- if @campaign.rewards.count > 0
+						%h4 Награды
+						.gutter-top-10= render partial: 'dashboard/rewards/reward_item', collection: @campaign.rewards, as: :reward
 
 					%h4 Пожертвования
 					- if @donations.any?
