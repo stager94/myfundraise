@@ -1,0 +1,19 @@
+.container
+  .col-md-12
+    %h1 Мои кампании
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Название
+          %th Пожертвований
+          %th Сумма пожертвований
+          %th К выводу
+          %th Операции
+      %tbody
+        - current_user.campaigns.each do |campaign|
+          %tr
+            %td= campaign.title
+            %td= campaign.donations.paid.count
+            %td= campaign.donations.paid.sum :amount
+            %td= campaign.to_withdraw || 0
+            %td= link_to "Вывести", withdraws_path(campaign_id: campaign.id), disabled: ((campaign.to_withdraw || 0) < 1), method: :post

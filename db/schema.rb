@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213223253) do
+ActiveRecord::Schema.define(version: 20161213234507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 20161213223253) do
     t.datetime "published_at"
     t.string   "video_url"
     t.datetime "deleted_at"
+    t.integer  "to_withdraw"
   end
 
   add_index "campaigns", ["category_id"], name: "index_campaigns_on_category_id", using: :btree
@@ -377,6 +378,15 @@ ActiveRecord::Schema.define(version: 20161213223253) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "withdraws", force: :cascade do |t|
+    t.integer  "campaign_id"
+    t.integer  "amount"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "withdraws", ["campaign_id"], name: "index_withdraws_on_campaign_id", using: :btree
+
   add_foreign_key "campaigns", "categories"
   add_foreign_key "campaigns", "cities"
   add_foreign_key "campaigns", "currencies"
@@ -391,4 +401,5 @@ ActiveRecord::Schema.define(version: 20161213223253) do
   add_foreign_key "payments", "donations"
   add_foreign_key "rewards", "campaigns"
   add_foreign_key "updates", "campaigns"
+  add_foreign_key "withdraws", "campaigns"
 end

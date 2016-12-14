@@ -37,6 +37,7 @@ class Campaign < ActiveRecord::Base
   has_many :donations, dependent: :destroy
   has_many :updates, dependent: :destroy
   has_many :rewards, dependent: :destroy
+  has_many :withdraws, dependent: :destroy
 
   validates_presence_of :title, :currency, :goal, :user, :city
   validates_presence_of :description, if: :on_description_step?

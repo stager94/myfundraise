@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   DEFAULT_FILTER = "active"
 
   def finish_signup
-    # authorize! :update, @user 
+    # authorize! :update, @user
     if request.patch? && params[:user] #&& params[:user][:email]
       if @user.update(user_params)
         # @user.skip_reconfirmation!
@@ -30,6 +30,10 @@ class UsersController < ApplicationController
     else
       @campaigns = scope.send(@filter).by_author(@user).page(params[:page]).per 6
     end
+  end
+
+  def withdraws
+
   end
 
 private

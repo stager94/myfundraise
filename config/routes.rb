@@ -22,8 +22,11 @@ Rails.application.routes.draw do
   get '/terms_of_use' => 'static#terms_of_use', as: :terms_of_use
 
   resources :categories, only: [:show]
-  resources :users
+  resources :users do
+    get :withdraws, on: :collection
+  end
   resources :custom_questions
+  resources :withdraws
 
   namespace :blog do
     resources :articles, only: [:index, :show] do
