@@ -13,7 +13,7 @@ class Campaign < ActiveRecord::Base
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
-  is_impressionable counter_cache: true, column_name: :views_count
+  is_impressionable counter_cache: true, column_name: :views_count, unique: :all
 
   friendly_id :friendly_code, use: [:slugged, :finders]
 

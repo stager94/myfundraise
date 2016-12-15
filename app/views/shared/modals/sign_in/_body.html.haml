@@ -1,10 +1,10 @@
 %h2.text-center Авторизация
 
 .auth-links
-	= link_to user_vkontakte_omniauth_authorize_path, class: "vk" do
+	= link_to user_vkontakte_omniauth_authorize_path(return_url: request.original_url), class: "vk" do
 		= fa_icon "vk"
 		Войти через ВКонтакте
-	= link_to user_odnoklassniki_omniauth_authorize_path, class: "ok" do
+	= link_to user_odnoklassniki_omniauth_authorize_path(return_url: request.original_url), class: "ok" do
 		= fa_icon "odnoklassniki"
 		Войти через Одноклассники
 

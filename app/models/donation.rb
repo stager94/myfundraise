@@ -50,7 +50,7 @@ class Donation < ActiveRecord::Base
 
   def after_pay_callback
     create_activity action: "create", recipient: campaign.user, owner: user
-    campaign.update to_withdraw: (campaign.to_withdraw + self.amount)
+    campaign.update to_withdraw: (campaign.to_withdraw + self.amount * 0.7)
   end
 
 private

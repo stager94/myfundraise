@@ -13,5 +13,21 @@ ActiveAdmin.register Blog::Article do
 #   permitted
 # end
 
+  form do |f|
+    f.inputs "General" do
+      f.input :title
+      f.input :slug
+    end
+
+    f.inputs "Text" do
+      f.input :text, label: false
+    end
+
+    f.inputs "Snippet" do
+      f.input :snippet, label: false
+    end
+
+    f.actions
+  end
 
 end
