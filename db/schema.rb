@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213234507) do
+ActiveRecord::Schema.define(version: 20161219032900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -383,6 +383,9 @@ ActiveRecord::Schema.define(version: 20161213234507) do
     t.integer  "amount"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "name"
+    t.string   "card_number"
+    t.string   "aasm_state"
   end
 
   add_index "withdraws", ["campaign_id"], name: "index_withdraws_on_campaign_id", using: :btree

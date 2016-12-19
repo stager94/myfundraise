@@ -2,13 +2,23 @@ class WithdrawsController < ApplicationController
 
   def create
     campaign = Campaign.find params[:campaign_id]
-    withdraw = Withdraw.create campaign_id: campaign.id,
-                               amount: campaign.to_withdraw
-    redirect_to :back
+    @withdraw = campaign.withdraws.create withdraw_params
+
+    if @withdraw.valid?
+      redirect_to withdraws_users_path
+    else
+      render :new
+    end
   end
 
   def new
+    @withdraw = Withdraw.new
+  end
 
+  private
+
+  def withdraw_params
+    params.require(:withdraw).permit!
   end
 
 end
