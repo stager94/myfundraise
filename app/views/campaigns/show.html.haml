@@ -2,10 +2,12 @@
 
 
 - if params[:ik_inv_st] == 'success'
+	- donation = Donation.find_by_secret_key params[:ik_pm_no]
+
 	.text-center
 		%h1.gutter-top-100.gutter-bottom-50 Ваш платеж прошел успешно
 
-		= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{current_user.first_name}, спасибо за помощь','#{@campaign.picture.url}','Я помог собрать деньги #{@campaign.user.name} на \"#{@campaign.title}\". Не будь и ты равнодушным!');return false;", class: "gutter-bottom-50 btn campaign-vk-share", style: "display:inline-block;color:white;" do
+		= link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{donation.name}, спасибо за помощь','#{@campaign.picture.url}','Я помог собрать деньги #{@campaign.user.name} на \"#{@campaign.title}\". Не будь и ты равнодушным!');return false;", class: "gutter-bottom-50 btn campaign-vk-share", style: "display:inline-block;color:white;" do
 			= fa_icon :vk
 			Рассказать друзьям
 
