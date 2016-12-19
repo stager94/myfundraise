@@ -18,3 +18,18 @@
             %td= campaign.to_withdraw || 0
             / %td= link_to "Вывести", withdraws_path(campaign_id: campaign.id), disabled: ((campaign.to_withdraw || 0) < 1), method: :post
             %td= link_to "Вывести", new_withdraw_path(campaign_id: campaign.id)
+
+  .col-md-12
+    %h1 История выводов
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Дата
+          %th Кампания
+          %th.text-right Сумма
+      %tbody
+        - current_user.withdraws.each do |w|
+          %tr
+            %td= I18n.l w.created_at.to_date
+            %td= w.campaign.title
+            %td.text-right= raw construct_amount(w.amount, w.campaign.currency)

@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :donations, dependent: :destroy
+  has_many :withdraws, through: :campaigns
 
   # has_many :activities, class_name: "::PublicActivity::Activity", as: :owner
 

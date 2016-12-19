@@ -1,8 +1,8 @@
 class WithdrawsController < ApplicationController
 
   def create
-    campaign = Campaign.find params[:campaign_id]
-    @withdraw = campaign.withdraws.create withdraw_params
+    @campaign = Campaign.find params[:campaign_id]
+    @withdraw = @campaign.withdraws.create withdraw_params
 
     if @withdraw.valid?
       redirect_to withdraws_users_path
@@ -12,6 +12,7 @@ class WithdrawsController < ApplicationController
   end
 
   def new
+    @campaign = Campaign.find params[:campaign_id]
     @withdraw = Withdraw.new
   end
 
