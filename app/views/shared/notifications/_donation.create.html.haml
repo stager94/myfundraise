@@ -1,8 +1,12 @@
+- owner = notification.owner || User.anonym
 .avatar-part
 	= render_user_avatar_for notification.owner, image_styles: "w50 img-circle"
 	.activity-icon.blue= fa_icon :"usd"
 .info-part
-	= link_to notification.owner.name, notification.owner
+  - if owner.new_record?
+    = owner.name
+  - else
+  	= link_to owner.name, owner
 	= raw "внес пожертвование #{construct_amount(notification.trackable.amount, notification.trackable.currency)} для Вашей кампании #{link_to notification.trackable.campaign.title, notification.trackable.campaign}"
 	%span.time= notification.created_at.strftime "%d.%m.%Y %H:%M"
 .money-part
