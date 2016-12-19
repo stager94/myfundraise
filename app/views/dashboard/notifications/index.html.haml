@@ -12,7 +12,7 @@
 						%li(class="#{'active' if @tab == 'like'}")= link_to "Лайки", dashboard_notifications_path(tab: :like)
 
 				%ul.notifications-list
-					= render 'shared/notifications', notifications: @notifications rescue ""
+					= render 'shared/notifications', notifications: @notifications
 				- if @notifications.count == 0
 					%hr
 					#pagination.pagination.gutter-bottom-20
