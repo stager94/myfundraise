@@ -7,7 +7,7 @@
     = owner.name
   - else
     = link_to owner.name, owner
-  = raw "внес пожертвование #{construct_amount(notification.trackable.amount, notification.trackable.currency)} для Вашей кампании #{link_to notification.trackable.campaign.title, notification.trackable.campaign}"
+  = raw "внес пожертвование #{construct_amount(notification.trackable.amount, notification.trackable.currency)} для Вашей кампании #{link_to notification.trackable.campaign.title, notification.trackable.campaign}" rescue binding.remote_pry
   %span.time= notification.created_at.strftime "%d.%m.%Y %H:%M"
 .money-part
   = "#{construct_amount(notification.trackable.amount, notification.trackable.currency)}".html_safe

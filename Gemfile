@@ -53,6 +53,7 @@ gem 'odnoklassniki'
 gem "lemur", "~> 0.0.6"
 
 gem 'pry'
+gem 'pry-remote'
 
 gem 'wicked'
 gem 'tinymce-rails'
