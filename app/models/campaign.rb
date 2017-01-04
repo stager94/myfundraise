@@ -1,5 +1,5 @@
 class Campaign < ActiveRecord::Base
-  acts_as_paranoid
+  # acts_as_paranoid
 
   paginates_per 12
 
