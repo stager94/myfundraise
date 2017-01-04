@@ -27,7 +27,7 @@ class Campaign < ActiveRecord::Base
   scope :favourites, ->(user) { includes(:likes).where(likes: { user_id: user.id }).order "likes.created_at DESC" }
   scope :donations, ->(user) { includes(:donations).where donations: { user_id: user.id } }
 
-	STEPS = [:general, :media, :media_crop, :media_confirm, :description, :instagram, :share, :share_confirm, :activate]
+	STEPS = [:general, :media, :media_crop, :media_confirm, :description, :share, :share_confirm, :activate]
 
   belongs_to :currency
   belongs_to :category

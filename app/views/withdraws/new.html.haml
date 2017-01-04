@@ -5,7 +5,7 @@
     = form_for @withdraw, url: withdraws_path(campaign_id: params[:campaign_id]), method: :post do |f|
       .form-group
         = f.label :amount, "Сумма"
-        = f.text_field :amount, class: "form-control", @campaign.to_withdraw
+        = f.text_field :amount, class: "form-control", value: @campaign.to_withdraw
       .form-group
         = f.label :name, "ФИО владельца карты"
         = f.text_field :name, class: "form-control"
