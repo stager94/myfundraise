@@ -9,7 +9,7 @@
         %p= campaign_url(@campaign)
 
       .text-center.gutter-top-40.gutter-bottom-10
-        = link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{@campaign.picture.url}','', '#{dashboard_campaign_steps_path(@campaign, id: 'activate')}');return false;", class: "share-vk" do
+        = link_to 'javascript:void(0);', onclick: "Share.vkontakte('#{campaign_url(@campaign)}','#{@campaign.title}','#{asset_url(@campaign.picture.url)}','', '#{dashboard_campaign_steps_path(@campaign, id: 'activate')}');return false;", class: "share-vk" do
           %span.left-part= fa_icon :vk
           Поделиться ВК
 
