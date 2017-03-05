@@ -21,7 +21,7 @@ set :user,        'root'
 set :use_sudo,    false
 
 set :scm, :git
-set :repository, "git@github.com:MarRyb/myfundraise.git"
+set :repository, "git@github.com:stager94/myfundraise.git"
 set :deploy_via, :remote_cache
 
 set(:unicorn_conf) { "#{deploy_to}/current/config/unicorn/#{fetch(:stage)}.rb" }
