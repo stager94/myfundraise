@@ -1,5 +1,5 @@
-set :domain, '46.101.230.46'
-server '46.101.230.46', :app, :web, :db, primary: true
+set :domain, '185.74.254.17'
+server '185.74.254.17', :app, :web, :db, primary: true
 
 set :branch, 'master'
 
